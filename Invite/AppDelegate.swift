@@ -41,17 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         }
     }
     
-//    func switchControllers(viewControllerToBeDismissed:UIViewController,controllerToBePresented:UIViewController) {
-//        if (viewControllerToBeDismissed.isViewLoaded && (viewControllerToBeDismissed.view.window != nil)) {
-//            // viewControllerToBeDismissed is visible
-//            //First dismiss and then load your new presented controller
-//            viewControllerToBeDismissed.dismiss(animated: false, completion: {
-//                self.window?.rootViewController?.present(controllerToBePresented, animated: true, completion: nil)
-//            })
-//        } else {
-//        }
-//    }
-    
+
     @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
@@ -72,10 +62,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         if let error = error {
             print(error.localizedDescription)
             print("Error SignIN Google  ")
-            //  displayAlertMessage(messageToDisplay: "Ошибка входа в Аккаунт Google попробуйте позже ", viewController: )
-            return
+            
         }
-        //        print("user sign in google")
+              print("user sign in google")
         
         guard let authentication = user.authentication else {  print("Error SignIN Google  ")
             return }

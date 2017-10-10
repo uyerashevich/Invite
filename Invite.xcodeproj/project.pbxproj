@@ -18,6 +18,7 @@
 		7F9E3CEB1F8D39CA006378F0 /* UserCabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9E3CEA1F8D39CA006378F0 /* UserCabViewController.swift */; };
 		7F9E3CEE1F8D447C006378F0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9E3CED1F8D447C006378F0 /* Utils.swift */; };
 		7F9E3CEF1F8D44EC006378F0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9E3CF01F8D44EC006378F0 /* FBSDKLoginKit.framework */; };
+		7F9E3CF21F8D5148006378F0 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9E3CF31F8D5148006378F0 /* FBSDKCoreKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,7 @@
 		7F9E3CED1F8D447C006378F0 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7F9E3CF01F8D44EC006378F0 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9E3CF11F8D4768006378F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7F9E3CF31F8D5148006378F0 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		906F24D78027CDEE9BFE0F9D /* Pods_Invite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Invite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0BCCCAB0B5F6628DBBB6C2 /* Pods-Invite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Invite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Invite/Pods-Invite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -44,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F9E3CF21F8D5148006378F0 /* FBSDKCoreKit.framework in Frameworks */,
 				7F9E3CEF1F8D44EC006378F0 /* FBSDKLoginKit.framework in Frameworks */,
 				1C840C76270AE3C73EDAB85D /* Pods_Invite.framework in Frameworks */,
 			);
@@ -116,6 +119,7 @@
 		F944E33C648F722DD6A05DE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F9E3CF31F8D5148006378F0 /* FBSDKCoreKit.framework */,
 				7F9E3CF01F8D44EC006378F0 /* FBSDKLoginKit.framework */,
 				906F24D78027CDEE9BFE0F9D /* Pods_Invite.framework */,
 			);
