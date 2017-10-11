@@ -27,6 +27,8 @@
 /* Begin PBXFileReference section */
 		483F22F6F54B72CD3631CDF1 /* Pods-Invite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Invite.release.xcconfig"; path = "Pods/Target Support Files/Pods-Invite/Pods-Invite.release.xcconfig"; sourceTree = "<group>"; };
 		7F0D01D01F8EA0300051B7C5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7F0D01D11F8EAB620051B7C5 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		7F0D01D31F8EAB770051B7C5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		7F9E3CCE1F8D2F5F006378F0 /* Invite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F9E3CD61F8D2F5F006378F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -124,6 +126,8 @@
 		F944E33C648F722DD6A05DE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F0D01D31F8EAB770051B7C5 /* AdSupport.framework */,
+				7F0D01D11F8EAB620051B7C5 /* iAd.framework */,
 				7F0D01D01F8EA0300051B7C5 /* FBSDKShareKit.framework */,
 				7F9E3CF31F8D5148006378F0 /* FBSDKCoreKit.framework */,
 				7F9E3CF01F8D44EC006378F0 /* FBSDKLoginKit.framework */,
