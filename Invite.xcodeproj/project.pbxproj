@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1C840C76270AE3C73EDAB85D /* Pods_Invite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 906F24D78027CDEE9BFE0F9D /* Pods_Invite.framework */; };
+		7F0D01CC1F8E8DBF0051B7C5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E3CDD1F8D2F5F006378F0 /* Info.plist */; };
+		7F0D01CD1F8E8DC20051B7C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E3CF11F8D4768006378F0 /* GoogleService-Info.plist */; };
+		7F0D01CF1F8EA0300051B7C5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F0D01D01F8EA0300051B7C5 /* FBSDKShareKit.framework */; };
 		7F9E3CD21F8D2F5F006378F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */; };
 		7F9E3CD71F8D2F5F006378F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E3CD51F8D2F5F006378F0 /* Main.storyboard */; };
 		7F9E3CD91F8D2F5F006378F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E3CD81F8D2F5F006378F0 /* Assets.xcassets */; };
@@ -23,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		483F22F6F54B72CD3631CDF1 /* Pods-Invite.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Invite.release.xcconfig"; path = "Pods/Target Support Files/Pods-Invite/Pods-Invite.release.xcconfig"; sourceTree = "<group>"; };
+		7F0D01D01F8EA0300051B7C5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9E3CCE1F8D2F5F006378F0 /* Invite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F9E3CD61F8D2F5F006378F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -46,6 +50,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F0D01CF1F8EA0300051B7C5 /* FBSDKShareKit.framework in Frameworks */,
 				7F9E3CF21F8D5148006378F0 /* FBSDKCoreKit.framework in Frameworks */,
 				7F9E3CEF1F8D44EC006378F0 /* FBSDKLoginKit.framework in Frameworks */,
 				1C840C76270AE3C73EDAB85D /* Pods_Invite.framework in Frameworks */,
@@ -119,6 +124,7 @@
 		F944E33C648F722DD6A05DE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7F0D01D01F8EA0300051B7C5 /* FBSDKShareKit.framework */,
 				7F9E3CF31F8D5148006378F0 /* FBSDKCoreKit.framework */,
 				7F9E3CF01F8D44EC006378F0 /* FBSDKLoginKit.framework */,
 				906F24D78027CDEE9BFE0F9D /* Pods_Invite.framework */,
@@ -188,7 +194,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F0D01CC1F8E8DBF0051B7C5 /* Info.plist in Resources */,
 				7F9E3CDC1F8D2F5F006378F0 /* LaunchScreen.storyboard in Resources */,
+				7F0D01CD1F8E8DC20051B7C5 /* GoogleService-Info.plist in Resources */,
 				7F9E3CD91F8D2F5F006378F0 /* Assets.xcassets in Resources */,
 				7F9E3CD71F8D2F5F006378F0 /* Main.storyboard in Resources */,
 			);
