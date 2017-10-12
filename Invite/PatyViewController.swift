@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+import GoogleSignIn
+import FBSDKLoginKit
 
 class PatyViewController: UIViewController {
 
@@ -16,9 +19,19 @@ class PatyViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @IBAction func backButton(_ sender: UIButton) {
+      
+        let firebaseAuth = Auth.auth()
+        do {
+            print("выход из Google")
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+        }
+        
+        dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
     }
     
 

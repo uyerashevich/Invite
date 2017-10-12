@@ -5,14 +5,15 @@
 //  Created by User1 on 10.10.17.
 //  Copyright © 2017 User1. All rights reserved.
 //
+//
+
 
 import UIKit
 import Firebase
-
 import GoogleSignIn
 import FBSDKLoginKit
 
-
+var userCabVC: UserCabViewController!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
@@ -21,22 +22,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
     var databaseRef: DatabaseReference!
     
     static var checkerFG : Int = 0
- 
+    static var activityIndicator = UIActivityIndicatorView()
+
+    static var userCabPresent : Bool = false
     
     static var ref: DatabaseReference? = Database.database().reference()
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-     
-        
         FirebaseApp.configure()
-        
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
         GIDSignIn.sharedInstance().delegate = self
-        
-        
         
         if AppDelegate.checkerFG == 1{
             
@@ -45,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
             return true
         }
     }
- 
     
     @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -56,9 +53,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
         case 0 :   return GIDSignIn.sharedInstance().handle(url,
                                                             sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                                                             annotation: [:])
-            
         default : return true
-            
         }
     }
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
@@ -66,30 +61,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
         if let error = error {
             print(error.localizedDescription)
             print("Ошибка входа в Google аккаунт попробуйте попозже")
-            //  displayAlertMessage(messageToDisplay: "Ошибка входа в Аккаунт Google попробуйте позже ", viewController: )
             return
         }
-       
         guard let authentication = user.authentication else {  print("Ошибка входа в Google ")
             return }
         
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                           accessToken: authentication.accessToken)
         
-
+        
+        
         Auth.auth().signIn(with: credential, completion: { (user, error) in
             
             
             print("user signed into firebase")
             
             
-         
+            //запись польз в Firebase и пока в userdef
             if user?.email != nil && user?.uid != nil {
                 
+             
                 //для авто входа
                 UserDefaults.standard.set(true, forKey:"remember")
                 
-                print("GOOGLE RULIT  APPDELEGATE!!!!!!!!!!!!!!!")
+                // Access the storyboard and fetch an instance of the view controller
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewController = storyboard.instantiateViewController(withIdentifier: "PatyVC")
+                
+                // Then push that view controller onto the navigation stack
+                let rootViewController = self.window!.rootViewController as! UINavigationController
+                rootViewController.pushViewController(viewController, animated: true)
                 
                 
             }else{
@@ -143,3 +144,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
     
     
 }
+
+

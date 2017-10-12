@@ -11,6 +11,11 @@
 		7F0D01CC1F8E8DBF0051B7C5 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E3CDD1F8D2F5F006378F0 /* Info.plist */; };
 		7F0D01CD1F8E8DC20051B7C5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E3CF11F8D4768006378F0 /* GoogleService-Info.plist */; };
 		7F0D01CF1F8EA0300051B7C5 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F0D01D01F8EA0300051B7C5 /* FBSDKShareKit.framework */; };
+		7F0E5A191F8FEB4A0026D358 /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0E5A181F8FEB4A0026D358 /* UserDataModel.swift */; };
+		7F0E5A1B1F8FEC5D0026D358 /* Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0E5A1A1F8FEC5D0026D358 /* Convertible.swift */; };
+		7F0E5A1E1F8FECC40026D358 /* ProfileCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0E5A1D1F8FECC40026D358 /* ProfileCacheManager.swift */; };
+		7F0E5A201F8FED730026D358 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0E5A1F1F8FED730026D358 /* Cache.swift */; };
+		7F0E5A221F8FF2DB0026D358 /* SignInFirebaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0E5A211F8FF2DB0026D358 /* SignInFirebaseViewController.swift */; };
 		7F9E3CD21F8D2F5F006378F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */; };
 		7F9E3CD71F8D2F5F006378F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E3CD51F8D2F5F006378F0 /* Main.storyboard */; };
 		7F9E3CD91F8D2F5F006378F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E3CD81F8D2F5F006378F0 /* Assets.xcassets */; };
@@ -29,6 +34,11 @@
 		7F0D01D01F8EA0300051B7C5 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F0D01D11F8EAB620051B7C5 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 		7F0D01D31F8EAB770051B7C5 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		7F0E5A181F8FEB4A0026D358 /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
+		7F0E5A1A1F8FEC5D0026D358 /* Convertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convertible.swift; sourceTree = "<group>"; };
+		7F0E5A1D1F8FECC40026D358 /* ProfileCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCacheManager.swift; sourceTree = "<group>"; };
+		7F0E5A1F1F8FED730026D358 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		7F0E5A211F8FF2DB0026D358 /* SignInFirebaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFirebaseViewController.swift; sourceTree = "<group>"; };
 		7F9E3CCE1F8D2F5F006378F0 /* Invite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F9E3CD61F8D2F5F006378F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -71,6 +81,31 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		7F0E5A0C1F8FE6740026D358 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = DataBase;
+			sourceTree = "<group>";
+		};
+		7F0E5A141F8FE8AC0026D358 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7F0E5A181F8FEB4A0026D358 /* UserDataModel.swift */,
+				7F0E5A1A1F8FEC5D0026D358 /* Convertible.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		7F0E5A1C1F8FECA20026D358 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7F0E5A1D1F8FECC40026D358 /* ProfileCacheManager.swift */,
+				7F0E5A1F1F8FED730026D358 /* Cache.swift */,
+			);
+			name = Managers;
+			sourceTree = "<group>";
+		};
 		7F9E3CC51F8D2F5F006378F0 = {
 			isa = PBXGroup;
 			children = (
@@ -92,6 +127,9 @@
 		7F9E3CD01F8D2F5F006378F0 /* Invite */ = {
 			isa = PBXGroup;
 			children = (
+				7F0E5A1C1F8FECA20026D358 /* Managers */,
+				7F0E5A141F8FE8AC0026D358 /* Models */,
+				7F0E5A0C1F8FE6740026D358 /* DataBase */,
 				7F9E3CEC1F8D445B006378F0 /* Utils */,
 				7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */,
 				7F9E3CD51F8D2F5F006378F0 /* Main.storyboard */,
@@ -107,6 +145,7 @@
 		7F9E3CE71F8D3906006378F0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7F0E5A211F8FF2DB0026D358 /* SignInFirebaseViewController.swift */,
 				7F9E3CE51F8D38F8006378F0 /* SignUpViewController.swift */,
 				7F9E3CE31F8D3288006378F0 /* SignInViewController.swift */,
 				7F9E3CE81F8D3952006378F0 /* PatyViewController.swift */,
@@ -259,6 +298,7 @@
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Locksmith/Locksmith.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -271,6 +311,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Locksmith.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -288,9 +329,14 @@
 			files = (
 				7F9E3CEB1F8D39CA006378F0 /* UserCabViewController.swift in Sources */,
 				7F9E3CE91F8D3952006378F0 /* PatyViewController.swift in Sources */,
+				7F0E5A221F8FF2DB0026D358 /* SignInFirebaseViewController.swift in Sources */,
 				7F9E3CE61F8D38F8006378F0 /* SignUpViewController.swift in Sources */,
+				7F0E5A1B1F8FEC5D0026D358 /* Convertible.swift in Sources */,
+				7F0E5A1E1F8FECC40026D358 /* ProfileCacheManager.swift in Sources */,
 				7F9E3CE41F8D3288006378F0 /* SignInViewController.swift in Sources */,
+				7F0E5A201F8FED730026D358 /* Cache.swift in Sources */,
 				7F9E3CD21F8D2F5F006378F0 /* AppDelegate.swift in Sources */,
+				7F0E5A191F8FEB4A0026D358 /* UserDataModel.swift in Sources */,
 				7F9E3CEE1F8D447C006378F0 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
