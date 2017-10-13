@@ -31,8 +31,8 @@ class SignUpViewController: UIViewController { //, UITextFieldDelegate
         let userPassword = passwordTextField.text
         let reUserPassword = rePasswordTextField.text
         
-        if validLoginPassword(userEmail: userEmail, userPassword: userPassword!){
-            signUpUser(userEmail: userEmail, userPassword: userPassword!, reUserPassword: reUserPassword!, view: self)
+        if AuthUser.init().validLoginPassword(userEmail: userEmail, userPassword: userPassword!){
+            AuthUser.init().signUpUser(userEmail: userEmail, userPassword: userPassword!, reUserPassword: reUserPassword!, view: self)
         }else {
             displayAlertMessage(messageToDisplay: "Failed password or login",viewController: self)
             return
@@ -49,10 +49,15 @@ class SignUpViewController: UIViewController { //, UITextFieldDelegate
         navigationController?.popViewController(animated: true)
     }
     @IBAction func rememberButton(_ sender: UIButton) {
-        rememberButtonOutlet.setImage(#imageLiteral(resourceName: "v"), for: .normal)
-        rememberUser = true
-           UserDefaults.standard.set(true, forKey:"remember")
-        
+        if !rememberUser {
+            rememberButtonOutlet.setImage(#imageLiteral(resourceName: "v"), for: .normal)
+            rememberUser = true
+            UserDefaults.standard.set(true, forKey:"remember")
+        }else{
+            rememberButtonOutlet.setImage(#imageLiteral(resourceName: "checkBox"), for: .normal)
+            rememberUser = false
+            UserDefaults.standard.set(false, forKey:"remember")
+        }
     }
     
     

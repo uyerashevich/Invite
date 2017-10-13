@@ -12,37 +12,58 @@ import GoogleSignIn
 import FBSDKLoginKit
 
 class PatyViewController: UIViewController {
-
+    
+    
+    
+    @IBOutlet weak var sexOutlet: UISegmentedControl!
+    @IBOutlet weak var orientationOutlet: UISegmentedControl!
+    
+    @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var surnameTexField: UITextField!
+ 
+    @IBOutlet weak var nameTextField: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    
-    @IBAction func backButton(_ sender: UIButton) {
-      
-        let firebaseAuth = Auth.auth()
-        do {
-            print("выход из Google")
-            try firebaseAuth.signOut()
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
+     
         
-        dismiss(animated: true, completion: nil)
-        navigationController?.popViewController(animated: true)
     }
+    @IBAction func saveButton(_ sender: UIButton) {
+        
+        switch orientationOutlet.selectedSegmentIndex {
+        case 1: AppDelegate.userProfile.sexFavorite = "gay"
+        case 2 : AppDelegate.userProfile.sexFavorite = "lesbian"
+        default : AppDelegate.userProfile.sexFavorite = "natural"
+        }
+        switch sexOutlet.selectedSegmentIndex{
+            case 1: AppDelegate.userProfile.sex = "women"
+        default : AppDelegate.userProfile.sex = "men"
+        }
+        if ageTextField.text != nil{  AppDelegate.userProfile.age = ageTextField.text! }
+        if nameTextField.text != nil{ AppDelegate.userProfile.name = nameTextField.text!}
+        if surnameTexField.text != nil {AppDelegate.userProfile.surname = surnameTexField.text!}
+
+        FirebaseUserModel.init().setUserData(userData: AppDelegate.userProfile)
+    }
+
+
+
+@IBAction func backButton(_ sender: UIButton) {
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    let firebaseAuth = Auth.auth()
+    do {
+        print("выход из Google")
+        try firebaseAuth.signOut()
+    } catch let signOutError as NSError {
+        print ("Error signing out: %@", signOutError)
     }
-    */
+    UserDefaults.standard.set(false, forKey:"remember")
+    dismiss(animated: true, completion: nil)
+    navigationController?.popViewController(animated: true)
+}
+
+
+
 
 }

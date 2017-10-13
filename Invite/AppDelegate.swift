@@ -13,7 +13,7 @@ import Firebase
 import GoogleSignIn
 import FBSDKLoginKit
 
-var userCabVC: UserCabViewController!
+//var userCabVC: UserCabViewController!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
@@ -23,8 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
     
     static var checkerFG : Int = 0
     static var activityIndicator = UIActivityIndicatorView()
-
-    static var userCabPresent : Bool = false
+    static var userProfile = UserProfile.init()
+ 
     
     static var ref: DatabaseReference? = Database.database().reference()
     
@@ -77,12 +77,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
             print("user signed into firebase")
             
             
-            //запись польз в Firebase и пока в userdef
+            
             if user?.email != nil && user?.uid != nil {
+                print(user?.email)
+                print(user?.uid)
                 
-             
-                //для авто входа
-                UserDefaults.standard.set(true, forKey:"remember")
+                
+                
+                AppDelegate.userProfile.userId = (user?.uid)!
+                AppDelegate.userProfile.email = (user?.email)!
+                
+                print(AppDelegate.userProfile.email)
+                print(AppDelegate.userProfile.userId)
                 
                 // Access the storyboard and fetch an instance of the view controller
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)

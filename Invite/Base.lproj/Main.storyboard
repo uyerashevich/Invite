@@ -36,15 +36,14 @@
                                     <action selector="signInGoogleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sd7-FG-q01"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c84-gl-k17">
-                                <rect key="frame" x="95" y="435" width="170" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GyJ-Cd-ESB">
+                                <rect key="frame" x="172" y="431" width="139" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="SignIn / SignUp" backgroundImage="button">
-                                    <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Remember Me" image="checkBox">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="tsX-nw-EdJ" kind="show" id="GFn-pg-noH"/>
+                                    <action selector="rememberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FCM-Se-uGE"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -61,12 +60,13 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="rememberButtonOutlet" destination="GyJ-Cd-ESB" id="YHx-XY-O4M"/>
                         <segue destination="WAU-18-M4F" kind="presentation" identifier="goToPaty" id="PYu-I1-VF2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="303" y="215"/>
+            <point key="canvasLocation" x="301.60000000000002" y="214.54272863568218"/>
         </scene>
         <!--User Cab View Controller-->
         <scene sceneID="RE0-P6-Q40">
@@ -92,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yka-6z-fsF">
-                                <rect key="frame" x="164" y="318" width="160" height="30"/>
+                                <rect key="frame" x="28" y="20" width="160" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Back"/>
@@ -100,12 +100,70 @@
                                     <action selector="backButton:" destination="WAU-18-M4F" eventType="touchUpInside" id="IcK-Gy-yAK"/>
                                 </connections>
                             </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LdR-1e-c4O">
+                                <rect key="frame" x="28" y="88" width="323" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="surname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tI0-wr-eb1">
+                                <rect key="frame" x="28" y="160" width="323" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4UJ-2u-xqb">
+                                <rect key="frame" x="28" y="296" width="219" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cbu-Rx-6Mn">
+                                <rect key="frame" x="77" y="229" width="263" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="men"/>
+                                    <segment title="women"/>
+                                </segments>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7d1-7f-EYh">
+                                <rect key="frame" x="28" y="365" width="312" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="natur"/>
+                                    <segment title="gay"/>
+                                    <segment title="lesb"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Qy-dP-RhE">
+                                <rect key="frame" x="142" y="560" width="162" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save" backgroundImage="button"/>
+                                <connections>
+                                    <action selector="saveButton:" destination="WAU-18-M4F" eventType="touchUpInside" id="6eu-eq-JR9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMz-qf-cOh">
+                                <rect key="frame" x="230" y="472" width="121" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="next" backgroundImage="button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="Mns-8F-p8b"/>
                     </view>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="ageTextField" destination="4UJ-2u-xqb" id="YXO-WV-Hm1"/>
+                        <outlet property="nameTextField" destination="LdR-1e-c4O" id="UIH-BZ-5lZ"/>
+                        <outlet property="orientationOutlet" destination="7d1-7f-EYh" id="JXz-AF-iat"/>
+                        <outlet property="sexOutlet" destination="cbu-Rx-6Mn" id="ab7-wm-OAz"/>
+                        <outlet property="surnameTexField" destination="tI0-wr-eb1" id="UkB-OD-Xuu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKx-O7-A6B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -312,6 +370,6 @@
         <image name="signIn" width="300" height="358"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Qb6-FC-sh4"/>
+        <segue reference="PYu-I1-VF2"/>
     </inferredMetricsTieBreakers>
 </document>

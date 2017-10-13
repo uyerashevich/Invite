@@ -10,12 +10,11 @@ import UIKit
 
 class SignInFirebaseViewController: UIViewController {
 
-
+    var rememberUser = false
     @IBOutlet weak var rememberButtonOutlet: UIButton!
-      var rememberUser = false
     @IBOutlet weak var passwordTextField: UITextField!
-    
     @IBOutlet weak var loginTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,17 +31,23 @@ class SignInFirebaseViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     @IBAction func rememberButton(_ sender: UIButton) {
-        rememberButtonOutlet.setImage(#imageLiteral(resourceName: "v"), for: .normal)
-        rememberUser = true
-        UserDefaults.standard.set(true, forKey:"remember")
+        if !rememberUser {
+            rememberButtonOutlet.setImage(#imageLiteral(resourceName: "v"), for: .normal)
+            rememberUser = true
+            UserDefaults.standard.set(true, forKey:"remember")
+        }else{
+            rememberButtonOutlet.setImage(#imageLiteral(resourceName: "checkBox"), for: .normal)
+            rememberUser = false
+            UserDefaults.standard.set(false, forKey:"remember")
+        }
     }
     
    
     @IBAction func okButton(_ sender: UIButton) {
         let userEmail = loginTextField.text!.lowercased()
         let userPassword = passwordTextField.text
-        if validLoginPassword(userEmail: userEmail, userPassword: userPassword!){
-            signInUser(userEmail: userEmail, userPassword: userPassword!, view: self)
+        if AuthUser.init().validLoginPassword(userEmail: userEmail, userPassword: userPassword!){
+            AuthUser.init().signInUser(userEmail: userEmail, userPassword: userPassword!, view: self)
         }else {
             displayAlertMessage(messageToDisplay: "Failed password or login",viewController: self)
             return
