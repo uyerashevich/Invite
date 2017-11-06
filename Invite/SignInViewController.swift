@@ -22,6 +22,9 @@ class SignInViewController:  UIViewController ,GIDSignInUIDelegate {
     
     
     override func viewDidLoad() {
+        
+        
+         
         super.viewDidLoad()
         rememberUser = UserDefaults.standard.bool(forKey: "remember")
         if UserDefaults.standard.bool(forKey: "remember") {

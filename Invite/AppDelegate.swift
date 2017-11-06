@@ -12,8 +12,10 @@ import UIKit
 import Firebase
 import GoogleSignIn
 import FBSDKLoginKit
+import GoogleMaps
+import GooglePlaces
 
-//var userCabVC: UserCabViewController!
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
@@ -23,14 +25,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
     
     static var checkerFG : Int = 0
     static var activityIndicator = UIActivityIndicatorView()
-    static var userProfile = UserProfile.init()
+
  
     
     static var ref: DatabaseReference? = Database.database().reference()
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        
+         GMSPlacesClient.provideAPIKey("AIzaSyBNPyUGQqLODQGKw0OljeNZNtv7PmKJf6A")
+    GMSServices.provideAPIKey("AIzaSyBNPyUGQqLODQGKw0OljeNZNtv7PmKJf6A")
         FirebaseApp.configure()
         
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
@@ -42,6 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
         }else{
             return true
         }
+        
     }
     
     @available(iOS 9.0, *)
@@ -69,26 +73,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                           accessToken: authentication.accessToken)
         
-        
-        
         Auth.auth().signIn(with: credential, completion: { (user, error) in
             
             
             print("user signed into firebase")
-            
-            
-            
+         
             if user?.email != nil && user?.uid != nil {
-                print(user?.email)
-                print(user?.uid)
+    
+                let userData = UserProfile.sharedInstance
+                userData.email = (user?.email)!
+                userData.userId = (user?.uid)!
                 
-                
-                
-                AppDelegate.userProfile.userId = (user?.uid)!
-                AppDelegate.userProfile.email = (user?.email)!
-                
-                print(AppDelegate.userProfile.email)
-                print(AppDelegate.userProfile.userId)
+                FirebaseUser.init().setUserData(userData: userData)
+             
                 
                 // Access the storyboard and fetch an instance of the view controller
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)

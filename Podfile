@@ -17,7 +17,16 @@ pod ’Firebase/Storage'
 pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
-pod 'Locksmith'
+pod 'GoogleMaps'
+pod 'GooglePlaces'
+pod 'GooglePlacePicker’
 
+#pod 'Locksmith'
+#pod 'FacebookCore'
+#pod 'FacebookLogin'
+#pod 'FacebookShare'
+#pod 'FBSDKCoreKit', '~> 4.27.0’
+#pod 'FBSDKLoginKit', '~> 4.27.0’
+#pod 'FBSDKShareKit', '~> 4.27.0’
 
 end

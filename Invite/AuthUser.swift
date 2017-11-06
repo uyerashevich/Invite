@@ -23,8 +23,7 @@ class  AuthUser {
             if facebookError != nil {
                 
                 displayAlertMessage(messageToDisplay: "There was an error logging in to Facebook. Error: \(facebookError)", viewController: view)
-            } else
-                if (facebookResult?.isCancelled)!
+            } else if (facebookResult?.isCancelled)!
                 {
                     print("Facebook login was cancelled!")
                 }
@@ -37,8 +36,12 @@ class  AuthUser {
                         print("user signed into firebase")
                         
                         if user != nil{
-                            print (user?.email)
+                           
+                           let userData = UserProfile.sharedInstance
+                            userData.email = (user?.email)!
+                            userData.userId = (user?.uid)!
                             
+                            FirebaseUser.init().setUserData(userData: userData)
                             view.performSegue(withIdentifier: "goToPaty", sender: view)
                             
                             
@@ -82,7 +85,7 @@ class  AuthUser {
             if (user != nil) {
                 
                
-                
+               
                 view.performSegue(withIdentifier: "goToPaty", sender: view)
                 
             }

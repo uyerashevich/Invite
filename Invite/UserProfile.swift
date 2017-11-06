@@ -8,32 +8,37 @@
 
 import Foundation
 
-class UserProfile{//} : Convertible{
+class UserProfile{
+    
+    static let sharedInstance = UserProfile()
     
     var userId: String
     var email : String
-   // var phone : String
+    var aboutMe : String
     var name : String
     var sex : String
     var sexFavorite : String
     var surname : String
     var age : String
     var instagramUrl : String
- //   var foto : Data//9
+  //  var foto : Data?//10
     
-    init (){
+    
+private    init (){
         userId = ""
         email = ""
+    aboutMe = ""
         name = ""
         sex = ""
         sexFavorite = ""
         surname = ""
         age = ""
         instagramUrl = ""
-      //  foto = ""
+    
     }
+    
     func convertToDictionary()-> [String: Any] {
-        return["userId": self.userId,"email": self.email,  "name": self.name,"sex": self.sex, "sexFavorite": self.sexFavorite, "surname": self.surname, "age": self.age, "instagramUrl": self.instagramUrl]
+        return["userId": self.userId,"email": self.email, "aboutMe": self.aboutMe, "name": self.name,"sex": self.sex, "sexFavorite": self.sexFavorite, "surname": self.surname, "age": self.age, "instagramUrl": self.instagramUrl]
 
     }
 //    required init?(fromDictionary: [String : Any]) {
