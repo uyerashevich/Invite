@@ -22,12 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
     
     var window: UIWindow?
     var databaseRef: DatabaseReference!
-    
     static var checkerFG : Int = 0
     static var activityIndicator = UIActivityIndicatorView()
-
- 
-    
     static var ref: DatabaseReference? = Database.database().reference()
     
     
@@ -79,23 +75,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
             print("user signed into firebase")
          
             if user?.email != nil && user?.uid != nil {
-    
-                let userData = UserProfile.sharedInstance
-                userData.email = (user?.email)!
-                userData.userId = (user?.uid)!
-                
-                FirebaseUser.init().setUserData(userData: userData)
-             
-                
-                // Access the storyboard and fetch an instance of the view controller
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "PatyVC")
-                
-                // Then push that view controller onto the navigation stack
-                let rootViewController = self.window!.rootViewController as! UINavigationController
-                rootViewController.pushViewController(viewController, animated: true)
+                UserDefaults.standard.set( (user?.email)!, forKey: "email")
+                UserDefaults.standard.set((user?.uid)!, forKey: "userId")
+                FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
                 
                 
+                var userData = UserProfile.sharedInstance
+                userData.userId = UserDefaults.standard.string(forKey: "userId")!
+                userData.email = UserDefaults.standard.string(forKey: "email")!
+                FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
+                   userData = userProfile
+                   
+                    // Access the storyboard and fetch an instance of the view controller
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "PatyVC")
+                    // Then push that view controller onto the navigation stack
+                    let rootViewController = self.window!.rootViewController as! UINavigationController
+                    rootViewController.pushViewController(viewController, animated: true)
+  
+                })
             }else{
                 print("Ошибка входа в Google аккаунт попробуйте попозже")
                 

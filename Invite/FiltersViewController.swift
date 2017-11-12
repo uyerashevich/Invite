@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FiltersViewController: UIViewController {
+class FiltersViewController: BaseViewController {
     var eventDataArray = [EventData]()
     var eventData = EventData()
     var filterEvent =  [EventData]()

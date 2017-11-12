@@ -13,10 +13,10 @@ import UIKit
 
 
 func startActivityIndicator(viewController: UIViewController) {
-    AppDelegate.activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+    AppDelegate.activityIndicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
     AppDelegate.activityIndicator.center = viewController.view.center
     AppDelegate.activityIndicator.hidesWhenStopped = true
-    AppDelegate.activityIndicator.activityIndicatorViewStyle = .gray
+    AppDelegate.activityIndicator.activityIndicatorViewStyle = .whiteLarge
     viewController.view.addSubview(AppDelegate.activityIndicator)
     AppDelegate.activityIndicator.startAnimating()
 }
@@ -55,42 +55,8 @@ func isValidEmailAddress(emailAddressString: String) -> Bool {
     
     return  returnValue
 }
-func resizeImage(image: UIImage, newWidth: CGFloat) -> UIImage? {
-    
-    let scale = newWidth / image.size.width
-    let newHeight = image.size.height * scale
-    UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-    image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-    
-    let newImage = UIGraphicsGetImageFromCurrentImageContext()
-    UIGraphicsEndImageContext()
-    
-    return newImage
-}
 
 
 
-// IMG -> String
-func codedImg(img: UIImage)->String{
-    
-    guard let image = resizeImage(image: img , newWidth: 400) else { return ""}
-    
-    
-    //сжатие картинки
-    guard let data = UIImageJPEGRepresentation(image,0.8) else {return ""}
-    
-    let base64String = data.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
-    return base64String
-}
-//String -> IMG
-func decodeImg(stringImage : String )->UIImage {
-    
-    if stringImage != "" {
-        guard let decodedData = Data(base64Encoded: stringImage, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)
-            else {return  #imageLiteral(resourceName: "emptyPixel") }//logo
-        
-        let decodedImage = UIImage(data: decodedData)
-        return decodedImage!
-        
-    }else {return #imageLiteral(resourceName: "emptyPixel")}
-}
+
+

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateEventViewController: UIViewController {
+class CreateEventViewController: BaseViewController {
 
     @IBOutlet weak var privateEventSlide: UISwitch!
     @IBOutlet weak var descriptionEventTextField: UITextField!//
@@ -22,7 +22,7 @@ class CreateEventViewController: UIViewController {
      @IBOutlet weak var contactPhoneEventTextField: UITextField!
     
     var eventData = EventData()
-      var eventDataArr = [EventData]()
+     // var eventDataArr = [EventData]()
     
     override func viewDidLoad() {
         super.viewDidLoad()

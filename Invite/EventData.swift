@@ -29,7 +29,7 @@ class  EventData : NSObject{
     var approvedUser : String?
     var contactPhone : String?
     var location: CLLocationCoordinate2D?
-   // var eventImage : Data?
+   var eventImage : String?
     
     
     override init (){

@@ -40,7 +40,7 @@ class  AuthUser {
                            let userData = UserProfile.sharedInstance
                             userData.email = (user?.email)!
                             userData.userId = (user?.uid)!
-                            
+                            UserDefaults.standard.set( userData.userId, forKey: "userId")
                             FirebaseUser.init().setUserData(userData: userData)
                             view.performSegue(withIdentifier: "goToPaty", sender: view)
                             

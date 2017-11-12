@@ -18,6 +18,7 @@
 		7F11986E1F9136BC0086DF66 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F11986D1F9136BC0086DF66 /* FirebaseUser.swift */; };
 		7F727A4F1F9E6EF3004E7D1A /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F727A4E1F9E6EF3004E7D1A /* EventData.swift */; };
 		7F727A511F9E7231004E7D1A /* FirebaseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F727A501F9E7231004E7D1A /* FirebaseEvent.swift */; };
+		7F799EDF1FB82ED30023977D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F799EDE1FB82ED30023977D /* BaseViewController.swift */; };
 		7F9E3CD21F8D2F5F006378F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */; };
 		7F9E3CD71F8D2F5F006378F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E3CD51F8D2F5F006378F0 /* Main.storyboard */; };
 		7F9E3CD91F8D2F5F006378F0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E3CD81F8D2F5F006378F0 /* Assets.xcassets */; };
@@ -29,6 +30,8 @@
 		7F9E3CEE1F8D447C006378F0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9E3CED1F8D447C006378F0 /* Utils.swift */; };
 		7F9E3CEF1F8D44EC006378F0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9E3CF01F8D44EC006378F0 /* FBSDKLoginKit.framework */; };
 		7F9E3CF21F8D5148006378F0 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9E3CF31F8D5148006378F0 /* FBSDKCoreKit.framework */; };
+		7FD1D5A11FB74B74008E5415 /* ImagePickerActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1D5A01FB74B73008E5415 /* ImagePickerActionSheet.swift */; };
+		7FD1D5A31FB74B7C008E5415 /* UIImageResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1D5A21FB74B7C008E5415 /* UIImageResize.swift */; };
 		7FD738741FA2613E00874476 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD738731FA2613E00874476 /* TableViewController.swift */; };
 		7FEBBF081FAF646C001A6B35 /* GPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEBBF071FAF646C001A6B35 /* GPlacesViewController.swift */; };
 		7FF2A4DE1FA61E7500E53C14 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2A4DD1FA61E7500E53C14 /* FiltersViewController.swift */; };
@@ -46,6 +49,7 @@
 		7F11986D1F9136BC0086DF66 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
 		7F727A4E1F9E6EF3004E7D1A /* EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
 		7F727A501F9E7231004E7D1A /* FirebaseEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEvent.swift; sourceTree = "<group>"; };
+		7F799EDE1FB82ED30023977D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7F9E3CCE1F8D2F5F006378F0 /* Invite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7F9E3CD61F8D2F5F006378F0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -60,6 +64,8 @@
 		7F9E3CF01F8D44EC006378F0 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9E3CF11F8D4768006378F0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F9E3CF31F8D5148006378F0 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FD1D5A01FB74B73008E5415 /* ImagePickerActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerActionSheet.swift; sourceTree = "<group>"; };
+		7FD1D5A21FB74B7C008E5415 /* UIImageResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageResize.swift; sourceTree = "<group>"; };
 		7FD738731FA2613E00874476 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		7FEBBF071FAF646C001A6B35 /* GPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPlacesViewController.swift; sourceTree = "<group>"; };
 		7FF2A4DD1FA61E7500E53C14 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
@@ -134,6 +140,14 @@
 			name = "not work vC";
 			sourceTree = "<group>";
 		};
+		7F799EDD1FB82EBF0023977D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7F799EDE1FB82ED30023977D /* BaseViewController.swift */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
 		7F9E3CC51F8D2F5F006378F0 = {
 			isa = PBXGroup;
 			children = (
@@ -160,11 +174,11 @@
 				7F0E5A141F8FE8AC0026D358 /* Models */,
 				7F0E5A0C1F8FE6740026D358 /* DataBase */,
 				7F9E3CEC1F8D445B006378F0 /* Utils */,
-				7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */,
-				7F9E3CD51F8D2F5F006378F0 /* Main.storyboard */,
 				7F9E3CE71F8D3906006378F0 /* ViewControllers */,
 				7F9E3CD81F8D2F5F006378F0 /* Assets.xcassets */,
 				7F9E3CDA1F8D2F5F006378F0 /* LaunchScreen.storyboard */,
+				7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */,
+				7F9E3CD51F8D2F5F006378F0 /* Main.storyboard */,
 				7F9E3CF11F8D4768006378F0 /* GoogleService-Info.plist */,
 				7F9E3CDD1F8D2F5F006378F0 /* Info.plist */,
 			);
@@ -174,6 +188,7 @@
 		7F9E3CE71F8D3906006378F0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7F799EDD1FB82EBF0023977D /* Base */,
 				7F11986C1F91355A0086DF66 /* not work vC */,
 				7F9E3CE31F8D3288006378F0 /* SignInViewController.swift */,
 				7FD738731FA2613E00874476 /* TableViewController.swift */,
@@ -187,6 +202,8 @@
 		7F9E3CEC1F8D445B006378F0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				7FD1D5A21FB74B7C008E5415 /* UIImageResize.swift */,
+				7FD1D5A01FB74B73008E5415 /* ImagePickerActionSheet.swift */,
 				7F11986A1F911B810086DF66 /* AuthUser.swift */,
 				7F9E3CED1F8D447C006378F0 /* Utils.swift */,
 			);
@@ -363,6 +380,7 @@
 				7FEBBF081FAF646C001A6B35 /* GPlacesViewController.swift in Sources */,
 				7F9E3CE91F8D3952006378F0 /* UserViewController.swift in Sources */,
 				7FF2A4DE1FA61E7500E53C14 /* FiltersViewController.swift in Sources */,
+				7F799EDF1FB82ED30023977D /* BaseViewController.swift in Sources */,
 				7FD738741FA2613E00874476 /* TableViewController.swift in Sources */,
 				7F0E5A221F8FF2DB0026D358 /* SignInFirebaseViewController.swift in Sources */,
 				7F9E3CE61F8D38F8006378F0 /* SignUpViewController.swift in Sources */,
@@ -372,7 +390,9 @@
 				7F0485181FAF502000D9269B /* SearchController.swift in Sources */,
 				7F9E3CD21F8D2F5F006378F0 /* AppDelegate.swift in Sources */,
 				7F0E5A191F8FEB4A0026D358 /* UserProfile.swift in Sources */,
+				7FD1D5A31FB74B7C008E5415 /* UIImageResize.swift in Sources */,
 				7F727A511F9E7231004E7D1A /* FirebaseEvent.swift in Sources */,
+				7FD1D5A11FB74B74008E5415 /* ImagePickerActionSheet.swift in Sources */,
 				7F11986B1F911B810086DF66 /* AuthUser.swift in Sources */,
 				7F9E3CEE1F8D447C006378F0 /* Utils.swift in Sources */,
 			);
