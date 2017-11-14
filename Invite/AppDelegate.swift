@@ -75,6 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
             print("user signed into firebase")
          
             if user?.email != nil && user?.uid != nil {
+                 UserDefaults.standard.set(true, forKey:"remember")
                 UserDefaults.standard.set( (user?.email)!, forKey: "email")
                 UserDefaults.standard.set((user?.uid)!, forKey: "userId")
                 FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)

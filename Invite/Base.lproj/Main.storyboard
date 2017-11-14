@@ -20,53 +20,51 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="signIn" translatesAutoresizingMaskIntoConstraints="NO" id="R1K-Qa-DOx">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZq-2W-Xlj">
-                                <rect key="frame" x="58" y="522" width="268" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZq-2W-Xlj">
+                                <rect key="frame" x="63.5" y="372" width="247" height="32"/>
                                 <state key="normal" image="facebookButton"/>
                                 <connections>
                                     <action selector="facebookButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZtR-Kp-ROk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9iG-ku-oQU">
-                                <rect key="frame" x="64" y="593" width="247" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9iG-ku-oQU">
+                                <rect key="frame" x="64" y="432" width="247" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="247" id="F7P-Jo-dE5"/>
+                                    <constraint firstAttribute="height" constant="32" id="kVd-hU-wc6"/>
+                                </constraints>
                                 <state key="normal" image="googleButton"/>
                                 <connections>
                                     <action selector="signInGoogleButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sd7-FG-q01"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GyJ-Cd-ESB">
-                                <rect key="frame" x="172" y="431" width="139" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Remember Me" image="checkBox">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="rememberButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="FCM-Se-uGE"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9iG-ku-oQU" secondAttribute="bottom" constant="203" id="2oY-dp-UXy"/>
                             <constraint firstItem="R1K-Qa-DOx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="6od-my-ckf"/>
                             <constraint firstItem="R1K-Qa-DOx" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="BoM-7I-8Wb"/>
+                            <constraint firstItem="nZq-2W-Xlj" firstAttribute="width" secondItem="9iG-ku-oQU" secondAttribute="width" id="DDy-eI-oW5"/>
                             <constraint firstItem="R1K-Qa-DOx" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="JPz-ud-RuK"/>
+                            <constraint firstItem="nZq-2W-Xlj" firstAttribute="centerX" secondItem="9iG-ku-oQU" secondAttribute="centerX" id="g8c-p7-EGh"/>
+                            <constraint firstItem="nZq-2W-Xlj" firstAttribute="height" secondItem="9iG-ku-oQU" secondAttribute="height" id="mpe-sT-P2L"/>
+                            <constraint firstItem="9iG-ku-oQU" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="p1M-6K-gM9"/>
                             <constraint firstItem="R1K-Qa-DOx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rDR-fc-Y4X"/>
+                            <constraint firstItem="9iG-ku-oQU" firstAttribute="top" secondItem="nZq-2W-Xlj" secondAttribute="bottom" constant="28" id="slu-hs-DFg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" id="vbB-Ze-4bT"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="rememberButtonOutlet" destination="GyJ-Cd-ESB" id="YHx-XY-O4M"/>
-                        <segue destination="WAU-18-M4F" kind="presentation" identifier="goToUserCab" id="PYu-I1-VF2"/>
+                        <segue destination="WAU-18-M4F" kind="showDetail" identifier="goToUserCab" id="PYu-I1-VF2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="301.60000000000002" y="214.54272863568218"/>
+            <point key="canvasLocation" x="246" y="215"/>
         </scene>
         <!--Create Event View Controller-->
         <scene sceneID="RE0-P6-Q40">
@@ -251,23 +249,23 @@
             </objects>
             <point key="canvasLocation" x="3044" y="1190"/>
         </scene>
-        <!--User View Controller-->
+        <!--Cancel-->
         <scene sceneID="wym-M8-qEN">
             <objects>
                 <viewController storyboardIdentifier="PatyVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WAU-18-M4F" customClass="UserViewController" customModule="Invite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QqK-ch-kP8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nK0-KJ-fN2">
-                                <rect key="frame" x="127" y="64" width="120" height="120"/>
+                                <rect key="frame" x="127" y="44" width="120" height="120"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="4oX-Vs-UNk" appends="YES" id="pwD-bB-PB5"/>
                                 </connections>
                             </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N7a-Cp-Be9">
-                                <rect key="frame" x="127" y="64" width="120" height="120"/>
+                                <rect key="frame" x="127" y="44" width="120" height="120"/>
                                 <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -304,17 +302,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yka-6z-fsF">
-                                <rect key="frame" x="5" y="15" width="103" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" red="0.80392156862745101" green="0.34901960784313724" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="backButton:" destination="WAU-18-M4F" eventType="touchUpInside" id="IcK-Gy-yAK"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9L-2J-AcZ">
                                 <rect key="frame" x="26" y="245" width="96" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -382,7 +369,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="nK0-KJ-fN2" firstAttribute="centerX" secondItem="N7a-Cp-Be9" secondAttribute="centerX" id="6Lf-kT-1nI"/>
@@ -394,7 +381,12 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mns-8F-p8b"/>
                     </view>
-                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationItem key="navigationItem" title="Cancel" id="i8j-uD-LWP">
+                        <barButtonItem key="backBarButtonItem" tag="1" title="Cancel" style="plain" id="0zl-rO-hzs">
+                            <color key="tintColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ageTextField" destination="4UJ-2u-xqb" id="YXO-WV-Hm1"/>
@@ -592,11 +584,11 @@
         <!--Navigation Controller-->
         <scene sceneID="1a3-Am-TsQ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="O2R-ne-mK4" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="O2R-ne-mK4" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="wrF-rJ-Pjq">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -721,19 +713,7 @@
                     <view key="view" contentMode="scaleToFill" id="YBK-T3-STL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VlZ-8f-Fld">
-                                <rect key="frame" x="0.0" y="64" width="375" height="173"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="VlZ-8f-Fld" firstAttribute="leading" secondItem="YBK-T3-STL" secondAttribute="leading" id="CQK-TL-Tvz"/>
-                            <constraint firstItem="FNo-eH-1Sx" firstAttribute="top" secondItem="VlZ-8f-Fld" secondAttribute="bottom" constant="430" id="CS6-z0-Wxg"/>
-                            <constraint firstAttribute="trailing" secondItem="VlZ-8f-Fld" secondAttribute="trailing" id="I2T-1Q-ftG"/>
-                            <constraint firstItem="VlZ-8f-Fld" firstAttribute="top" secondItem="cr9-r9-r2n" secondAttribute="bottom" id="k4F-J6-dA7"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="xmZ-7B-JRU"/>
                     </view>
                     <navigationItem key="navigationItem" title="address" leftItemsSupplementBackButton="YES" id="Jfl-aV-3U1">
@@ -749,7 +729,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="googleMapsViewContainer" destination="VlZ-8f-Fld" id="5TP-Jg-wen"/>
                         <outlet property="navigationBarBottom" destination="Jfl-aV-3U1" id="fgn-qK-hpJ"/>
                     </connections>
                 </viewController>

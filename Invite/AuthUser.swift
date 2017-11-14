@@ -34,7 +34,7 @@ class  AuthUser {
                     //signin in Firebase
                     Auth.auth().signIn(with: credential, completion: { (user, error) in
                         print("user signed into firebase")
-                        
+                           UserDefaults.standard.set(true, forKey:"remember")
                         if user != nil{
                            
                            let userData = UserProfile.sharedInstance
