@@ -34,14 +34,23 @@ class  AuthUser {
                     //signin in Firebase
                     Auth.auth().signIn(with: credential, completion: { (user, error) in
                         print("user signed into firebase")
-                           UserDefaults.standard.set(true, forKey:"remember")
+                        
                         if user != nil{
                            
                            let userData = UserProfile.sharedInstance
                             userData.email = (user?.email)!
                             userData.userId = (user?.uid)!
+                            userData.name = (user?.displayName)!
+                            UserDefaults.standard.set(true, forKey:"remember")
+                            let urlUserPhoto = user?.photoURL
+                            getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
+                                userData.foto = userPhotoUIImg!
+                            })
                             UserDefaults.standard.set( userData.userId, forKey: "userId")
-                            FirebaseUser.init().setUserData(userData: userData)
+                            
+                            //firebase USER SET
+                            FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
+                            
                             view.performSegue(withIdentifier: "goToPaty", sender: view)
                             
                             

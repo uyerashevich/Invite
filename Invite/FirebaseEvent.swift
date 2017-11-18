@@ -13,21 +13,22 @@ class FirebaseEvent{
     
     func setEventData(eventData : EventData){
         
-        let eventDict = eventData.convertToDictionary()
+        var eventDict = eventData.convertToDictionary()
         let eventId = eventData.eventId
         let ownUserId = eventData.ownerUserId
+        
+       
+        eventDict["eventImage"] = codedImg(img: eventData.eventImage )
         //запись в firebase по eventId
-        AppDelegate.ref?.child("/Event/\(ownUserId)/").child(eventId!).updateChildValues(eventDict)
-        
-        
+        AppDelegate.ref?.child("/Event/\(ownUserId)/").child(eventId).updateChildValues(eventDict)
     }
     func getEventData(eventData : EventData, completion: @escaping (_ result: EventData)->()){
-       var  evData = EventData()
-        let z = eventData.ownerUserId
+        var  evData = EventData()
+        let z = "/\(eventData.ownerUserId)"
         
         
         
-        let obs = AppDelegate.ref?.child("Event/" + z!).observe(.childAdded, with: { (snapshot) in
+        let obs = AppDelegate.ref?.child("Event" + z).observe(.childAdded, with: { (snapshot) in
 //print(snapshot)
             for us in (snapshot.children.allObjects as![DataSnapshot]){
                 
@@ -41,28 +42,93 @@ class FirebaseEvent{
                 evData.startTime = value?["startTime"] as? String ?? ""
                 evData.endTime = value?["endTime"] as? String ?? ""
                 evData.approvedUser = value?["approvedUser"] as? String ?? ""
-                evData.freeOrPaid = value?["freeOrPaid"] as? String ?? ""
+                evData.cost = value?["cost"] as? String ?? ""
                 evData.everyone = value?["everyone"] as? String ?? ""
                 evData.contactPhone = value?["contactPhone"] as? String ?? ""
-                evData.amount = value?["amount"] as? String ?? ""
+                evData.address = value?["address"] as? String ?? ""
                 
+                if let foto = value?["eventImage"]{ evData.eventImage = self.decodeImg(stringImage: foto as! String)}
             }
-           
-           // eventDataArray.append(evData)
-         
-           
-          //  print(eventDataArray[eventDataArray.count - 1].subTitle)
+
+//            locationLat = 0
+//            locationLong = 0
+
            completion(evData)
         })
         { (error) in
             print(error.localizedDescription)
         }
-//       print(eventDataArray.count)
-//        print(eventDataArray[0].subTitle)
-//print(eventDataArray[1].subTitle)
-// print(eventDataArray[2].subTitle)
+        AppDelegate.ref?.removeObserver(withHandle: obs!)
     }
+    
+    
+    func getAllEvent( completion: @escaping (_ result: [EventData])->()){
+        var event = EventData()
+        var  evData : [EventData] = []
+        
+        
+        let obs = AppDelegate.ref?.child("Event/").observe(.childAdded, with: { (snapshot) in
+            for us in snapshot.children.allObjects as![DataSnapshot]{
+               // print(snapshot.children.allObjects )
+               // var value = snapshot.value as? [String: Any]//NSDictionary
+                print(us )
+              //  let usObj = us//as?[String: String]
+           // print(us.children  as![DataSnapshot])
+             //   print(usObj.)
+//                let ownerUserId = usObj?["ownerUserId"]
+//                let subTitle = usObj?["subTitle"]
+//                let descriptionEvent = usObj?["descriptionEvent"]
+//                let date = usObj?["date"]
+//                let startTime = usObj?["startTime"]
+//                let endTime = usObj?["endTime"]
+//                let approvedUser = usObj?["approvedUser"]
+//                let freeOrPaid = usObj?["freeOrPaid"]
+//
+//                let everyone = usObj?["everyone"]
+//                let contactPhone = usObj?["contactPhone"]
+//                let amount = usObj?["amount"]
+//
+//                    if ownerUserId != nil { event.ownerUserId = ownerUserId! } else{ event.ownerUserId  = "" }
+//                    if subTitle != nil {event.subTitle = subTitle!}else{ event.subTitle = ""}
+//                    if descriptionEvent != nil { event.descriptionEvent = descriptionEvent!}else{ event.descriptionEvent = "" }
+//                    if date != nil { event.date = date!} else{ event.date = "" }
+//                    if startTime != nil { event.startTime = startTime!} else{ event.startTime = "" }
+//                    if endTime != nil { event.endTime = endTime!} else{ event.endTime = ""}
+//                    if approvedUser != nil { event.approvedUser = approvedUser!} else{ event.approvedUser = "" }
+//                if freeOrPaid != nil { event.freeOrPaid = freeOrPaid!} else{ event.freeOrPaid = "" }
+//
+//                if everyone != nil { event.everyone = everyone!} else{ event.everyone = "" }
+//                if contactPhone != nil { event.contactPhone = contactPhone!} else{ event.contactPhone = ""}
+//                if amount != nil { event.amount = amount!} else{ event.amount = "" }
+           }
+        
+
+        })
+        print(event.eventId)
+        evData.append(event)
+        print(evData.count)
+         print("\(evData.count)----\(evData[0].eventId)")
+        completion(evData)
+    }
+    // IMG -> String
+    private  func codedImg(img: UIImage)->String{
+        //сжатие картинки
+        guard let data = UIImageJPEGRepresentation(img,0.8) else {return ""}
+        let base64String = data.base64EncodedString(options: NSData.Base64EncodingOptions.lineLength64Characters)
+        return base64String
+    }
+    //String -> IMG
+    private func decodeImg(stringImage : String )->UIImage {
+        if stringImage != "" {
+            guard let decodedData = Data(base64Encoded: stringImage, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)
+                else {return  #imageLiteral(resourceName: "emptyPixel") }
+            let decodedImage = UIImage(data: decodedData)
+            return decodedImage!
+        }else {return #imageLiteral(resourceName: "emptyPixel")}
+    }
+    
 }
+
 
 
 

@@ -10,8 +10,12 @@ import UIKit
 
 class BaseViewController : UIViewController {
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
+    var userProfile = UserProfile.sharedInstance
+  //  var eventDataArray : [EventData] = []
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         UIApplication.shared.statusBarStyle = .lightContent
         var preferredStatusBarStyle: UIStatusBarStyle {
             return .lightContent
@@ -20,7 +24,16 @@ class BaseViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        FirebaseEvent.init().getAllEvent(completion: { (eventArray) in
+//            self.eventDataArray = eventArray
+//
+//        })
         
-        //self.view.backgroundColor = UIColor.appTintColor
+       // let z = "/\(eventData.ownerUserId)"
+//        var eventData  = EventData()
+//        eventData.ownerUserId = "dhvQXQVJ4wPGP9KLrZRgpJIiAtv2"
+//        FirebaseEvent.init().getEventData(eventData: eventData) { (eventArray) in
+//            self.eventDataArray = [eventArray]
+//        }
     }
 }

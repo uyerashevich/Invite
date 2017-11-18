@@ -16,6 +16,13 @@
 		7F0E5A221F8FF2DB0026D358 /* SignInFirebaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0E5A211F8FF2DB0026D358 /* SignInFirebaseViewController.swift */; };
 		7F11986B1F911B810086DF66 /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F11986A1F911B810086DF66 /* AuthUser.swift */; };
 		7F11986E1F9136BC0086DF66 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F11986D1F9136BC0086DF66 /* FirebaseUser.swift */; };
+		7F1274AA1FC09D910018F434 /* EventListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1274A91FC09D910018F434 /* EventListCollectionViewCell.swift */; };
+		7F3588C71FBCAFB100A38D58 /* GMapsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588C61FBCAFB100A38D58 /* GMapsUtils.swift */; };
+		7F3588C91FBCAFC200A38D58 /* MapBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588C81FBCAFC200A38D58 /* MapBaseViewController.swift */; };
+		7F3588CB1FBCAFDB00A38D58 /* RootMapsBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588CA1FBCAFDB00A38D58 /* RootMapsBaseController.swift */; };
+		7F58483B1FC02DDE00724136 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58483A1FC02DDE00724136 /* UIViewExtensions.swift */; };
+		7F58483D1FC072A300724136 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58483C1FC072A300724136 /* AppAppearance.swift */; };
+		7F58483F1FC07CDF00724136 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58483E1FC07CDF00724136 /* EventListViewController.swift */; };
 		7F727A4F1F9E6EF3004E7D1A /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F727A4E1F9E6EF3004E7D1A /* EventData.swift */; };
 		7F727A511F9E7231004E7D1A /* FirebaseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F727A501F9E7231004E7D1A /* FirebaseEvent.swift */; };
 		7F799EDF1FB82ED30023977D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F799EDE1FB82ED30023977D /* BaseViewController.swift */; };
@@ -47,6 +54,13 @@
 		7F0E5A211F8FF2DB0026D358 /* SignInFirebaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFirebaseViewController.swift; sourceTree = "<group>"; };
 		7F11986A1F911B810086DF66 /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		7F11986D1F9136BC0086DF66 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
+		7F1274A91FC09D910018F434 /* EventListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListCollectionViewCell.swift; sourceTree = "<group>"; };
+		7F3588C61FBCAFB100A38D58 /* GMapsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMapsUtils.swift; sourceTree = "<group>"; };
+		7F3588C81FBCAFC200A38D58 /* MapBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBaseViewController.swift; sourceTree = "<group>"; };
+		7F3588CA1FBCAFDB00A38D58 /* RootMapsBaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootMapsBaseController.swift; sourceTree = "<group>"; };
+		7F58483A1FC02DDE00724136 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		7F58483C1FC072A300724136 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
+		7F58483E1FC07CDF00724136 /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
 		7F727A4E1F9E6EF3004E7D1A /* EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
 		7F727A501F9E7231004E7D1A /* FirebaseEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEvent.swift; sourceTree = "<group>"; };
 		7F799EDE1FB82ED30023977D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -100,8 +114,10 @@
 		7F0485191FAF502C00D9269B /* GMaps */ = {
 			isa = PBXGroup;
 			children = (
-				7FEBBF071FAF646C001A6B35 /* GPlacesViewController.swift */,
-				7F0485171FAF502000D9269B /* SearchController.swift */,
+				7F3588CA1FBCAFDB00A38D58 /* RootMapsBaseController.swift */,
+				7F3588C81FBCAFC200A38D58 /* MapBaseViewController.swift */,
+				7F3588C61FBCAFB100A38D58 /* GMapsUtils.swift */,
+				7F3588CC1FBCB0D900A38D58 /* notw */,
 			);
 			name = GMaps;
 			sourceTree = "<group>";
@@ -134,10 +150,38 @@
 		7F11986C1F91355A0086DF66 /* not work vC */ = {
 			isa = PBXGroup;
 			children = (
+				7FD738731FA2613E00874476 /* TableViewController.swift */,
 				7F0E5A211F8FF2DB0026D358 /* SignInFirebaseViewController.swift */,
 				7F9E3CE51F8D38F8006378F0 /* SignUpViewController.swift */,
 			);
 			name = "not work vC";
+			sourceTree = "<group>";
+		};
+		7F1274A81FC080870018F434 /* EventList */ = {
+			isa = PBXGroup;
+			children = (
+				7F58483E1FC07CDF00724136 /* EventListViewController.swift */,
+				7F1274A91FC09D910018F434 /* EventListCollectionViewCell.swift */,
+			);
+			name = EventList;
+			sourceTree = "<group>";
+		};
+		7F2313FC1FBB61A40059E883 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7F58483A1FC02DDE00724136 /* UIViewExtensions.swift */,
+				7FD1D5A21FB74B7C008E5415 /* UIImageResize.swift */,
+			);
+			name = Extension;
+			sourceTree = "<group>";
+		};
+		7F3588CC1FBCB0D900A38D58 /* notw */ = {
+			isa = PBXGroup;
+			children = (
+				7FEBBF071FAF646C001A6B35 /* GPlacesViewController.swift */,
+				7F0485171FAF502000D9269B /* SearchController.swift */,
+			);
+			name = notw;
 			sourceTree = "<group>";
 		};
 		7F799EDD1FB82EBF0023977D /* Base */ = {
@@ -169,6 +213,7 @@
 		7F9E3CD01F8D2F5F006378F0 /* Invite */ = {
 			isa = PBXGroup;
 			children = (
+				7F2313FC1FBB61A40059E883 /* Extension */,
 				7F0485191FAF502C00D9269B /* GMaps */,
 				7F0E5A1C1F8FECA20026D358 /* Managers */,
 				7F0E5A141F8FE8AC0026D358 /* Models */,
@@ -181,6 +226,7 @@
 				7F9E3CD51F8D2F5F006378F0 /* Main.storyboard */,
 				7F9E3CF11F8D4768006378F0 /* GoogleService-Info.plist */,
 				7F9E3CDD1F8D2F5F006378F0 /* Info.plist */,
+				7F11986C1F91355A0086DF66 /* not work vC */,
 			);
 			path = Invite;
 			sourceTree = "<group>";
@@ -189,12 +235,11 @@
 			isa = PBXGroup;
 			children = (
 				7F799EDD1FB82EBF0023977D /* Base */,
-				7F11986C1F91355A0086DF66 /* not work vC */,
 				7F9E3CE31F8D3288006378F0 /* SignInViewController.swift */,
-				7FD738731FA2613E00874476 /* TableViewController.swift */,
-				7FF2A4DD1FA61E7500E53C14 /* FiltersViewController.swift */,
 				7F9E3CE81F8D3952006378F0 /* UserViewController.swift */,
+				7F1274A81FC080870018F434 /* EventList */,
 				7F9E3CEA1F8D39CA006378F0 /* CreateEventViewController.swift */,
+				7FF2A4DD1FA61E7500E53C14 /* FiltersViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -202,7 +247,7 @@
 		7F9E3CEC1F8D445B006378F0 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				7FD1D5A21FB74B7C008E5415 /* UIImageResize.swift */,
+				7F58483C1FC072A300724136 /* AppAppearance.swift */,
 				7FD1D5A01FB74B73008E5415 /* ImagePickerActionSheet.swift */,
 				7F11986A1F911B810086DF66 /* AuthUser.swift */,
 				7F9E3CED1F8D447C006378F0 /* Utils.swift */,
@@ -381,17 +426,24 @@
 				7F9E3CE91F8D3952006378F0 /* UserViewController.swift in Sources */,
 				7FF2A4DE1FA61E7500E53C14 /* FiltersViewController.swift in Sources */,
 				7F799EDF1FB82ED30023977D /* BaseViewController.swift in Sources */,
+				7F58483F1FC07CDF00724136 /* EventListViewController.swift in Sources */,
 				7FD738741FA2613E00874476 /* TableViewController.swift in Sources */,
+				7F3588CB1FBCAFDB00A38D58 /* RootMapsBaseController.swift in Sources */,
 				7F0E5A221F8FF2DB0026D358 /* SignInFirebaseViewController.swift in Sources */,
+				7F3588C91FBCAFC200A38D58 /* MapBaseViewController.swift in Sources */,
 				7F9E3CE61F8D38F8006378F0 /* SignUpViewController.swift in Sources */,
 				7F727A4F1F9E6EF3004E7D1A /* EventData.swift in Sources */,
 				7F9E3CE41F8D3288006378F0 /* SignInViewController.swift in Sources */,
+				7F1274AA1FC09D910018F434 /* EventListCollectionViewCell.swift in Sources */,
 				7F11986E1F9136BC0086DF66 /* FirebaseUser.swift in Sources */,
 				7F0485181FAF502000D9269B /* SearchController.swift in Sources */,
+				7F3588C71FBCAFB100A38D58 /* GMapsUtils.swift in Sources */,
+				7F58483D1FC072A300724136 /* AppAppearance.swift in Sources */,
 				7F9E3CD21F8D2F5F006378F0 /* AppDelegate.swift in Sources */,
 				7F0E5A191F8FEB4A0026D358 /* UserProfile.swift in Sources */,
 				7FD1D5A31FB74B7C008E5415 /* UIImageResize.swift in Sources */,
 				7F727A511F9E7231004E7D1A /* FirebaseEvent.swift in Sources */,
+				7F58483B1FC02DDE00724136 /* UIViewExtensions.swift in Sources */,
 				7FD1D5A11FB74B74008E5415 /* ImagePickerActionSheet.swift in Sources */,
 				7F11986B1F911B810086DF66 /* AuthUser.swift in Sources */,
 				7F9E3CEE1F8D447C006378F0 /* Utils.swift in Sources */,

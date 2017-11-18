@@ -21,8 +21,8 @@ class FirebaseUser {
     }
     
     //запись в firebase for google SignIN + facebook SignIn   !!!!!!!!!!!!!!!!!!!!!
-    func setUserData(userId: String, userEmail: String ){
-        AppDelegate.ref?.child("/Users/").child(userId).updateChildValues(["userEmail" : userEmail])
+    func setUserData(userId: String, userEmail: String){
+        AppDelegate.ref?.child("/Users/").child(userId).updateChildValues(["email" : userEmail])
     }
     func getUserData(userData : UserProfile, completionHandler: @escaping (UserProfile) -> Void){
         var userProfile = UserProfile.sharedInstance

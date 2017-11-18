@@ -8,51 +8,77 @@
 
 import Foundation
 import GoogleMaps
+class EventList: NSObject{
+    
+    static let sharedInstance = EventList()
+    
+ //   private override init(){}
+    
+    var eventList = [EventData]()  
+}
 
-//struct
-class  EventData : NSObject{
+struct  EventData {
     
    
+    var ownerUserId : String
+     var eventId: String
+  var address : String
     
-     var eventId: String?
-  //  var usersId : [String]// approved Users
-    var ownerUserId : String?
-   // var eventName : String//eventId = ""
     var subTitle : String?
    var descriptionEvent : String?
     var date : String?
-    var startTime : String?
+    
+    var startTime : String
     var endTime : String?
-    var freeOrPaid : String?
+    var cost : String
+    
     var amount : String?
     var everyone : String?
     var approvedUser : String?
+    
     var contactPhone : String?
-    var location: CLLocationCoordinate2D?
-   var eventImage : String?
+    var locationLat: Double?
+    var locationLong: Double?
+    var eventImage : UIImage
     
     
-    override init (){
-     //   usersId = [""]
+  init (){
+   
         ownerUserId = ""
         eventId = ""
-    //    eventName = ""eventId = ""
+        address = ""
+   
         subTitle = ""
       descriptionEvent = ""
         date = ""
+        
         startTime = ""
         endTime = ""
-        freeOrPaid = ""
-        amount = ""
+        cost = ""
+        
+     
         everyone = ""
         approvedUser = ""
-        contactPhone = ""
-        location = nil
         
+        contactPhone = ""
+        locationLat = 0
+        locationLong = 0
+        eventImage = #imageLiteral(resourceName: "button")
     }
 
     func convertToDictionary()-> [String: Any] {
-        return["ownerUserId":ownerUserId , "eventId": self.eventId, "subTitle": self.subTitle, "descriptionEvent": self.descriptionEvent,"date": self.date, "startTime": self.startTime, "endTime": self.endTime, "freeOrPaid": self.freeOrPaid, "amount": self.amount  , "everyone": self.everyone, "approvedUser": self.approvedUser, "contactPhone": self.contactPhone]
+        return["ownerUserId":ownerUserId,
+               "eventId": self.eventId,
+               "subTitle": self.subTitle,
+               "descriptionEvent": self.descriptionEvent,
+               "date": self.date,
+               "startTime": self.startTime,
+               "endTime": self.endTime,
+               "cost": self.cost,
+               "address": self.address,
+               "everyone": self.everyone,
+               "approvedUser": self.approvedUser,
+               "contactPhone": self.contactPhone]
         
     }
 }

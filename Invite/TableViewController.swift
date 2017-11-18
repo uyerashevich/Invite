@@ -12,6 +12,12 @@ class TableViewController: UITableViewController {
 
    var eventDataArray = [EventData]()
     
+    @IBOutlet weak var costEventLabel: UILabel!
+    @IBOutlet weak var placeEventLabel: UILabel!
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var nameEventLabel: UILabel!
+    @IBOutlet weak var fotoEventImgView: UIImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,7 +66,7 @@ class TableViewController: UITableViewController {
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
 
         let x = eventDataArray[indexPath.row]
-       cell?.textLabel?.text = ("subTitle-\(x.subTitle!)  eventId-\(x.eventId!)  amount-\(x.amount!)  approvedUser-\(x.approvedUser!)   contactPhone-\(x.contactPhone!)")
+        cell?.textLabel?.text = ("subTitle-\(x.subTitle!)  eventId-\(x.eventId)  amount-\(x.amount!)  approvedUser-\(x.approvedUser!)   contactPhone-\(x.contactPhone!)")
       
 
         return cell!

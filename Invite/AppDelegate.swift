@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
     static var checkerFG : Int = 0
     static var activityIndicator = UIActivityIndicatorView()
     static var ref: DatabaseReference? = Database.database().reference()
-    
+
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
          GMSPlacesClient.provideAPIKey("AIzaSyBNPyUGQqLODQGKw0OljeNZNtv7PmKJf6A")
@@ -68,39 +68,54 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
         
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                           accessToken: authentication.accessToken)
+      
+        authGF(credential: credential)
         
+    }
+    
+    func authGF(credential: AuthCredential){
         Auth.auth().signIn(with: credential, completion: { (user, error) in
-            
+            var userData = UserProfile.sharedInstance
             
             print("user signed into firebase")
-         
+            
             if user?.email != nil && user?.uid != nil {
-                 UserDefaults.standard.set(true, forKey:"remember")
+                print("\(user?.uid)--in- APPDelegate")
                 UserDefaults.standard.set( (user?.email)!, forKey: "email")
                 UserDefaults.standard.set((user?.uid)!, forKey: "userId")
-                FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
+                userData.name = (user?.displayName)!
                 
+                let urlUserPhoto = user?.photoURL
+                getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
+                    userData.foto = userPhotoUIImg!
+                })
                 
-                var userData = UserProfile.sharedInstance
+                UserDefaults.standard.set(true, forKey:"remember")
                 userData.userId = UserDefaults.standard.string(forKey: "userId")!
                 userData.email = UserDefaults.standard.string(forKey: "email")!
-                FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
-                   userData = userProfile
-                   
+                
+                //firebase USER SET
+                FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
+//                FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
+//                    userData = userProfile
+                
+                            
+
+
                     // Access the storyboard and fetch an instance of the view controller
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let viewController = storyboard.instantiateViewController(withIdentifier: "PatyVC")
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "SignInVC")
                     // Then push that view controller onto the navigation stack
                     let rootViewController = self.window!.rootViewController as! UINavigationController
                     rootViewController.pushViewController(viewController, animated: true)
-  
-                })
+                
+//                })
             }else{
                 print("Ошибка входа в Google аккаунт попробуйте попозже")
-                
             }
             
         })
+        
     }
     
     func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {

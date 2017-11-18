@@ -9,7 +9,7 @@
 import UIKit
 
 class FiltersViewController: BaseViewController {
-    var eventDataArray = [EventData]()
+
     var eventData = EventData()
     var filterEvent =  [EventData]()
     
@@ -21,14 +21,11 @@ class FiltersViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-         filterEvent = eventDataArray
-        // Do any additional setup after loading the view.
+//         filterEvent = eventDataArray
+       
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+   
     @IBAction func tableVC(_ sender: UIButton) {
         self.performSegue(withIdentifier: "table", sender: view)
     }
@@ -36,8 +33,8 @@ class FiltersViewController: BaseViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "table" {
         
-            let destinationVC = segue.destination as! TableViewController
-            destinationVC.eventDataArray = self.filterEvent
+//            let destinationVC = segue.destination as! TableViewController
+//            destinationVC.eventDataArray = self.filterEvent
         }
     }
     @IBAction func backButton(_ sender: UIButton) {
@@ -47,14 +44,6 @@ class FiltersViewController: BaseViewController {
         navigationController?.popViewController(animated: true)
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+   
 
 }

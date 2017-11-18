@@ -21,12 +21,11 @@ class UserViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet weak var surnameTexField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     let imagePick = ImagePickerActionSheet.init()
-    var userProfile = UserProfile.sharedInstance
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        styleForUIProfile()
+
         //для убирания клавы с экрана/////////
         self.instagrammTexField.delegate = self
         self.ageTextField.delegate = self
@@ -36,11 +35,17 @@ class UserViewController: BaseViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+//firebase EVENT
+//        FirebaseEvent.init().getAllEvent { (arrayEvent) in
+//            self.eventDataArray = arrayEvent
+//   // print("\(self.eventDataArray.count)----\( self.eventDataArray[0].eventId)")
+//        }
+    
+        
+         self.dataForUi()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        self.dataForUi()
-    }
+  
     //для убирания клавы с экрана/////////
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -86,16 +91,8 @@ class UserViewController: BaseViewController, UITextFieldDelegate {
          performSegue(withIdentifier: "CreateEventView", sender: "")
         
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "CreateEventView" {
-//            //            let destinationVC = segue.destination as! FiltersViewController
-//            //            destinationVC.eventDataArray = self.eventDataArray
-//        }
-//    }
-    func styleForUIProfile(){
-        photoUserImgView.layer.cornerRadius = photoUserImgView.frame.width / 2
-        photoUserImgView.clipsToBounds = true
-    }
+
+   
     @IBAction func backButton(_ sender: UIButton) {
         
         stopActivityIndicator()
@@ -108,9 +105,12 @@ class UserViewController: BaseViewController, UITextFieldDelegate {
         }
         UserDefaults.standard.set(false, forKey:"remember")
         userProfile.clear()
-       UserDefaults.standard.set("", forKey: "userId")
+        UserDefaults.standard.set("", forKey: "userId")
         UserDefaults.standard.set("", forKey: "email")
-        dismiss(animated: true, completion: nil)
+  
+      // self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
+        
+         dismiss(animated: true, completion: nil)
         navigationController?.popViewController(animated: true)
     }
 }
