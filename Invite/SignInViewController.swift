@@ -40,14 +40,17 @@ class SignInViewController:  BaseViewController ,GIDSignInUIDelegate {
      //firebase  EVENT
             var eventData  = EventData()
             eventData.ownerUserId = userData.userId
-            FirebaseEvent.init().getEventData(eventData: eventData) { (eventArray) in
+            FirebaseEvent.init().getAllEvent(completion: { (eventList) in
                 
-                EventList.sharedInstance.eventList.append(eventArray)
-                print(EventList.sharedInstance.eventList.count)
-               // eventDataArray.append(eventArray)
-//                print(eventArray)
-//                print(eventDataArray.count)
-            }
+            })
+//            FirebaseEvent.init().getEventData(eventData: eventData) { (eventArray) in
+//
+//                EventList.sharedInstance.eventList.append(eventArray)
+//                print(EventList.sharedInstance.eventList.count)
+//               // eventDataArray.append(eventArray)
+////                print(eventArray)
+////                print(eventDataArray.count)
+//            }
             
             
         }

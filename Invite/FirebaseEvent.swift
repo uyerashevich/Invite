@@ -66,16 +66,16 @@ class FirebaseEvent{
         var event = EventData()
         var  evData : [EventData] = []
         
-        
-        let obs = AppDelegate.ref?.child("Event/").observe(.childAdded, with: { (snapshot) in
-            for us in snapshot.children.allObjects as![DataSnapshot]{
-               // print(snapshot.children.allObjects )
-               // var value = snapshot.value as? [String: Any]//NSDictionary
-                print(us )
-              //  let usObj = us//as?[String: String]
-           // print(us.children  as![DataSnapshot])
-             //   print(usObj.)
-//                let ownerUserId = usObj?["ownerUserId"]
+       // AppDelegate.ref?.child("Event/").
+        let obs = AppDelegate.ref?.child("Event/").observe(.value, with: { (snapshot) in
+            for us in snapshot.children.allObjects {
+//                //print(us)
+//                var valu = us
+//                print("\(valu as![DataSnapshot] )-=-==---=-=-=")
+              
+                
+                //let ownerUserId = usObj?[ String]
+            //    print(ownerUserId)
 //                let subTitle = usObj?["subTitle"]
 //                let descriptionEvent = usObj?["descriptionEvent"]
 //                let date = usObj?["date"]
@@ -87,7 +87,7 @@ class FirebaseEvent{
 //                let everyone = usObj?["everyone"]
 //                let contactPhone = usObj?["contactPhone"]
 //                let amount = usObj?["amount"]
-//
+            }
 //                    if ownerUserId != nil { event.ownerUserId = ownerUserId! } else{ event.ownerUserId  = "" }
 //                    if subTitle != nil {event.subTitle = subTitle!}else{ event.subTitle = ""}
 //                    if descriptionEvent != nil { event.descriptionEvent = descriptionEvent!}else{ event.descriptionEvent = "" }
@@ -100,7 +100,7 @@ class FirebaseEvent{
 //                if everyone != nil { event.everyone = everyone!} else{ event.everyone = "" }
 //                if contactPhone != nil { event.contactPhone = contactPhone!} else{ event.contactPhone = ""}
 //                if amount != nil { event.amount = amount!} else{ event.amount = "" }
-           }
+     //      }
         
 
         })

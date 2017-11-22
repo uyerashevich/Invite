@@ -11,24 +11,35 @@ import Firebase
 import GoogleSignIn
 //import FBSDKLoginKit
 
-class UserViewController: BaseViewController, UITextFieldDelegate {
+class UserViewController: BaseViewController, UITextFieldDelegate, UIPickerViewDelegate ,UIPickerViewDataSource {
+   
     
+    
+    @IBOutlet weak var ageButtonOutlet: UIButton!
+    @IBOutlet weak var sexFavoriteButtonOutlet: UIButton!
+    @IBOutlet weak var sexButtonOutlet: UIButton!
+    @IBOutlet weak var dataPicker: UIDatePicker!
+    
+    @IBOutlet weak var pickerViewSex: UIPickerView!
     @IBOutlet weak var imgUserMaskView: UIView!
     @IBOutlet weak var photoUserImgView: UIImageView!
-    @IBOutlet weak var sexButtonOutlet: UIButton!
+  
     @IBOutlet weak var instagrammTexField: UITextField!
-    @IBOutlet weak var ageTextField: UITextField!
+  
     @IBOutlet weak var surnameTexField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     let imagePick = ImagePickerActionSheet.init()
-
+    let sexArray = ["Male", "Female", "Other"]
+    let SexFavoriteArray = ["Gay","Lesbi","Bi", "Getero","Other"]
+    var pickerType = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        dataPicker.isHidden = true
+        pickerViewSex.isHidden = true
         //для убирания клавы с экрана/////////
         self.instagrammTexField.delegate = self
-        self.ageTextField.delegate = self
+      
         self.surnameTexField.delegate = self
         self.nameTextField.delegate = self
     }
@@ -56,11 +67,9 @@ class UserViewController: BaseViewController, UITextFieldDelegate {
     }
     
     func dataForUi(){
-        if userProfile.sex != "Male" && userProfile.sex != "Female"{sexButtonOutlet.setTitle("Gender", for: .normal)}
-        else{sexButtonOutlet.setTitle(userProfile.sex, for: .normal)}
+
         nameTextField.text = userProfile.name
         surnameTexField.text = userProfile.surname
-        ageTextField.text = userProfile.age
         instagrammTexField.text = userProfile.instagramUrl
         photoUserImgView.image = userProfile.foto
         
@@ -73,18 +82,83 @@ class UserViewController: BaseViewController, UITextFieldDelegate {
             self?.userProfile.foto = resizeImage
         }
     }
-    @IBAction func sexButton(_ sender: UIButton) {
-        if sexButtonOutlet.titleLabel?.text == "Male"{
-            sender.setTitle("Female", for: .normal)
-        }else{ sender.setTitle("Male", for: .normal)}
+    @IBAction func ageButton(_ sender: Any) {
+        dataPicker.isHidden = false
+        dataPicker.setValue(UIColor.white, forKeyPath: "textColor")
+        dataPicker.setValue(false, forKeyPath: "highlightsToday")
+        pickerViewSex.isHidden = true
+        
     }
     
+    @IBAction func sexButton(_ sender: Any) {
+        let xString = "\(dataPicker.date)"
+        ageButtonOutlet.setTitle(xString, for: .normal)
+        dataPicker.isHidden = true
+        pickerViewSex.isHidden = false
+        pickerType = false
+
+    }
+    
+   
+    @IBAction func sexFavoriteButton(_ sender: Any) {
+        let xString = "\(dataPicker.date)"
+        ageButtonOutlet.setTitle(xString, for: .normal)
+        dataPicker.isHidden = true
+        pickerViewSex.isHidden = false
+        pickerType = true
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+       return 1
+    }
+//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+////        let attributedString = NSAttributedString(string: "Your string name here", attributes: [NSForegroundColorAttributeName : UIColor.WhiteColor()])
+//        return attributedString
+//        
+//    }
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+       var str = ""
+        if dataPicker.isHidden && !pickerViewSex.isHidden && pickerType{
+          str = SexFavoriteArray[row]
+        }else{if dataPicker.isHidden && !pickerViewSex.isHidden && !pickerType{
+            str = sexArray[row]
+            }
+        }
+        return NSAttributedString(string: str, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
+    }
+ 
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if dataPicker.isHidden && !pickerViewSex.isHidden && pickerType{
+            return SexFavoriteArray.count
+        }else{if dataPicker.isHidden && !pickerViewSex.isHidden && !pickerType{
+            return sexArray.count
+            }
+        }
+        return 0
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if dataPicker.isHidden && !pickerViewSex.isHidden && pickerType{
+            return SexFavoriteArray[row]
+        }else{if dataPicker.isHidden && !pickerViewSex.isHidden && !pickerType{
+            return sexArray[row]
+            }
+        }
+        return ""
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if dataPicker.isHidden && !pickerViewSex.isHidden && pickerType{
+            sexFavoriteButtonOutlet.setTitle(SexFavoriteArray[row], for: .normal)
+        }else{if dataPicker.isHidden && !pickerViewSex.isHidden && !pickerType{
+          sexButtonOutlet.setTitle(sexArray[row], for: .normal)
+            }
+        }
+    }
     @IBAction func saveButton(_ sender: UIButton) {
-        self.userProfile.sex = (sexButtonOutlet.titleLabel?.text)!
+       
         if instagrammTexField.text != nil{
             self.userProfile.instagramUrl = instagrammTexField.text!
         }
-        if ageTextField.text != nil{  self.userProfile.age = ageTextField.text! }
+//        if ageTextField.text != nil{  self.userProfile.age = ageTextField.text! }
         if nameTextField.text != nil{ self.userProfile.name = nameTextField.text!}
         if surnameTexField.text != nil {self.userProfile.surname = surnameTexField.text!}
         FirebaseUser.init().setUserData(userData: self.userProfile)
@@ -92,7 +166,12 @@ class UserViewController: BaseViewController, UITextFieldDelegate {
         
     }
 
+  
+    
+    
+       
    
+    
     @IBAction func backButton(_ sender: UIButton) {
         
         stopActivityIndicator()
