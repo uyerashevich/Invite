@@ -43,6 +43,7 @@
 		7FD738741FA2613E00874476 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD738731FA2613E00874476 /* TableViewController.swift */; };
 		7FEBBF081FAF646C001A6B35 /* GPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEBBF071FAF646C001A6B35 /* GPlacesViewController.swift */; };
 		7FF2A4DE1FA61E7500E53C14 /* FiltersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2A4DD1FA61E7500E53C14 /* FiltersViewController.swift */; };
+		7FFEB9C31FC972230098A0F2 /* PIckersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FFEB9C21FC972230098A0F2 /* PIckersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -85,6 +86,7 @@
 		7FD738731FA2613E00874476 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		7FEBBF071FAF646C001A6B35 /* GPlacesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPlacesViewController.swift; sourceTree = "<group>"; };
 		7FF2A4DD1FA61E7500E53C14 /* FiltersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersViewController.swift; sourceTree = "<group>"; };
+		7FFEB9C21FC972230098A0F2 /* PIckersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PIckersViewController.swift; sourceTree = "<group>"; };
 		906F24D78027CDEE9BFE0F9D /* Pods_Invite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Invite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB0BCCCAB0B5F6628DBBB6C2 /* Pods-Invite.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Invite.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Invite/Pods-Invite.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -243,6 +245,7 @@
 				7F9E3CEA1F8D39CA006378F0 /* CreateEventViewController.swift */,
 				7FF2A4DD1FA61E7500E53C14 /* FiltersViewController.swift */,
 				7F1385D41FC5E3990026C020 /* DataPickerViewController.swift */,
+				7FFEB9C21FC972230098A0F2 /* PIckersViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				7F727A4F1F9E6EF3004E7D1A /* EventData.swift in Sources */,
 				7F9E3CE41F8D3288006378F0 /* SignInViewController.swift in Sources */,
 				7F1274AA1FC09D910018F434 /* EventListCollectionViewCell.swift in Sources */,
+				7FFEB9C31FC972230098A0F2 /* PIckersViewController.swift in Sources */,
 				7F11986E1F9136BC0086DF66 /* FirebaseUser.swift in Sources */,
 				7F0485181FAF502000D9269B /* SearchController.swift in Sources */,
 				7F3588C71FBCAFB100A38D58 /* GMapsUtils.swift in Sources */,

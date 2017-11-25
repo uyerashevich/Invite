@@ -21,9 +21,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nZq-2W-Xlj">
-                                <rect key="frame" x="26" y="268" width="268" height="32"/>
+                                <rect key="frame" x="70" y="268" width="180" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="268" id="Z6i-LG-zmw"/>
+                                    <constraint firstAttribute="width" constant="180" id="Z6i-LG-zmw"/>
                                     <constraint firstAttribute="height" constant="32" id="sV0-GU-tJv"/>
                                 </constraints>
                                 <state key="normal" image="facebookButton"/>
@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9iG-ku-oQU">
-                                <rect key="frame" x="26" y="345.5" width="268" height="32"/>
+                                <rect key="frame" x="70" y="332" width="180" height="32"/>
                                 <state key="normal" image="googleButton"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -57,7 +57,7 @@
                             <constraint firstItem="R1K-Qa-DOx" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="JPz-ud-RuK"/>
                             <constraint firstItem="9iG-ku-oQU" firstAttribute="centerX" secondItem="nZq-2W-Xlj" secondAttribute="centerX" id="Rbb-eJ-kNe"/>
                             <constraint firstItem="9iG-ku-oQU" firstAttribute="width" secondItem="nZq-2W-Xlj" secondAttribute="width" id="bXe-7d-scx"/>
-                            <constraint firstItem="9iG-ku-oQU" firstAttribute="top" secondItem="nZq-2W-Xlj" secondAttribute="bottom" constant="45.5" id="jkG-5l-Xac"/>
+                            <constraint firstItem="9iG-ku-oQU" firstAttribute="top" secondItem="nZq-2W-Xlj" secondAttribute="bottom" constant="32" id="jkG-5l-Xac"/>
                             <constraint firstItem="nZq-2W-Xlj" firstAttribute="centerY" secondItem="R1K-Qa-DOx" secondAttribute="centerY" id="n6K-TN-1P9"/>
                             <constraint firstItem="R1K-Qa-DOx" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="rDR-fc-Y4X"/>
                             <constraint firstItem="9iG-ku-oQU" firstAttribute="height" secondItem="nZq-2W-Xlj" secondAttribute="height" id="u5r-Y1-p9f"/>
@@ -73,7 +73,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="301.60000000000002" y="214.54272863568218"/>
+            <point key="canvasLocation" x="300" y="214.43661971830986"/>
         </scene>
         <!--Create Event View Controller-->
         <scene sceneID="RE0-P6-Q40">
@@ -232,6 +232,11 @@
                                     <action selector="backButton:" destination="ELs-9s-6Tf" eventType="touchUpInside" id="FMm-cE-geh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6o-7O-lhH">
+                                <rect key="frame" x="179" y="340" width="117" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Event on Maps" backgroundImage="button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -272,7 +277,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2937" y="-627"/>
+            <point key="canvasLocation" x="2936.25" y="-627.46478873239437"/>
         </scene>
         <!--Event List View Controller-->
         <scene sceneID="tIm-L9-XOb">
@@ -543,7 +548,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="ageButton:" destination="WAU-18-M4F" eventType="touchUpInside" id="Xjc-V1-clL"/>
+                                    <action selector="ageBtton:" destination="WAU-18-M4F" eventType="touchUpInside" id="E3D-96-V7T"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LdR-1e-c4O">
@@ -566,7 +571,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="sexFavoriteButton:" destination="WAU-18-M4F" eventType="touchUpInside" id="jIb-1d-PLa"/>
+                                    <action selector="sexFavoriteButton:" destination="WAU-18-M4F" eventType="touchUpInside" id="YZ9-D0-gQe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hO3-br-CP7">
@@ -579,41 +584,9 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="sexButton:" destination="WAU-18-M4F" eventType="touchUpInside" id="QgK-5o-s5y"/>
+                                    <action selector="sexButton:" destination="WAU-18-M4F" eventType="touchUpInside" id="aTY-7v-c8H"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wh-gY-Jjc">
-                                <rect key="frame" x="106" y="286" width="214" height="140"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="KiX-h4-Abr"/>
-                                </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="dataSource" destination="WAU-18-M4F" id="bF0-fW-pVJ"/>
-                                    <outlet property="delegate" destination="WAU-18-M4F" id="HPf-9d-EEw"/>
-                                </connections>
-                            </pickerView>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="pzk-Ac-09N">
-                                <rect key="frame" x="106" y="286" width="214" height="140"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="140" id="1Ha-q2-MfO"/>
-                                </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="533066844.668311">
-                                    <!--2017-11-22 18:07:24 +0000-->
-                                </date>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -626,14 +599,12 @@
                             <constraint firstItem="Mns-8F-p8b" firstAttribute="trailing" secondItem="U9L-2J-AcZ" secondAttribute="trailing" constant="214" id="Azg-19-lmG"/>
                             <constraint firstItem="tOM-E8-ptM" firstAttribute="centerY" secondItem="Hps-ZL-rji" secondAttribute="centerY" id="BEA-oq-MmD"/>
                             <constraint firstItem="LeT-0d-2hU" firstAttribute="leading" secondItem="Mns-8F-p8b" secondAttribute="leading" constant="16" id="BcS-pz-tcB"/>
-                            <constraint firstItem="0wh-gY-Jjc" firstAttribute="leading" secondItem="jNI-z9-m4p" secondAttribute="trailing" id="CMr-LD-k7s"/>
                             <constraint firstItem="fUN-Cq-t1A" firstAttribute="top" secondItem="LdR-1e-c4O" secondAttribute="bottom" constant="8" id="CNv-yh-x72"/>
                             <constraint firstItem="tI0-wr-eb1" firstAttribute="top" secondItem="fUN-Cq-t1A" secondAttribute="bottom" constant="-20" id="Cno-Ht-xMN"/>
                             <constraint firstItem="nK0-KJ-fN2" firstAttribute="centerY" secondItem="N7a-Cp-Be9" secondAttribute="centerY" id="E5y-Ax-hBh"/>
                             <constraint firstItem="C6u-41-Obg" firstAttribute="trailing" secondItem="Mns-8F-p8b" secondAttribute="trailing" id="Egt-Qn-B1G"/>
                             <constraint firstItem="N7a-Cp-Be9" firstAttribute="top" secondItem="Mns-8F-p8b" secondAttribute="top" constant="44" id="Ii0-tc-o7m"/>
                             <constraint firstItem="Hps-ZL-rji" firstAttribute="leading" secondItem="Mns-8F-p8b" secondAttribute="leading" constant="15" id="KyR-Bc-GmU"/>
-                            <constraint firstItem="0wh-gY-Jjc" firstAttribute="trailing" secondItem="Mns-8F-p8b" secondAttribute="trailing" id="NAh-xX-lTI"/>
                             <constraint firstItem="Mns-8F-p8b" firstAttribute="trailing" secondItem="tI0-wr-eb1" secondAttribute="trailing" constant="8" id="Nh8-gj-tPA"/>
                             <constraint firstItem="hO3-br-CP7" firstAttribute="leading" secondItem="Mns-8F-p8b" secondAttribute="leading" constant="16" id="O28-El-eub"/>
                             <constraint firstItem="Mns-8F-p8b" firstAttribute="trailing" secondItem="LdR-1e-c4O" secondAttribute="trailing" id="OyX-M6-OnE"/>
@@ -654,13 +625,9 @@
                             <constraint firstItem="jNI-z9-m4p" firstAttribute="top" secondItem="Hps-ZL-rji" secondAttribute="bottom" constant="17" id="rgy-N7-rJb"/>
                             <constraint firstItem="tOM-E8-ptM" firstAttribute="leading" secondItem="Mns-8F-p8b" secondAttribute="leading" constant="114" id="s3L-hc-7YT"/>
                             <constraint firstItem="LdR-1e-c4O" firstAttribute="leading" secondItem="Mns-8F-p8b" secondAttribute="leading" constant="114" id="tKh-0k-6bm"/>
-                            <constraint firstItem="pzk-Ac-09N" firstAttribute="top" secondItem="gEb-8l-O7Z" secondAttribute="bottom" constant="10" id="vQ0-Gh-Itg"/>
-                            <constraint firstItem="0wh-gY-Jjc" firstAttribute="top" secondItem="gEb-8l-O7Z" secondAttribute="bottom" constant="10" id="vwm-5Z-SDq"/>
                             <constraint firstItem="nK0-KJ-fN2" firstAttribute="height" secondItem="N7a-Cp-Be9" secondAttribute="height" id="woD-Lr-bMg"/>
                             <constraint firstItem="N7a-Cp-Be9" firstAttribute="centerX" secondItem="Mns-8F-p8b" secondAttribute="centerX" id="xA9-4g-zig"/>
-                            <constraint firstItem="pzk-Ac-09N" firstAttribute="trailing" secondItem="Mns-8F-p8b" secondAttribute="trailing" id="xqh-i3-voC"/>
                             <constraint firstItem="LdR-1e-c4O" firstAttribute="top" secondItem="U9L-2J-AcZ" secondAttribute="bottom" constant="-21" id="zTa-bQ-YI7"/>
-                            <constraint firstItem="pzk-Ac-09N" firstAttribute="leading" secondItem="jNI-z9-m4p" secondAttribute="trailing" id="zzI-Em-uga"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mns-8F-p8b"/>
                     </view>
@@ -668,16 +635,15 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ageButtonOutlet" destination="jNI-z9-m4p" id="KOE-VK-2Ee"/>
-                        <outlet property="dataPicker" destination="pzk-Ac-09N" id="x9Q-oy-D6y"/>
                         <outlet property="imgUserMaskView" destination="nK0-KJ-fN2" id="Jdp-R3-baU"/>
                         <outlet property="instagrammTexField" destination="gEb-8l-O7Z" id="hpz-Zt-O6n"/>
                         <outlet property="nameTextField" destination="LdR-1e-c4O" id="UIH-BZ-5lZ"/>
                         <outlet property="photoUserImgView" destination="N7a-Cp-Be9" id="zKB-UH-qVY"/>
-                        <outlet property="pickerViewSex" destination="0wh-gY-Jjc" id="rf4-gn-WiU"/>
                         <outlet property="sexButtonOutlet" destination="hO3-br-CP7" id="J11-ML-MsF"/>
                         <outlet property="sexFavoriteButtonOutlet" destination="LeT-0d-2hU" id="bWc-WW-nBf"/>
                         <outlet property="surnameTexField" destination="tI0-wr-eb1" id="UkB-OD-Xuu"/>
                         <segue destination="KCc-05-RFK" kind="presentation" identifier="CreateEventView" id="gtq-RP-bEj"/>
+                        <segue destination="WFE-zO-L8n" kind="presentation" identifier="showPickersVC" id="fJp-jJ-UWR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKx-O7-A6B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -688,6 +654,82 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1488.75" y="214.43661971830986"/>
+        </scene>
+        <!--Ickers View Controller-->
+        <scene sceneID="VXx-V6-21a">
+            <objects>
+                <viewController id="WFE-zO-L8n" customClass="PIckersViewController" customModule="Invite" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="YhV-dH-T2U">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5sh-oO-Uzx">
+                                <rect key="frame" x="0.0" y="406" width="320" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="jMO-ox-Aci"/>
+                                </constraints>
+                                <date key="date" timeIntervalSinceReferenceDate="533295330.32039499">
+                                    <!--2017-11-25 09:35:30 +0000-->
+                                </date>
+                                <date key="minimumDate" timeIntervalSinceReferenceDate="-1293886800">
+                                    <!--1960-01-01 11:00:00 +0000-->
+                                </date>
+                                <locale key="locale" localeIdentifier="en_US"/>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nMd-EP-aXT">
+                                <rect key="frame" x="0.0" y="354" width="157.5" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Jl2-b7-gSP"/>
+                                </constraints>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButton:" destination="WFE-zO-L8n" eventType="touchUpInside" id="mk1-GZ-2Is"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OOa-D5-SJQ">
+                                <rect key="frame" x="162.5" y="354" width="157.5" height="44"/>
+                                <state key="normal" title="OK"/>
+                                <connections>
+                                    <action selector="okButton:" destination="WFE-zO-L8n" eventType="touchUpInside" id="HcX-FO-t8K"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eec-l8-9rG">
+                                <rect key="frame" x="0.0" y="406" width="320" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="162" id="6SF-5v-5nY"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="WFE-zO-L8n" id="dtX-0R-GtO"/>
+                                    <outlet property="delegate" destination="WFE-zO-L8n" id="w1f-Px-olw"/>
+                                </connections>
+                            </pickerView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.4159086044520548" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5sh-oO-Uzx" firstAttribute="bottom" secondItem="63h-VO-a32" secondAttribute="bottom" id="00e-Sa-heI"/>
+                            <constraint firstItem="Eec-l8-9rG" firstAttribute="leading" secondItem="63h-VO-a32" secondAttribute="leading" id="0SW-CH-gdO"/>
+                            <constraint firstAttribute="bottom" secondItem="Eec-l8-9rG" secondAttribute="bottom" id="9gh-6r-4MD"/>
+                            <constraint firstAttribute="bottom" secondItem="nMd-EP-aXT" secondAttribute="bottom" constant="170" id="Aw6-Hf-G1z"/>
+                            <constraint firstItem="Eec-l8-9rG" firstAttribute="trailing" secondItem="63h-VO-a32" secondAttribute="trailing" id="Klx-hc-Psz"/>
+                            <constraint firstItem="OOa-D5-SJQ" firstAttribute="centerY" secondItem="nMd-EP-aXT" secondAttribute="centerY" id="S3Z-Hg-bZ9"/>
+                            <constraint firstItem="nMd-EP-aXT" firstAttribute="leading" secondItem="63h-VO-a32" secondAttribute="leading" id="SRT-hN-7jz"/>
+                            <constraint firstItem="OOa-D5-SJQ" firstAttribute="height" secondItem="nMd-EP-aXT" secondAttribute="height" id="TAy-JC-zEv"/>
+                            <constraint firstItem="63h-VO-a32" firstAttribute="trailing" secondItem="OOa-D5-SJQ" secondAttribute="trailing" id="Zbg-Rp-Brr"/>
+                            <constraint firstItem="OOa-D5-SJQ" firstAttribute="width" secondItem="nMd-EP-aXT" secondAttribute="width" id="gLr-wC-kE6"/>
+                            <constraint firstItem="5sh-oO-Uzx" firstAttribute="trailing" secondItem="63h-VO-a32" secondAttribute="trailing" id="qGr-qm-xIV"/>
+                            <constraint firstItem="OOa-D5-SJQ" firstAttribute="leading" secondItem="nMd-EP-aXT" secondAttribute="trailing" constant="5" id="sTl-FZ-GLN"/>
+                            <constraint firstItem="5sh-oO-Uzx" firstAttribute="leading" secondItem="63h-VO-a32" secondAttribute="leading" id="vUW-op-Sgs"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="63h-VO-a32"/>
+                    </view>
+                    <connections>
+                        <outlet property="dataPickerOutlet" destination="5sh-oO-Uzx" id="Xfb-xc-IZK"/>
+                        <outlet property="pckerViewOutlet" destination="Eec-l8-9rG" id="bvM-GX-xrX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3S6-1S-d5b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1489" y="1072"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="2HO-AM-k3f">
@@ -1047,7 +1089,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5zA-Rv-eip" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3866" y="-548"/>
+            <point key="canvasLocation" x="4209" y="-31"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Mwv-oz-6IR">

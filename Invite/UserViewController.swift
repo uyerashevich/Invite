@@ -11,16 +11,16 @@ import Firebase
 import GoogleSignIn
 //import FBSDKLoginKit
 
-class UserViewController: BaseViewController, UITextFieldDelegate, UIPickerViewDelegate ,UIPickerViewDataSource {
+class UserViewController: BaseViewController, UITextFieldDelegate{ //
    
     
     
     @IBOutlet weak var ageButtonOutlet: UIButton!
     @IBOutlet weak var sexFavoriteButtonOutlet: UIButton!
     @IBOutlet weak var sexButtonOutlet: UIButton!
-    @IBOutlet weak var dataPicker: UIDatePicker!
+  
     
-    @IBOutlet weak var pickerViewSex: UIPickerView!
+  
     @IBOutlet weak var imgUserMaskView: UIView!
     @IBOutlet weak var photoUserImgView: UIImageView!
   
@@ -29,14 +29,13 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UIPickerViewD
     @IBOutlet weak var surnameTexField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     let imagePick = ImagePickerActionSheet.init()
-    let sexArray = ["Male", "Female", "Other"]
-    let SexFavoriteArray = ["Gay","Lesbi","Bi", "Getero","Other"]
-    var pickerType = false
+    var typePicker : String?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataPicker.isHidden = true
-        pickerViewSex.isHidden = true
+
         //для убирания клавы с экрана/////////
         self.instagrammTexField.delegate = self
       
@@ -82,77 +81,8 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UIPickerViewD
             self?.userProfile.foto = resizeImage
         }
     }
-    @IBAction func ageButton(_ sender: Any) {
-        dataPicker.isHidden = false
-        dataPicker.setValue(UIColor.white, forKeyPath: "textColor")
-        dataPicker.setValue(false, forKeyPath: "highlightsToday")
-        pickerViewSex.isHidden = true
-        
-    }
-    
-    @IBAction func sexButton(_ sender: Any) {
-        let xString = "\(dataPicker.date)"
-        ageButtonOutlet.setTitle(xString, for: .normal)
-        dataPicker.isHidden = true
-        pickerViewSex.isHidden = false
-        pickerType = false
-
-    }
-    
-   
-    @IBAction func sexFavoriteButton(_ sender: Any) {
-        let xString = "\(dataPicker.date)"
-        ageButtonOutlet.setTitle(xString, for: .normal)
-        dataPicker.isHidden = true
-        pickerViewSex.isHidden = false
-        pickerType = true
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-       return 1
-    }
-//    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-////        let attributedString = NSAttributedString(string: "Your string name here", attributes: [NSForegroundColorAttributeName : UIColor.WhiteColor()])
-//        return attributedString
-//        
-//    }
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-       var str = ""
-        if dataPicker.isHidden && !pickerViewSex.isHidden && pickerType{
-          str = SexFavoriteArray[row]
-        }else{if dataPicker.isHidden && !pickerViewSex.isHidden && !pickerType{
-            str = sexArray[row]
-            }
-        }
-        return NSAttributedString(string: str, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
-    }
  
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if dataPicker.isHidden && !pickerViewSex.isHidden && pickerType{
-            return SexFavoriteArray.count
-        }else{if dataPicker.isHidden && !pickerViewSex.isHidden && !pickerType{
-            return sexArray.count
-            }
-        }
-        return 0
-    }
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if dataPicker.isHidden && !pickerViewSex.isHidden && pickerType{
-            return SexFavoriteArray[row]
-        }else{if dataPicker.isHidden && !pickerViewSex.isHidden && !pickerType{
-            return sexArray[row]
-            }
-        }
-        return ""
-    }
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if dataPicker.isHidden && !pickerViewSex.isHidden && pickerType{
-            sexFavoriteButtonOutlet.setTitle(SexFavoriteArray[row], for: .normal)
-        }else{if dataPicker.isHidden && !pickerViewSex.isHidden && !pickerType{
-          sexButtonOutlet.setTitle(sexArray[row], for: .normal)
-            }
-        }
-    }
+  
     @IBAction func saveButton(_ sender: UIButton) {
        
         if instagrammTexField.text != nil{
@@ -166,12 +96,30 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UIPickerViewD
         
     }
 
-  
+    @IBAction func sexFavoriteButton(_ sender: Any) {
+        typePicker = "sexFavorite"
+        performSegue(withIdentifier: "showPickersVC", sender: nil)
+    }
+    @IBAction func ageBtton(_ sender: Any) {
+        typePicker = "DateOfB"
+          performSegue(withIdentifier: "showPickersVC", sender: nil)
+        
+    }
     
+    @IBAction func sexButton(_ sender: Any) {
+        typePicker = "sex"
+        performSegue(withIdentifier: "showPickersVC", sender: nil)
+        
+    }
     
-       
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "showPickersVC" {
+            if let pickerVC = segue.destination as? PIckersViewController {
+                pickerVC.typePicker = self.typePicker
+        }
+        }
+    }
    
-    
     @IBAction func backButton(_ sender: UIButton) {
         
         stopActivityIndicator()
