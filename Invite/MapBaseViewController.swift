@@ -14,27 +14,24 @@ class MapBaseViewController : UIViewController, GMSMapViewDelegate, CLLocationMa
    
 
    
-    
+      //  let eventList = EventList.sharedInstance
         var locationManager = CLLocationManager()
         var myLatitude : CLLocationDegrees?
         var myLongitude : CLLocationDegrees?
         var camera : GMSCameraPosition?
     
-      // var nameSenderVC : String?
+         var nameSenderVC : String?
 
+    
+    typealias callBack = (CLLocationCoordinate2D) ->()
+    var callBackToCreateEvent : callBack!
+    
+    
+    
         @IBOutlet weak var mapView: GMSMapView!
     
         
-//        var eventSortArray: [EventData] = [] {
-//            didSet {
-//                eventInfoVC.markerSortArray = self.markerSortArray
-//            }
-//        }
-//        var eventsArray: [EventData] = []{
-//            didSet{
-//                viewDidAppear(true)
-//            }
-//        }
+
     
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -49,15 +46,13 @@ class MapBaseViewController : UIViewController, GMSMapViewDelegate, CLLocationMa
             managerMaps()
         }
         func managerMaps(){
-//            if nameSenderVC == "  -------    "{
-//                if eventsArray[0].locationLat != nil {
-//                    let coordinateEvent = CLLocationCoordinate2D(latitude: (eventsArray[0].locationLat)!, longitude: (eventsArray[0].locationLong)!)
-//                    setMarker(coordinate: coordinateEvent, title: nil, image: nil)
-//                    setCamera(withLatitude: coordinateEvent.latitude, longitude: coordinateEvent.longitude,zoom: 13)
-//                }
-//            }else{
+            if nameSenderVC == "createEventVC"{
+                
+                
+            }else{
+               setArrayMarkers()
+            }
               myLocation()
-//            }
         }
         func myLocation(){
             mapView?.isMyLocationEnabled = true
@@ -78,17 +73,22 @@ class MapBaseViewController : UIViewController, GMSMapViewDelegate, CLLocationMa
         
         func setArrayMarkers(){
             mapView.clear()
-            
-//            for i in self.eventsArray{
-//                if i.lat != nil {
-//                    let  coordinateAdverts = CLLocationCoordinate2D(latitude: ()!, longitude: ()!)
-//
-//                        setMarker(coordinate: coordinateAdverts, title: nil,image: #imageLiteral(resourceName: ""))
-
-//                }
-//            }
+            for i in EventList.sharedInstance.eventList{
+              if  i.locationLat != nil {
+                 let coordinatesEv = CLLocationCoordinate2D(latitude: i.locationLat!, longitude: i.locationLong!)
+                 print("\(EventList.sharedInstance.eventList.count)----list--eventDataArray.count")
+                print("lat\(i.locationLat)----long\(i.locationLong)")
+                    setMarker(coordinate: coordinatesEv, title: nil, image: nil)}
+            }
         }
     
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+         if nameSenderVC == "createEventVC"{
+             mapView.clear()
+        setMarker(coordinate: coordinate, title: nil, image: nil)
+        callBackToCreateEvent(coordinate)
+        }
+    }
         
         func setMarker(coordinate: CLLocationCoordinate2D,title: String? ,image: UIImage?){
             let marker = GMSMarker(position: coordinate)
@@ -103,7 +103,7 @@ class MapBaseViewController : UIViewController, GMSMapViewDelegate, CLLocationMa
         }
     
         func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
-            var xArray = [EventData]()
+           // var xArray = [EventData]()
      
 //поиск маркера тапа
             return true

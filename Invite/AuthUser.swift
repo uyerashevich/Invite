@@ -25,6 +25,21 @@ class  AuthUser {
                 displayAlertMessage(messageToDisplay: "There was an error logging in to Facebook. Error: \(facebookError)", viewController: view)
             } else if (facebookResult?.isCancelled)!
                 {
+                    
+                    //    func signInFacebook(view: UIViewController){
+                    //        startActivityIndicator(viewController: view)
+                    //
+                    //        AppDelegate.checkerFG = 1
+                    //
+                    //        let facebookLogin = FBSDKLoginManager()
+                    //
+                    //        facebookLogin.logIn(withReadPermissions: ["email"], from: view) { (facebookResult, facebookError) in
+                    //            if facebookError != nil {
+                    //
+                    //                displayAlertMessage(messageToDisplay: "There was an error logging in to Facebook. Error: \(facebookError)", viewController: view)
+                    //            } else
+                    //                if (facebookResult?.isCancelled)!
+                    //                {
                     print("Facebook login was cancelled!")
                 }
                 else {
@@ -34,9 +49,18 @@ class  AuthUser {
                     //signin in Firebase
                     Auth.auth().signIn(with: credential, completion: { (user, error) in
                         print("user signed into firebase")
-                        
+                        print(error)
                         if user != nil{
-                           
+                            //                    print("Facebook login was cancelled!")
+                            //                }
+                            //                else {
+                            //                    startActivityIndicator(viewController: view)
+                            //                    let credential = (FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString))
+                            //                    //signin in Firebase
+                            //                    Auth.auth().signIn(with: credential, completion: { (user, error) in
+                            //                        print("user signed into firebase")
+                            //                        if user != nil{
+                            //
                            let userData = UserProfile.sharedInstance
                             userData.email = (user?.email)!
                             userData.userId = (user?.uid)!
@@ -62,7 +86,35 @@ class  AuthUser {
             }
         }
     }
-    
+
+
+//                    print("Facebook login was cancelled!")
+//                }
+//                else {
+//                    startActivityIndicator(viewController: view)
+//                    let credential = (FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString))
+//                    //signin in Firebase
+//                    Auth.auth().signIn(with: credential, completion: { (user, error) in
+//                        print("user signed into firebase")
+//                        if user != nil{
+//
+//                            // DrugsVC
+//                            DrugsFirebase.init().getNameOfDrugs()
+//                            if user?.email != nil && user?.uid != nil {
+//                                UsersFirebase.init().readUserData(email: (user?.email)!)
+//                                UsersFirebase.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
+//                            }
+//                            //для авто входа
+//                            UserDefaults.standard.set(true, forKey:"remember")
+//                            view.performSegue(withIdentifier: "buttonView", sender: view)
+//                            stopActivityIndicator()
+//                        }else{
+//                            displayAlertMessage(messageToDisplay: "Проверьте подключение к интернету ", viewController: view )
+//                        }
+//                    })
+//            }
+//        }
+//    }
     
     func signInUser(userEmail : String, userPassword : String, view: UIViewController){
         

@@ -59,8 +59,8 @@ struct  EventData {
      
         everyone = ""
         approvedUser = ""
-        
         contactPhone = ""
+    
         locationLat = 0
         locationLong = 0
         eventImage = #imageLiteral(resourceName: "button")
@@ -69,16 +69,22 @@ struct  EventData {
     func convertToDictionary()-> [String: Any] {
         return["ownerUserId":ownerUserId,
                "eventId": self.eventId,
+                "address": self.address,
+                
                "subTitle": self.subTitle,
                "descriptionEvent": self.descriptionEvent,
                "date": self.date,
+               
                "startTime": self.startTime,
                "endTime": self.endTime,
                "cost": self.cost,
-               "address": self.address,
+              
                "everyone": self.everyone,
                "approvedUser": self.approvedUser,
-               "contactPhone": self.contactPhone]
+               "contactPhone": self.contactPhone,
+        
+               "locationLat": self.locationLat,
+               "locationLong": self.locationLong ]
         
     }
 }

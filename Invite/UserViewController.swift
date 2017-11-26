@@ -64,7 +64,9 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     }
     
     func dataForUi(){
-        
+        sexFavoriteButtonOutlet.setTitle(("\(userProfile.sexFavorite)"), for: .normal)
+        sexButtonOutlet.setTitle(("\(userProfile.sex)"), for: .normal)
+       ageButtonOutlet.setTitle(("\(userProfile.age)"), for: .normal)
         nameTextField.text = userProfile.name
         surnameTexField.text = userProfile.surname
         

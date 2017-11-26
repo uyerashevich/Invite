@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class CreateEventViewController: BaseViewController, UITextFieldDelegate {
     
@@ -30,7 +31,8 @@ class CreateEventViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var privateEventSlide: UISwitch!
     var eventData = EventData()
-    
+    var coordinatesEvent : CLLocationCoordinate2D?
+   var nameSenderVC : String = "createEventVC"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,16 +81,31 @@ class CreateEventViewController: BaseViewController, UITextFieldDelegate {
         if privateEventSlide.isOn{ eventData.everyone = "true"}else{ eventData.everyone = "false"}
         
         eventData.contactPhone = contactPhoneEventTextField.text!
-        //        eventData.locationLat =
-        //        eventData.locationLong =
+//                eventData.locationLat = 
+//                eventData.locationLong =
         eventData.eventImage = fotoEventImageView.image!
         
         
         FirebaseEvent.init().setEventData(eventData: eventData)
         
+        clearAllTexfield()
         
     }
-    
+    func clearAllTexfield(){
+        
+        descriptionEventTextField.text = ""
+       subtitleEventTextField.text = ""
+        nameEventTextField.text = ""
+        dateEventTextField.text = ""
+        
+       startTimeEventTextField.text = ""
+        endTimeEventTextField.text = ""
+        addressEventTextField.text = ""
+       contactPhoneEventTextField.text = ""
+        costEventTextField.text = ""
+        fotoEventImageView.image = #imageLiteral(resourceName: "star_enabled")
+        
+    }
     @IBAction func tapImage(_ sender: Any) {
         imagePick.showCameraLibrary(view: self)
         imagePick.onDataUpdate = { [weak self] (image: UIImage) in
@@ -101,6 +118,24 @@ class CreateEventViewController: BaseViewController, UITextFieldDelegate {
     @IBAction func backButton(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         navigationController?.popViewController(animated: true)
+    }
+    //ShowMaps
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowMaps" {
+            if let mapsVC = segue.destination as? MapBaseViewController {
+             
+                mapsVC.nameSenderVC = self.nameSenderVC
+                
+                mapsVC.callBackToCreateEvent = {[unowned self] (coordinateEvent) in
+                    print(coordinateEvent.latitude)
+                  
+                    
+                    self.eventData.locationLat = coordinateEvent.latitude
+                    self.eventData.locationLong = coordinateEvent.longitude
+                    
+                }
+            }
+        }
     }
     
 }

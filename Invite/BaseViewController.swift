@@ -29,11 +29,6 @@ class BaseViewController : UIViewController {
 //
 //        })
         
-       // let z = "/\(eventData.ownerUserId)"
-//        var eventData  = EventData()
-//        eventData.ownerUserId = "dhvQXQVJ4wPGP9KLrZRgpJIiAtv2"
-//        FirebaseEvent.init().getEventData(eventData: eventData) { (eventArray) in
-//            self.eventDataArray = [eventArray]
-//        }
+
     }
 }

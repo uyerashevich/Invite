@@ -22,6 +22,8 @@ class FirebaseEvent{
         //запись в firebase по eventId
         AppDelegate.ref?.child("/Event/\(ownUserId)/").child(eventId).updateChildValues(eventDict)
     }
+    
+    
     func getEventData(eventData : EventData, completion: @escaping (_ result: EventData)->()){
         var  evData = EventData()
         let z = "/\(eventData.ownerUserId)"
@@ -46,12 +48,15 @@ class FirebaseEvent{
                 evData.everyone = value?["everyone"] as? String ?? ""
                 evData.contactPhone = value?["contactPhone"] as? String ?? ""
                 evData.address = value?["address"] as? String ?? ""
+
+                evData.locationLat = value?["locationLat"] as? Double ?? 0
+                evData.locationLong = value?["locationLong"] as? Double ?? 0
                 
                 if let foto = value?["eventImage"]{ evData.eventImage = self.decodeImg(stringImage: foto as! String)}
             }
+            print(evData.locationLong)
+            
 
-//            locationLat = 0
-//            locationLong = 0
 
            completion(evData)
         })
