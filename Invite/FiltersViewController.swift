@@ -19,6 +19,7 @@ class FiltersViewController: BaseViewController {
     @IBOutlet weak var paidEventSwitch: UISwitch!
     @IBOutlet weak var privateEventSwitch: UISwitch!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //         filterEvent = eventDataArray

@@ -9,8 +9,7 @@
 import UIKit
 
 class PIckersViewController: BaseViewController, UIPickerViewDelegate ,UIPickerViewDataSource {
-    
-    
+
     let sexArray = ["Male", "Female", "Other"]
     let SexFavoriteArray = ["Gay","Lesbi","Bi", "Getero","Other"]
     var typePicker : String?
@@ -18,15 +17,17 @@ class PIckersViewController: BaseViewController, UIPickerViewDelegate ,UIPickerV
     @IBOutlet weak var pckerViewOutlet: UIPickerView!
     @IBOutlet weak var dataPickerOutlet: UIDatePicker!
     
+    typealias pickerData = (String) ->()
+    var callBackToUser : pickerData!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        if typePicker == "sexFavorite"{
-        
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        dataPickerOutlet.setValue(UIColor.white, forKeyPath: "textColor")
+        dataPickerOutlet.setValue(false, forKeyPath: "highlightsToday")
         
         if typePicker == "DateOfB"{
             pckerViewOutlet.isHidden = true
@@ -35,7 +36,6 @@ class PIckersViewController: BaseViewController, UIPickerViewDelegate ,UIPickerV
             pckerViewOutlet.isHidden = false
             dataPickerOutlet.isHidden = true
         }
-        print(typePicker)
         
     }
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
@@ -45,7 +45,7 @@ class PIckersViewController: BaseViewController, UIPickerViewDelegate ,UIPickerV
         }else{
             str = sexArray[row]
         }
-        return NSAttributedString(string: str, attributes: [NSAttributedStringKey.foregroundColor:UIColor.blue])
+        return NSAttributedString(string: str, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white])
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -55,9 +55,6 @@ class PIckersViewController: BaseViewController, UIPickerViewDelegate ,UIPickerV
             return sexArray.count
         }
     }
-    
-    
-    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if typePicker == "sexFavorite"{
             return SexFavoriteArray[row]
@@ -82,18 +79,9 @@ class PIckersViewController: BaseViewController, UIPickerViewDelegate ,UIPickerV
     
     @IBAction func okButton(_ sender: Any) {
         if typePicker == "DateOfB"{
-            userProfile.age = ("\(dataPickerOutlet.date)")
+            valuePicker = ("\(dataPickerOutlet.date)")
         }
-        if typePicker == "sexFavorite"{  userProfile.sexFavorite = ("\(valuePicker)")
-      
-        }
-        if typePicker == "sex"{  userProfile.sex = ("\(valuePicker)")
-          
-        }
+        callBackToUser("\(valuePicker!)")
         dismiss(animated: true, completion: nil)
-        
-        
     }
-    
-    
 }
