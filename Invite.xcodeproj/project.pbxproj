@@ -19,12 +19,12 @@
 		7F3588C71FBCAFB100A38D58 /* GMapsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588C61FBCAFB100A38D58 /* GMapsUtils.swift */; };
 		7F3588C91FBCAFC200A38D58 /* MapBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588C81FBCAFC200A38D58 /* MapBaseViewController.swift */; };
 		7F3588CB1FBCAFDB00A38D58 /* RootMapsBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588CA1FBCAFDB00A38D58 /* RootMapsBaseController.swift */; };
-		7F4B25FC1FCAD16B008F0863 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F4B25FB1FCAD16B008F0863 /* GoogleService-Info.plist */; };
 		7F58483B1FC02DDE00724136 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58483A1FC02DDE00724136 /* UIViewExtensions.swift */; };
 		7F58483D1FC072A300724136 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58483C1FC072A300724136 /* AppAppearance.swift */; };
 		7F58483F1FC07CDF00724136 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58483E1FC07CDF00724136 /* EventListViewController.swift */; };
 		7F727A4F1F9E6EF3004E7D1A /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F727A4E1F9E6EF3004E7D1A /* EventData.swift */; };
 		7F727A511F9E7231004E7D1A /* FirebaseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F727A501F9E7231004E7D1A /* FirebaseEvent.swift */; };
+		7F787AC01FCAEAC800AE78A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F787ABF1FCAEAC800AE78A7 /* GoogleService-Info.plist */; };
 		7F799EDF1FB82ED30023977D /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F799EDE1FB82ED30023977D /* BaseViewController.swift */; };
 		7F9E3CD21F8D2F5F006378F0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */; };
 		7F9E3CD71F8D2F5F006378F0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7F9E3CD51F8D2F5F006378F0 /* Main.storyboard */; };
@@ -59,12 +59,12 @@
 		7F3588C61FBCAFB100A38D58 /* GMapsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMapsUtils.swift; sourceTree = "<group>"; };
 		7F3588C81FBCAFC200A38D58 /* MapBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBaseViewController.swift; sourceTree = "<group>"; };
 		7F3588CA1FBCAFDB00A38D58 /* RootMapsBaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootMapsBaseController.swift; sourceTree = "<group>"; };
-		7F4B25FB1FCAD16B008F0863 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F58483A1FC02DDE00724136 /* UIViewExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		7F58483C1FC072A300724136 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		7F58483E1FC07CDF00724136 /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
 		7F727A4E1F9E6EF3004E7D1A /* EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
 		7F727A501F9E7231004E7D1A /* FirebaseEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEvent.swift; sourceTree = "<group>"; };
+		7F787ABF1FCAEAC800AE78A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7F799EDE1FB82ED30023977D /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		7F9E3CCE1F8D2F5F006378F0 /* Invite.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invite.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -223,9 +223,9 @@
 				7F9E3CEC1F8D445B006378F0 /* Utils */,
 				7F9E3CE71F8D3906006378F0 /* ViewControllers */,
 				7F9E3CD81F8D2F5F006378F0 /* Assets.xcassets */,
-				7F4B25FB1FCAD16B008F0863 /* GoogleService-Info.plist */,
 				7F9E3CDA1F8D2F5F006378F0 /* LaunchScreen.storyboard */,
 				7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */,
+				7F787ABF1FCAEAC800AE78A7 /* GoogleService-Info.plist */,
 				7F9E3CD51F8D2F5F006378F0 /* Main.storyboard */,
 				7F9E3CDD1F8D2F5F006378F0 /* Info.plist */,
 				7F11986C1F91355A0086DF66 /* not work vC */,
@@ -335,7 +335,7 @@
 			files = (
 				7F0D01CC1F8E8DBF0051B7C5 /* Info.plist in Resources */,
 				7F9E3CDC1F8D2F5F006378F0 /* LaunchScreen.storyboard in Resources */,
-				7F4B25FC1FCAD16B008F0863 /* GoogleService-Info.plist in Resources */,
+				7F787AC01FCAEAC800AE78A7 /* GoogleService-Info.plist in Resources */,
 				7F9E3CD91F8D2F5F006378F0 /* Assets.xcassets in Resources */,
 				7F9E3CD71F8D2F5F006378F0 /* Main.storyboard in Resources */,
 			);

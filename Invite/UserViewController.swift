@@ -13,19 +13,13 @@ import GoogleSignIn
 
 class UserViewController: BaseViewController, UITextFieldDelegate{ //
     
-    
-    
     @IBOutlet weak var ageButtonOutlet: UIButton!
     @IBOutlet weak var sexFavoriteButtonOutlet: UIButton!
     @IBOutlet weak var sexButtonOutlet: UIButton!
-    
-    
-    
+    @IBOutlet weak var aboutMeTextView: UITextView!
     @IBOutlet weak var imgUserMaskView: UIView!
     @IBOutlet weak var photoUserImgView: UIImageView!
-    
     @IBOutlet weak var instagrammTexField: UITextField!
-    
     @IBOutlet weak var surnameTexField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     let imagePick = ImagePickerActionSheet.init()
@@ -66,14 +60,36 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     func dataForUi(){
         sexFavoriteButtonOutlet.setTitle(("\(userProfile.sexFavorite)"), for: .normal)
         sexButtonOutlet.setTitle(("\(userProfile.sex)"), for: .normal)
-       ageButtonOutlet.setTitle(("\(userProfile.age)"), for: .normal)
+       // let ageFull = dateNow(needTime: false) - userProfile.age
+//        let date = NSDate()
+//        print( Int(dateNow(needYear: true, date: date)))
+//        print(userProfile.age)
+        ageButtonOutlet.setTitle(("( \(userProfile.age) )"), for: .normal)
         nameTextField.text = userProfile.name
         surnameTexField.text = userProfile.surname
-        
         instagrammTexField.text = userProfile.instagramUrl
         photoUserImgView.image = userProfile.foto
-        
+        aboutMeTextView.text = userProfile.aboutMe
     }
+    func validateUserData()->Bool{
+        let xString = instagrammTexField.text?.count
+        guard Int(xString!) < 1 || Int(xString!) > 9 || instagrammTexField.text == nil else{
+            displayAlertMessage(messageToDisplay: "Instagram > 10 chars", viewController: self)
+            return false
+        }
+        guard nameTextField.text != nil || surnameTexField.text != nil || ageButtonOutlet.currentTitle != nil || sexButtonOutlet.currentTitle != nil || sexFavoriteButtonOutlet.currentTitle != nil || aboutMeTextView.text != nil else{ displayAlertMessage(messageToDisplay: "Not all fields are filled out", viewController: self)
+            return false}
+        
+        self.userProfile.instagramUrl = instagrammTexField.text!
+        self.userProfile.name = nameTextField.text!
+        self.userProfile.surname = surnameTexField.text!
+        self.userProfile.age = ageButtonOutlet.currentTitle!
+        self.userProfile.sex = sexButtonOutlet.currentTitle!
+        self.userProfile.sexFavorite = sexFavoriteButtonOutlet.currentTitle!
+        self.userProfile.aboutMe = aboutMeTextView.text
+        return true
+    }
+    
     @IBAction func tapImage(_ sender: Any) {
         imagePick.showCameraLibrary(view: self)
         imagePick.onDataUpdate = { [weak self] (image: UIImage) in
@@ -82,23 +98,14 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
             self?.userProfile.foto = resizeImage
         }
     }
-    
-    
+ 
     @IBAction func saveButton(_ sender: UIButton) {
-        let xString = instagrammTexField.text?.count
-        if instagrammTexField.text != nil &&  Int(xString!) > 10 {
-            self.userProfile.instagramUrl = instagrammTexField.text!
-        }else{
-            displayAlertMessage(messageToDisplay: "Длинна инстагрпмм не меннее 10 символов", viewController: self)
-            return
+        if validateUserData(){
+            FirebaseUser.init().setUserData(userData: self.userProfile)
+            performSegue(withIdentifier: "CreateEventView", sender: "")
         }
-        if nameTextField.text != nil{ self.userProfile.name = nameTextField.text!}
-        if surnameTexField.text != nil {self.userProfile.surname = surnameTexField.text!}
-        FirebaseUser.init().setUserData(userData: self.userProfile)
-        performSegue(withIdentifier: "CreateEventView", sender: "")
-        
     }
-    
+   
     @IBAction func sexFavoriteButton(_ sender: Any) {
         typePicker = "sexFavorite"
         performSegue(withIdentifier: "showPickersVC", sender: nil)
@@ -106,35 +113,11 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     @IBAction func ageBtton(_ sender: Any) {
         typePicker = "DateOfB"
         performSegue(withIdentifier: "showPickersVC", sender: nil)
-        
     }
     
     @IBAction func sexButton(_ sender: Any) {
         typePicker = "sex"
         performSegue(withIdentifier: "showPickersVC", sender: nil)
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showPickersVC" {
-            if let pickerVC = segue.destination as? PIckersViewController {
-                pickerVC.typePicker = self.typePicker
-                pickerVC.callBackToUser = {[unowned self] (pickerResponse) in
-                    var s : String = ""
-                    s = (pickerResponse as String)
-                    
-                    switch self.typePicker {
-                    case "sexFavorite"?: self.sexFavoriteButtonOutlet.setTitle(("\(s)"), for: .normal)
-                    self.userProfile.sexFavorite = ("\(s)")
-                    case "sex"?: self.sexButtonOutlet.setTitle(("\(s)"), for: .normal)
-                    self.userProfile.sex = ("\(s)")
-                    case "DateOfB"?: self.ageButtonOutlet.setTitle(("\(s)"), for: .normal)
-                    self.userProfile.age = ("\(s)")
-                    default :_ = 1
-                    }
-                }
-            }
-        }
     }
     
     @IBAction func backButton(_ sender: UIButton) {
@@ -156,5 +139,27 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
         
         dismiss(animated: true, completion: nil)
         navigationController?.popViewController(animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showPickersVC" {
+            if let pickerVC = segue.destination as? PIckersViewController {
+                pickerVC.typePicker = self.typePicker
+                pickerVC.callBackToUser = {[unowned self] (pickerResponse) in
+                    var s : String = ""
+                    s = (pickerResponse as String)
+                    
+                    switch self.typePicker {
+                    case "sexFavorite"?: self.sexFavoriteButtonOutlet.setTitle(("\(s)"), for: .normal)
+                     self.userProfile.sexFavorite = ("\(s)")
+                    case "sex"?: self.sexButtonOutlet.setTitle(("\(s)"), for: .normal)
+                     self.userProfile.sex = ("\(s)")
+                    case "DateOfB"?: self.ageButtonOutlet.setTitle(("\(s)"), for: .normal)
+                     self.userProfile.age = ("\(s)")
+                    default :_ = 1
+                    }
+                }
+            }
+        }
     }
 }

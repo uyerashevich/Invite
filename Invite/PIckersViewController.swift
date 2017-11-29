@@ -79,7 +79,8 @@ class PIckersViewController: BaseViewController, UIPickerViewDelegate ,UIPickerV
     
     @IBAction func okButton(_ sender: Any) {
         if typePicker == "DateOfB"{
-            valuePicker = ("\(dataPickerOutlet.date)")
+            let stringOfDate = dateNow(needYear: false, date: dataPickerOutlet.date as NSDate)
+            valuePicker = ("\(stringOfDate)")
         }
         callBackToUser("\(valuePicker!)")
         dismiss(animated: true, completion: nil)

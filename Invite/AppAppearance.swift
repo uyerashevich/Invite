@@ -24,7 +24,7 @@ class AppAppearance {
         customTabBar.isTranslucent = false
        // customTabBar.backgroundColor = UIColor.red
         
-        customTabBarItem.badgeColor = UIColor.red
+        customTabBarItem.badgeColor = UIColor.black
     }
     
     class private func setUpNavigationBarAppearance(){
@@ -40,8 +40,8 @@ class AppAppearance {
 //        customNavigationBar.backIndicatorImage = backImage
 //        customNavigationBar.backIndicatorTransitionMaskImage = backImage
 //
-        customNavigationBar.tintColor = UIColor.white
-        customBarButtonItem.tintColor = UIColor.white
+//        customNavigationBar.tintColor = UIColor.white
+//        customBarButtonItem.tintColor = UIColor.white
         
     }
 }

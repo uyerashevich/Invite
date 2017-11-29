@@ -25,7 +25,7 @@
 			</array>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>fb146811509172123</string>
+				<string>fb1006107556194664</string>
 			</array>
 		</dict>
 		<dict>
@@ -40,7 +40,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>FacebookAppID</key>
-	<string>146811509172123</string>
+	<string>1006107556194664</string>
 	<key>FacebookDisplayName</key>
 	<string>InviteApp</string>
 	<key>LSApplicationQueriesSchemes</key>

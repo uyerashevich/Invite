@@ -53,6 +53,27 @@ func displayAlertMessage(messageToDisplay: String, viewController: UIViewControl
     alertController.addAction(OKAction)
     viewController.present(alertController, animated: true, completion:nil)
 }
+func dateNow(needYear : Bool,date : NSDate)->String{
+    //            let dateFormate = DateFormatter()
+    //            dateFormate.dateFormat = "MMM d, yyyy"
+    //            let date = dataPickerOutlet.date
+    //            let stringOfDate = dateFormate.string(from: date)
+
+   // let date = NSDate()
+    let dateFormatter = DateFormatter()
+    if needYear{
+        dateFormatter.dateFormat = "yyyy"
+    }else{
+        dateFormatter.dateFormat = "MMM d, yyyy"
+    }
+    
+    let dateString = dateFormatter.string(from: date as Date)
+    //  print("Custom date format Sample 1 =  \(dateString)")
+    //Custom date format Sample 1 =  02-28-2016 11:41
+    // print("\(dateString)")
+    
+    return dateString
+}
 
 func isValidEmailAddress(emailAddressString: String) -> Bool {
     
