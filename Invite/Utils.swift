@@ -45,7 +45,7 @@ func stopActivityIndicator() {
     AppDelegate.activityIndicator.stopAnimating()
     UIApplication.shared.endIgnoringInteractionEvents()
 }
-    
+
 func displayAlertMessage(messageToDisplay: String, viewController: UIViewController){
     let alertController = UIAlertController(title: "", message: messageToDisplay, preferredStyle: .alert)
     let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
@@ -53,27 +53,30 @@ func displayAlertMessage(messageToDisplay: String, viewController: UIViewControl
     alertController.addAction(OKAction)
     viewController.present(alertController, animated: true, completion:nil)
 }
-func dateNow(needYear : Bool,date : NSDate)->String{
-    //            let dateFormate = DateFormatter()
-    //            dateFormate.dateFormat = "MMM d, yyyy"
-    //            let date = dataPickerOutlet.date
-    //            let stringOfDate = dateFormate.string(from: date)
-
-   // let date = NSDate()
+func convertDateToString( date : NSDate)->String{
+    //timeInterval = date2.timeIntervalSince(date1) / 60 / 60 / 24 / 365
+    // let date = NSDate()
     let dateFormatter = DateFormatter()
-    if needYear{
-        dateFormatter.dateFormat = "yyyy"
-    }else{
-        dateFormatter.dateFormat = "MMM d, yyyy"
-    }
-    
+//        if needUsaTime{
+           dateFormatter.dateFormat = "MMM d, yyyy"
+//        }else{
+//             dateFormatter.dateFormat = "yyyyMMdd"
+//        }
     let dateString = dateFormatter.string(from: date as Date)
     //  print("Custom date format Sample 1 =  \(dateString)")
     //Custom date format Sample 1 =  02-28-2016 11:41
-    // print("\(dateString)")
-    
     return dateString
 }
+func convertStringToDate(dateString: String)->Date{
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "MMM d, yyyy"
+    guard  let date = dateFormatter.date(from: dateString) else{
+        return dateFormatter.date(from: convertDateToString(date: NSDate()))!
+        }
+    
+    return date
+}
+
 
 func isValidEmailAddress(emailAddressString: String) -> Bool {
     

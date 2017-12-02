@@ -32,27 +32,23 @@ class FirebaseUser {
             for us in snapshot.children.allObjects as![DataSnapshot]{
                 let usObj = us.value as?[String: String]
                 
-                let email = usObj?["email"]
-                let name = usObj?["name"]
-                let surname = usObj?["surname"]
-                let aboutMe = usObj?["aboutMe"]
-                let sex = usObj?["sex"] 
-                let sexFavorite = usObj?["sexFavorite"]
-                let instagramUrl = usObj?["instagramUrl"]
-                let age = usObj?["age"]
-                let foto = usObj?["foto"]
+                let email = usObj?["email"] ?? ""
                 
-                if userData.email == email && us.key != ""{
-                    userProfile.userId = us.key
-                    if aboutMe != nil { userProfile.aboutMe = aboutMe! } else{ userProfile.aboutMe = "" }
-                    if name != nil {userProfile.name = name!}else{ userProfile.name = ""}
-                    if surname != nil { userProfile.surname = surname!}else{ userProfile.surname = "" }
-                    if sex != nil { userProfile.sex = sex!} else{ userProfile.sex = "" }
-                    if sexFavorite != nil { userProfile.sexFavorite = sexFavorite!} else{ userProfile.sexFavorite = "" }
-                    if age != nil { userProfile.age = age!} else{ userProfile.age = ""}
-                    if instagramUrl != nil { userProfile.instagramUrl = instagramUrl!} else{ userProfile.instagramUrl = "" }
-                    if foto != nil { userProfile.foto = self.decodeImg(stringImage: foto!)}
-                }          
+             if userData.email == email && us.key != ""{
+                userProfile.userId = us.key
+                userProfile.name = usObj?["name"] ?? ""
+                userProfile.surname = usObj?["surname"] ?? ""
+                userProfile.aboutMe = usObj?["aboutMe"] ?? ""
+                userProfile.sex = usObj?["sex"] ?? ""
+                userProfile.sexFavorite = usObj?["sexFavorite"] ?? ""
+                userProfile.instagramUrl = usObj?["instagramUrl"]  ?? ""
+                userProfile.age = usObj?["age"] ?? ""
+               let foto = usObj?["foto"] as? String ?? ""
+               
+                
+                if foto != nil { userProfile.foto = self.decodeImg(stringImage: foto)}
+                }
+      
             }
             completionHandler(userProfile)
         })

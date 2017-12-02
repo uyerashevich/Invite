@@ -25,61 +25,61 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     @IBOutlet weak var nameTextField: UITextField!
     let imagePick = ImagePickerActionSheet.init()
     var typePicker : String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        // 1. Регистрируем тап, для скрытия клавиатуры
-//        var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTapView))
-//        view.addGestureRecognizer(tapGesture)
+        //        // 1. Регистрируем тап, для скрытия клавиатуры
+        //        var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTapView))
+        //        view.addGestureRecognizer(tapGesture)
         
-      //  scrollViewOutlet.contentSize.height = 800
+        //  scrollViewOutlet.contentSize.height = 800
         //для убирания клавы с экрана/////////
         self.instagrammTexField.delegate = self
         
         self.surnameTexField.delegate = self
         self.nameTextField.delegate = self
     }
-   
-//    func addObservers() {
-//        // Нотификация которая появляется при открытии клавиатуры
-//        // Notification that appears when you open the keyboard
-//        NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
-//            self.keyboardWillShow(note)
-//        })
-//        // Нотификация которая появляется при закрытии клавиатуры
-//        // Notification that appears when you close the keyboard
-//        NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
-//            self.keyboardWillHide(note)
-//        })
-//    }
-
-//    func keyboardWillShow(_ notification: Notification) {
-//        // Получаем словарь - Get Dictionary
-//        let userInfo = notification.userInfo
-//        if userInfo != nil {
-//            // Вытаскиваем frame который описывает кооридинаты клавиатуры
-//            // Pull out frame which describes the coordinates of the keyboard
-//            let frame: CGRect? = (userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-//            // Создаем отступ по высоте клавиатуры
-//            // Create an inset at the height of the keyboard
-//            let contentInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, frame!.height, 0)
-//            // Применяем отступ - Apply the inset
-//            scrollViewOutlet.contentInset = contentInset
-//        }
-//    }
-//    func keyboardWillHide(_ notification: Notification) {
-//        // Отменяем отступ - Cancel inset
-//        self.scrollViewOutlet.contentInset = UIEdgeInsets.zero
-//    }
-//
-//    func removeObservers() {
-//        // Отписываемся от нотификаций - Unsubscribe from notifications
-//        NotificationCenter.default.removeObserver(self)
-//    }
-//    @objc func didTapView(_ gesture: UITapGestureRecognizer) {
-//        view.endEditing(true)
-//    }
-
+    
+    //    func addObservers() {
+    //        // Нотификация которая появляется при открытии клавиатуры
+    //        // Notification that appears when you open the keyboard
+    //        NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
+    //            self.keyboardWillShow(note)
+    //        })
+    //        // Нотификация которая появляется при закрытии клавиатуры
+    //        // Notification that appears when you close the keyboard
+    //        NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
+    //            self.keyboardWillHide(note)
+    //        })
+    //    }
+    
+    //    func keyboardWillShow(_ notification: Notification) {
+    //        // Получаем словарь - Get Dictionary
+    //        let userInfo = notification.userInfo
+    //        if userInfo != nil {
+    //            // Вытаскиваем frame который описывает кооридинаты клавиатуры
+    //            // Pull out frame which describes the coordinates of the keyboard
+    //            let frame: CGRect? = (userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+    //            // Создаем отступ по высоте клавиатуры
+    //            // Create an inset at the height of the keyboard
+    //            let contentInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, frame!.height, 0)
+    //            // Применяем отступ - Apply the inset
+    //            scrollViewOutlet.contentInset = contentInset
+    //        }
+    //    }
+    //    func keyboardWillHide(_ notification: Notification) {
+    //        // Отменяем отступ - Cancel inset
+    //        self.scrollViewOutlet.contentInset = UIEdgeInsets.zero
+    //    }
+    //
+    //    func removeObservers() {
+    //        // Отписываемся от нотификаций - Unsubscribe from notifications
+    //        NotificationCenter.default.removeObserver(self)
+    //    }
+    //    @objc func didTapView(_ gesture: UITapGestureRecognizer) {
+    //        view.endEditing(true)
+    //    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -87,7 +87,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-     //   self.removeObservers()
+        //   self.removeObservers()
     }
     //для убирания клавы с экрана/////////
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -101,11 +101,12 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     func dataForUi(){
         sexFavoriteButtonOutlet.setTitle(("\(userProfile.sexFavorite)"), for: .normal)
         sexButtonOutlet.setTitle(("\(userProfile.sex)"), for: .normal)
-       // let ageFull = dateNow(needTime: false) - userProfile.age
-//        let date = NSDate()
-//        print( Int(dateNow(needYear: true, date: date)))
-//        print(userProfile.age)
-        ageButtonOutlet.setTitle((" \(userProfile.age) "), for: .normal)
+        if userProfile.age != nil {
+            let ageYear = convertStringToDate(dateString: userProfile.age)
+            let date = NSDate()
+            let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
+            ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(userProfile.age) )"), for: .normal)
+        }
         nameTextField.text = userProfile.name
         surnameTexField.text = userProfile.surname
         instagrammTexField.text = userProfile.instagramUrl
@@ -120,13 +121,9 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
         }
         guard nameTextField.text != nil || surnameTexField.text != nil || ageButtonOutlet.currentTitle != nil || sexButtonOutlet.currentTitle != nil || sexFavoriteButtonOutlet.currentTitle != nil || aboutMeTextView.text != nil else{ displayAlertMessage(messageToDisplay: "Not all fields are filled out", viewController: self)
             return false}
-        
         self.userProfile.instagramUrl = instagrammTexField.text!
         self.userProfile.name = nameTextField.text!
         self.userProfile.surname = surnameTexField.text!
-        self.userProfile.age = ageButtonOutlet.currentTitle!
-        self.userProfile.sex = sexButtonOutlet.currentTitle!
-        self.userProfile.sexFavorite = sexFavoriteButtonOutlet.currentTitle!
         self.userProfile.aboutMe = aboutMeTextView.text
         return true
     }
@@ -139,14 +136,14 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
             self?.userProfile.foto = resizeImage
         }
     }
- 
+    
     @IBAction func saveButton(_ sender: UIButton) {
         if validateUserData(){
             FirebaseUser.init().setUserData(userData: self.userProfile)
             performSegue(withIdentifier: "showEventList", sender: "")
         }
     }
-   
+    
     @IBAction func sexFavoriteButton(_ sender: Any) {
         typePicker = "sexFavorite"
         performSegue(withIdentifier: "showPickersVC", sender: nil)
@@ -187,20 +184,28 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
             if let pickerVC = segue.destination as? PIckersViewController {
                 pickerVC.typePicker = self.typePicker
                 pickerVC.callBackToUser = {[unowned self] (pickerResponse) in
-                    var s : String = ""
-                    s = (pickerResponse as String)
                     
-                    switch self.typePicker {
-                    case "sexFavorite"?: self.sexFavoriteButtonOutlet.setTitle(("\(s)"), for: .normal)
-                     self.userProfile.sexFavorite = ("\(s)")
-                    case "sex"?: self.sexButtonOutlet.setTitle(("\(s)"), for: .normal)
-                     self.userProfile.sex = ("\(s)")
-                    case "DateOfB"?: self.ageButtonOutlet.setTitle(("\(s)"), for: .normal)
-                     self.userProfile.age = ("\(s)")
-                    default :_ = 1
+                     let s = (pickerResponse as String)
+                        
+                        switch self.typePicker {
+                        case "sexFavorite"?: self.sexFavoriteButtonOutlet.setTitle(("\(s)"), for: .normal)
+                        self.userProfile.sexFavorite = ("\(s)")
+                        case "sex"?: self.sexButtonOutlet.setTitle(("\(s)"), for: .normal)
+                        self.userProfile.sex = ("\(s)")
+                            
+                        case "DateOfB"?:
+                            
+                            let ageYear = convertStringToDate(dateString: s)
+                            let date = NSDate()
+                            let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
+                            // print(timeInterval % 100 )
+                            self.ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(s) )"), for: .normal)
+                            self.userProfile.age = ("\(s)")
+                        default :_ = 1
+                        }
                     }
                 }
             }
         }
     }
-}
+

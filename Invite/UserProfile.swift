@@ -23,6 +23,7 @@ class UserProfile{
     var age : String
     var instagramUrl : String
     var foto : UIImage
+   
     
     
 private    init (){
@@ -37,6 +38,7 @@ private    init (){
         instagramUrl = ""
         foto = #imageLiteral(resourceName: "button")
     }
+    
     func clear(){
         userId = ""
         email = ""
@@ -48,6 +50,7 @@ private    init (){
         age = ""
         instagramUrl = ""
         foto = #imageLiteral(resourceName: "button")
+        
     }
     func convertToDictionary()-> [String: Any] {
         return["userId": self.userId,"email": self.email, "aboutMe": self.aboutMe, "name": self.name,"sex": self.sex, "sexFavorite": self.sexFavorite, "surname": self.surname, "age": self.age, "instagramUrl": self.instagramUrl]

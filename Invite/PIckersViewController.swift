@@ -13,7 +13,7 @@ class PIckersViewController: BaseViewController, UIPickerViewDelegate ,UIPickerV
     let sexArray = ["Male", "Female", "Other"]
     let SexFavoriteArray = ["Gay","Lesbi","Bi", "Getero","Other"]
     var typePicker : String?
-    var valuePicker : Any?
+    var valuePicker : String?
     @IBOutlet weak var pckerViewOutlet: UIPickerView!
     @IBOutlet weak var dataPickerOutlet: UIDatePicker!
     
@@ -79,11 +79,11 @@ class PIckersViewController: BaseViewController, UIPickerViewDelegate ,UIPickerV
     
     @IBAction func okButton(_ sender: Any) {
         if typePicker == "DateOfB"{
-            let stringOfDate = dateNow(needYear: false, date: dataPickerOutlet.date as NSDate)
-            
+         //   userProfile.dateForYears = dateNow(needYear: true, date: dataPickerOutlet.date as NSDate)
+            let stringOfDate = convertDateToString(date: dataPickerOutlet.date as NSDate)
             valuePicker = ("\(stringOfDate)")
         }
-        callBackToUser("\(valuePicker!)")
+        if valuePicker != nil{ callBackToUser(valuePicker!) }
         dismiss(animated: true, completion: nil)
     }
 }
