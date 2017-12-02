@@ -19,10 +19,10 @@ class EventList: NSObject{
 
 struct  EventData {
     
-   
-    var ownerUserId : String
      var eventId: String
-  var address : String
+    var ownerUserId : String
+    var eventName: String
+    var address : String
     
     var subTitle : String?
    var descriptionEvent : String?
@@ -47,7 +47,7 @@ struct  EventData {
         ownerUserId = ""
         eventId = ""
         address = ""
-   
+        eventName = ""
         subTitle = ""
       descriptionEvent = ""
         date = ""
@@ -67,10 +67,11 @@ struct  EventData {
     }
 
     func convertToDictionary()-> [String: Any] {
-        return["ownerUserId":ownerUserId,
+        return[
                "eventId": self.eventId,
-                "address": self.address,
-                
+               "eventName": self.eventName,
+               "address": self.address,
+                "ownerUserId":ownerUserId,
                "subTitle": self.subTitle,
                "descriptionEvent": self.descriptionEvent,
                "date": self.date,

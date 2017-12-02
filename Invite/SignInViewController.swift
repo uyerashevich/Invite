@@ -44,14 +44,14 @@ class SignInViewController:  BaseViewController ,GIDSignInUIDelegate {
 //            FirebaseEvent.init().getAllEvent(completion: { (eventList) in
 //
 //            })
-            FirebaseEvent.init().getEventData(eventData: eventData) { (eventArray) in
+            FirebaseEvent.init().getListEvent(completion: { (eventArray) in
 
                 EventList.sharedInstance.eventList.append(eventArray)
                 print(EventList.sharedInstance.eventList.count)
                // eventDataArray.append(eventArray)
 //                print(eventArray)
 //                print(eventDataArray.count)
-            }
+            })
             
             
         }

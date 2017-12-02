@@ -35,7 +35,7 @@ class EventListViewController: BaseViewController, UICollectionViewDelegate, UIC
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath ) as! EventListCollectionViewCell
         
        // print(EventList.sharedInstance.eventList[indexPath.row].eventId)
-                cell.nameEventLabel.text =  EventList.sharedInstance.eventList[indexPath.row].eventId
+                cell.nameEventLabel.text =  EventList.sharedInstance.eventList[indexPath.row].eventName
                 cell.placeEventLabel.text = EventList.sharedInstance.eventList[indexPath.row].address
                 cell.distanceLabel.text = "0km"
                 cell.costEventLabel.text = EventList.sharedInstance.eventList[indexPath.row].cost
