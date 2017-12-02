@@ -13,6 +13,7 @@ import GoogleSignIn
 
 class UserViewController: BaseViewController, UITextFieldDelegate{ //
     
+    @IBOutlet weak var scrollViewOutlet: UIScrollView!
     @IBOutlet weak var ageButtonOutlet: UIButton!
     @IBOutlet weak var sexFavoriteButtonOutlet: UIButton!
     @IBOutlet weak var sexButtonOutlet: UIButton!
@@ -27,13 +28,58 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // 1. Регистрируем тап, для скрытия клавиатуры
+        var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTapView))
+        view.addGestureRecognizer(tapGesture)
         
+      //  scrollViewOutlet.contentSize.height = 800
         //для убирания клавы с экрана/////////
         self.instagrammTexField.delegate = self
         
         self.surnameTexField.delegate = self
         self.nameTextField.delegate = self
     }
+   
+    func addObservers() {
+        // Нотификация которая появляется при открытии клавиатуры
+        // Notification that appears when you open the keyboard
+        NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
+            self.keyboardWillShow(note)
+        })
+        // Нотификация которая появляется при закрытии клавиатуры
+        // Notification that appears when you close the keyboard
+        NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
+            self.keyboardWillHide(note)
+        })
+    }
+
+    func keyboardWillShow(_ notification: Notification) {
+        // Получаем словарь - Get Dictionary
+        let userInfo = notification.userInfo
+        if userInfo != nil {
+            // Вытаскиваем frame который описывает кооридинаты клавиатуры
+            // Pull out frame which describes the coordinates of the keyboard
+            let frame: CGRect? = (userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+            // Создаем отступ по высоте клавиатуры
+            // Create an inset at the height of the keyboard
+            let contentInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, frame!.height, 0)
+            // Применяем отступ - Apply the inset
+            scrollViewOutlet.contentInset = contentInset
+        }
+    }
+    func keyboardWillHide(_ notification: Notification) {
+        // Отменяем отступ - Cancel inset
+        self.scrollViewOutlet.contentInset = UIEdgeInsets.zero
+    }
+
+    func removeObservers() {
+        // Отписываемся от нотификаций - Unsubscribe from notifications
+        NotificationCenter.default.removeObserver(self)
+    }
+    @objc func didTapView(_ gesture: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
@@ -47,7 +93,10 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
         
         self.dataForUi()
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        self.removeObservers()
+    }
     //для убирания клавы с экрана/////////
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -64,7 +113,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
 //        let date = NSDate()
 //        print( Int(dateNow(needYear: true, date: date)))
 //        print(userProfile.age)
-        ageButtonOutlet.setTitle(("( \(userProfile.age) )"), for: .normal)
+        ageButtonOutlet.setTitle((" \(userProfile.age) "), for: .normal)
         nameTextField.text = userProfile.name
         surnameTexField.text = userProfile.surname
         instagrammTexField.text = userProfile.instagramUrl
@@ -102,7 +151,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     @IBAction func saveButton(_ sender: UIButton) {
         if validateUserData(){
             FirebaseUser.init().setUserData(userData: self.userProfile)
-            performSegue(withIdentifier: "CreateEventView", sender: "")
+            performSegue(withIdentifier: "showEventList", sender: "")
         }
     }
    
