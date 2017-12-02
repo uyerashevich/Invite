@@ -28,9 +28,9 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // 1. Регистрируем тап, для скрытия клавиатуры
-        var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTapView))
-        view.addGestureRecognizer(tapGesture)
+//        // 1. Регистрируем тап, для скрытия клавиатуры
+//        var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTapView))
+//        view.addGestureRecognizer(tapGesture)
         
       //  scrollViewOutlet.contentSize.height = 800
         //для убирания клавы с экрана/////////
@@ -40,62 +40,54 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
         self.nameTextField.delegate = self
     }
    
-    func addObservers() {
-        // Нотификация которая появляется при открытии клавиатуры
-        // Notification that appears when you open the keyboard
-        NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
-            self.keyboardWillShow(note)
-        })
-        // Нотификация которая появляется при закрытии клавиатуры
-        // Notification that appears when you close the keyboard
-        NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
-            self.keyboardWillHide(note)
-        })
-    }
+//    func addObservers() {
+//        // Нотификация которая появляется при открытии клавиатуры
+//        // Notification that appears when you open the keyboard
+//        NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
+//            self.keyboardWillShow(note)
+//        })
+//        // Нотификация которая появляется при закрытии клавиатуры
+//        // Notification that appears when you close the keyboard
+//        NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
+//            self.keyboardWillHide(note)
+//        })
+//    }
 
-    func keyboardWillShow(_ notification: Notification) {
-        // Получаем словарь - Get Dictionary
-        let userInfo = notification.userInfo
-        if userInfo != nil {
-            // Вытаскиваем frame который описывает кооридинаты клавиатуры
-            // Pull out frame which describes the coordinates of the keyboard
-            let frame: CGRect? = (userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-            // Создаем отступ по высоте клавиатуры
-            // Create an inset at the height of the keyboard
-            let contentInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, frame!.height, 0)
-            // Применяем отступ - Apply the inset
-            scrollViewOutlet.contentInset = contentInset
-        }
-    }
-    func keyboardWillHide(_ notification: Notification) {
-        // Отменяем отступ - Cancel inset
-        self.scrollViewOutlet.contentInset = UIEdgeInsets.zero
-    }
-
-    func removeObservers() {
-        // Отписываемся от нотификаций - Unsubscribe from notifications
-        NotificationCenter.default.removeObserver(self)
-    }
-    @objc func didTapView(_ gesture: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
+//    func keyboardWillShow(_ notification: Notification) {
+//        // Получаем словарь - Get Dictionary
+//        let userInfo = notification.userInfo
+//        if userInfo != nil {
+//            // Вытаскиваем frame который описывает кооридинаты клавиатуры
+//            // Pull out frame which describes the coordinates of the keyboard
+//            let frame: CGRect? = (userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+//            // Создаем отступ по высоте клавиатуры
+//            // Create an inset at the height of the keyboard
+//            let contentInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, frame!.height, 0)
+//            // Применяем отступ - Apply the inset
+//            scrollViewOutlet.contentInset = contentInset
+//        }
+//    }
+//    func keyboardWillHide(_ notification: Notification) {
+//        // Отменяем отступ - Cancel inset
+//        self.scrollViewOutlet.contentInset = UIEdgeInsets.zero
+//    }
+//
+//    func removeObservers() {
+//        // Отписываемся от нотификаций - Unsubscribe from notifications
+//        NotificationCenter.default.removeObserver(self)
+//    }
+//    @objc func didTapView(_ gesture: UITapGestureRecognizer) {
+//        view.endEditing(true)
+//    }
 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
-        //firebase EVENT
-        //        FirebaseEvent.init().getAllEvent { (arrayEvent) in
-        //            self.eventDataArray = arrayEvent
-        //   // print("\(self.eventDataArray.count)----\( self.eventDataArray[0].eventId)")
-        //        }
-        
-        
         self.dataForUi()
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        self.removeObservers()
+     //   self.removeObservers()
     }
     //для убирания клавы с экрана/////////
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
