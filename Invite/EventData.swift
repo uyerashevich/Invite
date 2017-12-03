@@ -12,9 +12,14 @@ class EventList: NSObject{
     
     static let sharedInstance = EventList()
     
+    
  //   private override init(){}
     
-    var eventList = [EventData]()  
+    var eventList = [EventData]()
+    
+    func clearArray(){
+        eventList.removeAll()
+    }
 }
 
 struct  EventData {
@@ -65,7 +70,7 @@ struct  EventData {
         locationLong = 0
         eventImage = #imageLiteral(resourceName: "button")
     }
-
+   
     func convertToDictionary()-> [String: Any] {
         return[
                "eventId": self.eventId,

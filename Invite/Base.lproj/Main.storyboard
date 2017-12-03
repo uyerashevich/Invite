@@ -100,6 +100,8 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="signInFacebookOutlet" destination="nZq-2W-Xlj" id="JHh-bw-Yvc"/>
+                        <outlet property="signInGoogleOutlet" destination="9iG-ku-oQU" id="Zlr-UE-Vo4"/>
                         <segue destination="XhC-BH-Pak" kind="presentation" identifier="goToUserCab" id="ZdQ-OR-0qw"/>
                     </connections>
                 </viewController>

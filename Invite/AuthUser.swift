@@ -25,21 +25,7 @@ class  AuthUser {
                 displayAlertMessage(messageToDisplay: "There was an error logging in to Facebook. Error: \(facebookError)", viewController: view)
             } else if (facebookResult?.isCancelled)!
                 {
-                    
-                    //    func signInFacebook(view: UIViewController){
-                    //        startActivityIndicator(viewController: view)
-                    //
-                    //        AppDelegate.checkerFG = 1
-                    //
-                    //        let facebookLogin = FBSDKLoginManager()
-                    //
-                    //        facebookLogin.logIn(withReadPermissions: ["email"], from: view) { (facebookResult, facebookError) in
-                    //            if facebookError != nil {
-                    //
-                    //                displayAlertMessage(messageToDisplay: "There was an error logging in to Facebook. Error: \(facebookError)", viewController: view)
-                    //            } else
-                    //                if (facebookResult?.isCancelled)!
-                    //                {
+                  
                     print("Facebook login was cancelled!")
                 }
                 else {
@@ -51,36 +37,41 @@ class  AuthUser {
                         print("user signed into firebase")
                         print(error)
                         if user != nil{
-                            //                    print("Facebook login was cancelled!")
-                            //                }
-                            //                else {
-                            //                    startActivityIndicator(viewController: view)
-                            //                    let credential = (FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString))
-                            //                    //signin in Firebase
-                            //                    Auth.auth().signIn(with: credential, completion: { (user, error) in
-                            //                        print("user signed into firebase")
-                            //                        if user != nil{
-                            //
-                           let userData = UserProfile.sharedInstance
+                            startActivityIndicator(viewController: view)
+                            var userData = UserProfile.sharedInstance
                             userData.email = (user?.email)!
                             userData.userId = (user?.uid)!
                             userData.name = (user?.displayName)!
-                            UserDefaults.standard.set(true, forKey:"remember")
-                            let urlUserPhoto = user?.photoURL
-                            getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
-                                userData.foto = userPhotoUIImg!
+                           // userData.age = (user?.)
+                           UserDefaults.standard.set( user?.uid, forKey: "userId")
+                             UserDefaults.standard.set( user?.email, forKey: "email")
+                            
+                           
+                            //firebase load listEVENTs
+                            var eventData  = EventData()
+                            eventData.ownerUserId = userData.userId
+                            //firebase  USER
+                            FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
+                                userData = userProfile
+                                //firebase USER SET
+                                
+                                if userData.email == nil {
+                                    FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
+                                    let urlUserPhoto = user?.photoURL
+                                    getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
+                                        userData.foto = userPhotoUIImg!
+                                        view.performSegue(withIdentifier: "goToUserCab", sender: view)
+                                    })
+                                }else{ view.performSegue(withIdentifier: "goToUserCab", sender: view) }
                             })
-                            UserDefaults.standard.set( userData.userId, forKey: "userId")
-                            
-                            //firebase USER SET
-                            FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
-                            
-                            view.performSegue(withIdentifier: "goToPaty", sender: view)
-                            
-                            
+        FirebaseEvent.init().getListEvent(completion: { (eventArray) in
+                                EventList.sharedInstance.eventList.append(eventArray)
+                                print(EventList.sharedInstance.eventList.count)
+                                
+                            })
                         }else{
                             //error: check error and show message
-                            displayAlertMessage(messageToDisplay: "Проверьте подключение к интернету ", viewController: view )
+                            displayAlertMessage(messageToDisplay: "Facebook login was canceled ", viewController: view )
                         }
                     })
             }

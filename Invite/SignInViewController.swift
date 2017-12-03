@@ -16,23 +16,23 @@ import Firebase
 class SignInViewController:  BaseViewController ,GIDSignInUIDelegate {
     
     var rememberUser: Bool = false
-    @IBOutlet weak var rememberButtonOutlet: UIButton!
-    @IBOutlet weak var signInButtonOutlet: UIButton!
- 
+    
+    @IBOutlet weak var signInFacebookOutlet: UIButton!
+    @IBOutlet weak var signInGoogleOutlet: UIButton!
+    
     var userData = UserProfile.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //вход по умолчанию
-        rememberUser = UserDefaults.standard.bool(forKey: "remember")
-        if rememberUser && UserDefaults.standard.string(forKey: "userId") != nil && UserDefaults.standard.string(forKey: "userId") != "" && UserDefaults.standard.string(forKey: "email") != nil && UserDefaults.standard.string(forKey: "email") != ""
+        if UserDefaults.standard.string(forKey: "userId") != nil && UserDefaults.standard.string(forKey: "userId") != "" && UserDefaults.standard.string(forKey: "email") != nil && UserDefaults.standard.string(forKey: "email") != ""
         {
             startActivityIndicator(viewController: self)
+            
             userData.userId = UserDefaults.standard.string(forKey: "userId")!
             userData.email = UserDefaults.standard.string(forKey: "email")!
-            
-            
+   
  //firebase  USER
             FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
                 self.userData = userProfile
@@ -41,28 +41,18 @@ class SignInViewController:  BaseViewController ,GIDSignInUIDelegate {
      //firebase  EVENT
             var eventData  = EventData()
             eventData.ownerUserId = userData.userId
-//            FirebaseEvent.init().getAllEvent(completion: { (eventList) in
-//
-//            })
             FirebaseEvent.init().getListEvent(completion: { (eventArray) in
-
                 EventList.sharedInstance.eventList.append(eventArray)
                 print(EventList.sharedInstance.eventList.count)
-               // eventDataArray.append(eventArray)
-//                print(eventArray)
-//                print(eventDataArray.count)
             })
-            
-            
         }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         GIDSignIn.sharedInstance().uiDelegate = self
     }
-    
-    
     @IBAction func signInGoogleButton(_ sender: Any) {
+        
         startActivityIndicator(viewController: self)
         let signIn = GIDSignIn.sharedInstance()
         signIn?.signOut()
@@ -71,9 +61,5 @@ class SignInViewController:  BaseViewController ,GIDSignInUIDelegate {
   
     @IBAction func facebookButton(_ sender: AnyObject) {
         AuthUser.init().facebookSignIn(view: self)
-        
-    }
-    func forSeque(completionHandler: () -> Void){
-        self.performSegue(withIdentifier: "goToUserCab", sender: self)
     }
 }

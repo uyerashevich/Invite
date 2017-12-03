@@ -11,7 +11,7 @@ import UIKit
 class BaseViewController : UIViewController {
     
     var userProfile = UserProfile.sharedInstance
-  //  var eventDataArray : [EventData] = []
+  
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -21,14 +21,7 @@ class BaseViewController : UIViewController {
             return .lightContent
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-//        FirebaseEvent.init().getAllEvent(completion: { (eventArray) in
-//            self.eventDataArray = eventArray
-//
-//        })
-        
-
     }
 }

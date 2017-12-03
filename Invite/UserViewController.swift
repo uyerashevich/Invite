@@ -35,9 +35,16 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
         //  scrollViewOutlet.contentSize.height = 800
         //для убирания клавы с экрана/////////
         self.instagrammTexField.delegate = self
-        
         self.surnameTexField.delegate = self
         self.nameTextField.delegate = self
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.dataForUi()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        //   self.removeObservers()
     }
     
     //    func addObservers() {
@@ -81,22 +88,8 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     //    }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.dataForUi()
-    }
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        //   self.removeObservers()
-    }
-    //для убирания клавы с экрана/////////
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+  
+  
     
     func dataForUi(){
         sexFavoriteButtonOutlet.setTitle(("\(userProfile.sexFavorite)"), for: .normal)
@@ -125,6 +118,14 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
         self.userProfile.name = nameTextField.text!
         self.userProfile.surname = surnameTexField.text!
         self.userProfile.aboutMe = aboutMeTextView.text
+        return true
+    }
+    //для убирания клавы с экрана/////////
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         return true
     }
     
@@ -168,11 +169,11 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
-        UserDefaults.standard.set(false, forKey:"remember")
+        
         userProfile.clear()
         UserDefaults.standard.set("", forKey: "userId")
         UserDefaults.standard.set("", forKey: "email")
-        
+        EventList.sharedInstance.clearArray()
         // self.view.window!.rootViewController?.dismiss(animated: true, completion: nil)
         
         dismiss(animated: true, completion: nil)
