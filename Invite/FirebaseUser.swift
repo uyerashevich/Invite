@@ -46,7 +46,7 @@ class FirebaseUser {
                let foto = usObj?["foto"] as? String ?? ""
                
                 
-                if foto != nil { userProfile.foto = self.decodeImg(stringImage: foto)}
+                if foto != nil { userProfile.foto = self.decodeImg(stringImage: foto)!}
                 }
       
             }
@@ -65,13 +65,13 @@ class FirebaseUser {
         return base64String
     }
     //String -> IMG
-    private func decodeImg(stringImage : String )->UIImage {
+    private func decodeImg(stringImage : String )->UIImage? {
         if stringImage != "" {
             guard let decodedData = Data(base64Encoded: stringImage, options: NSData.Base64DecodingOptions.ignoreUnknownCharacters)
-                else {return  #imageLiteral(resourceName: "emptyPixel") }
+                else {return  #imageLiteral(resourceName: "pixBlack") }
             let decodedImage = UIImage(data: decodedData)
             return decodedImage!
-        }else {return #imageLiteral(resourceName: "emptyPixel")}
+        }else {return #imageLiteral(resourceName: "pixBlack")}
     }
     
 }

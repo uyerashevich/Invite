@@ -68,7 +68,7 @@ struct  EventData {
     
         locationLat = 0
         locationLong = 0
-        eventImage = #imageLiteral(resourceName: "button")
+        eventImage = #imageLiteral(resourceName: "pixBlack")
     }
    
     func convertToDictionary()-> [String: Any] {

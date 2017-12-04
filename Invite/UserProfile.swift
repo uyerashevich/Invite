@@ -36,7 +36,7 @@ private    init (){
         surname = ""
         age = ""
         instagramUrl = ""
-        foto = #imageLiteral(resourceName: "button")
+        foto = #imageLiteral(resourceName: "pixBlack")
     }
     
     func clear(){
@@ -49,7 +49,7 @@ private    init (){
         surname = ""
         age = ""
         instagramUrl = ""
-        foto = #imageLiteral(resourceName: "button")
+        foto = #imageLiteral(resourceName: "pixBlack")
         
     }
     func convertToDictionary()-> [String: Any] {

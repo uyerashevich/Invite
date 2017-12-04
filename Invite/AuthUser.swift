@@ -24,88 +24,70 @@ class  AuthUser {
                 
                 displayAlertMessage(messageToDisplay: "There was an error logging in to Facebook. Error: \(facebookError)", viewController: view)
             } else if (facebookResult?.isCancelled)!
-                {
-                  
-                    print("Facebook login was cancelled!")
-                }
-                else {
-                    
-                    let credential = (FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString))
-                    
-                    //signin in Firebase
-                    Auth.auth().signIn(with: credential, completion: { (user, error) in
-                        print("user signed into firebase")
-                        print(error)
-                        if user != nil{
-                            startActivityIndicator(viewController: view)
-                            var userData = UserProfile.sharedInstance
-                            userData.email = (user?.email)!
-                            userData.userId = (user?.uid)!
-                            userData.name = (user?.displayName)!
-                           // userData.age = (user?.)
-                           UserDefaults.standard.set( user?.uid, forKey: "userId")
-                             UserDefaults.standard.set( user?.email, forKey: "email")
-                            
-                           
-                            //firebase load listEVENTs
-                            var eventData  = EventData()
-                            eventData.ownerUserId = userData.userId
-                            //firebase  USER
-                            FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
-                                userData = userProfile
+            {
+                
+                print("Facebook login was cancelled!")
+            }
+            else {
+                
+                let credential = (FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString))
+                
+                //signin in Firebase
+                Auth.auth().signIn(with: credential, completion: { (user, error) in
+                    print("user signed into firebase")
+                    // print(error)
+                    if user != nil{
+                        
+                        startActivityIndicator(viewController: view)
+                        
+                        var userData = UserProfile.sharedInstance
+                        //firebase  USER
+                        userData.email = (user?.email)!
+                        userData.userId = (user?.uid)!
+                        let urlUserPhoto = user?.photoURL
+                        var foto : UIImage = #imageLiteral(resourceName: "pixBlack")
+                        getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
+                            foto = userPhotoUIImg!
+                            print("1----------------------")
+                        })
+                        print("2----------------------")
+                        FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
+                            userData = userProfile
+                            print("0----------------------------")
+                            if userData.name == "" {
+                                print("))))))))(*(****&*&&&&&&&&&&&")
+                                
+                                userData.name = (user?.displayName)!
+                                userData.foto = foto
                                 //firebase USER SET
+                                FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
                                 
-                                if userData.email == nil {
-                                    FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
-                                    let urlUserPhoto = user?.photoURL
-                                    getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
-                                        userData.foto = userPhotoUIImg!
-                                        view.performSegue(withIdentifier: "goToUserCab", sender: view)
-                                    })
-                                }else{ view.performSegue(withIdentifier: "goToUserCab", sender: view) }
-                            })
-        FirebaseEvent.init().getListEvent(completion: { (eventArray) in
-                                EventList.sharedInstance.eventList.append(eventArray)
-                                print(EventList.sharedInstance.eventList.count)
-                                
-                            })
-                        }else{
-                            //error: check error and show message
-                            displayAlertMessage(messageToDisplay: "Facebook login was canceled ", viewController: view )
-                        }
-                    })
+                            }
+                            view.performSegue(withIdentifier: "goToUserCab", sender: view)
+                        })
+                        
+                        
+                        
+                        
+                        
+                        print("3----------------------")
+                        UserDefaults.standard.set( user?.uid, forKey: "userId")
+                        UserDefaults.standard.set( user?.email, forKey: "email")
+                        
+                        FirebaseEvent.init().getListEvent(completion: { (eventArray) in
+                            EventList.sharedInstance.eventList.append(eventArray)
+                            print(EventList.sharedInstance.eventList.count)
+                        })
+                    }else{
+                        //error: check error and show message
+                        displayAlertMessage(messageToDisplay: "Facebook login was canceled ", viewController: view )
+                    }
+                })
             }
         }
     }
-
-
-//                    print("Facebook login was cancelled!")
-//                }
-//                else {
-//                    startActivityIndicator(viewController: view)
-//                    let credential = (FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString))
-//                    //signin in Firebase
-//                    Auth.auth().signIn(with: credential, completion: { (user, error) in
-//                        print("user signed into firebase")
-//                        if user != nil{
-//
-//                            // DrugsVC
-//                            DrugsFirebase.init().getNameOfDrugs()
-//                            if user?.email != nil && user?.uid != nil {
-//                                UsersFirebase.init().readUserData(email: (user?.email)!)
-//                                UsersFirebase.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
-//                            }
-//                            //для авто входа
-//                            UserDefaults.standard.set(true, forKey:"remember")
-//                            view.performSegue(withIdentifier: "buttonView", sender: view)
-//                            stopActivityIndicator()
-//                        }else{
-//                            displayAlertMessage(messageToDisplay: "Проверьте подключение к интернету ", viewController: view )
-//                        }
-//                    })
-//            }
-//        }
-//    }
+    
+    
     
     func signInUser(userEmail : String, userPassword : String, view: UIViewController){
         
@@ -135,11 +117,7 @@ class  AuthUser {
         Auth.auth().createUser(withEmail: userEmail, password: userPassword, completion:  { (user, error) in
             //check that user not nil
             if (user != nil) {
-                
-               
-               
                 view.performSegue(withIdentifier: "goToPaty", sender: view)
-                
             }
             else {
                 //error: check error and show mess

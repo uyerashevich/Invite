@@ -100,8 +100,8 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
             let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
             ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(userProfile.age) )"), for: .normal)
         }
-        nameTextField.text = userProfile.name
-        surnameTexField.text = userProfile.surname
+        nameTextField.text = userProfile.name.capitalized
+        surnameTexField.text = userProfile.surname.capitalized
         instagrammTexField.text = userProfile.instagramUrl
         photoUserImgView.image = userProfile.foto
         aboutMeTextView.text = userProfile.aboutMe
