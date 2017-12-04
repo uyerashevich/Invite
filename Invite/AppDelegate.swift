@@ -20,6 +20,7 @@ import GooglePlaces
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
     
+  
     var window: UIWindow?
     var databaseRef: DatabaseReference!
     static var checkerFG : Int = 0
@@ -73,30 +74,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
     
     func authGF(credential: AuthCredential){
         Auth.auth().signIn(with: credential, completion: { (user, error) in
-            var userData = UserProfile.sharedInstance
             
             print("user signed into firebase")
             
             if user?.email != nil && user?.uid != nil {
-                print("\(user?.uid)--in- APPDelegate")
-                UserDefaults.standard.set( (user?.email)!, forKey: "email")
-                UserDefaults.standard.set((user?.uid)!, forKey: "userId")
-                userData.name = (user?.displayName)!
-                userData.userId = UserDefaults.standard.string(forKey: "userId")!
-                userData.email = UserDefaults.standard.string(forKey: "email")!
+  
+                  var userData = UserProfile.sharedInstance
+                    //firebase  USER
+                    userData.email = (user?.email)!
+                    userData.userId = (user?.uid)!
+                    let urlUserPhoto = user?.photoURL
+                    var foto : UIImage = #imageLiteral(resourceName: "pixBlack")
+                    getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
+                        foto = userPhotoUIImg!
+                        
+                    })
+                    
+                    FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
+                        userData = userProfile
+                        
+                        if userData.name == "" {
+                            
+                            
+                            userData.name = (user?.displayName)!
+                            userData.foto = foto
+                            FirebaseUser.init().setUserData(userData: userData)
+                        }
+                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                        let NewVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as! SignInViewController
+                        NewVC.userProfile = userData
+                        // Then push that view controller onto the navigation stack
+                        let rootViewController = self.window!.rootViewController as! UINavigationController
+                        rootViewController.pushViewController(NewVC, animated: true)
+                    })
+                    UserDefaults.standard.set( user?.uid, forKey: "userId")
+                    UserDefaults.standard.set( user?.email, forKey: "email")
+                    
+                    FirebaseEvent.init().getListEvent(completion: { (eventArray) in
+                        EventList.sharedInstance.eventList.append(eventArray)
+                        print(EventList.sharedInstance.eventList.count)
+                    })
                 
-                let urlUserPhoto = user?.photoURL
-                getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
-                    userData.foto = userPhotoUIImg!
-                })
-                //firebase USER SET
-                FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
+                
+//                print("\(user?.uid)--in- APPDelegate")
+//                UserDefaults.standard.set( (user?.email)!, forKey: "email")
+//                UserDefaults.standard.set((user?.uid)!, forKey: "userId")
+//                self.userData.name = (user?.displayName)!
+//                self.userData.userId = UserDefaults.standard.string(forKey: "userId")!
+//                self.userData.email = UserDefaults.standard.string(forKey: "email")!
+//                let urlUserPhoto = user?.photoURL
+//                getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
+//                    self.userData.foto = userPhotoUIImg!
+//                })
+//                //firebase USER SET
+//                FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
                 // Access the storyboard and fetch an instance of the view controller
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let viewController = storyboard.instantiateViewController(withIdentifier: "SignInVC")
-                // Then push that view controller onto the navigation stack
-                let rootViewController = self.window!.rootViewController as! UINavigationController
-                rootViewController.pushViewController(viewController, animated: true)
+               
+               // UINavigationController.pushViewController(NewVC, animated: true)
                 
             }else{
                 print("Ошибка входа в Google аккаунт попробуйте попозже")

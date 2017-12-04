@@ -28,6 +28,10 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         
+        
+        
         //        // 1. Регистрируем тап, для скрытия клавиатуры
         //        var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTapView))
         //        view.addGestureRecognizer(tapGesture)

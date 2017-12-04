@@ -48,33 +48,28 @@ class  AuthUser {
                         var foto : UIImage = #imageLiteral(resourceName: "pixBlack")
                         getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
                             foto = userPhotoUIImg!
-                            print("1----------------------")
+                         
                         })
-                        print("2----------------------")
+                      
                         FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
                             userData = userProfile
-                            print("0----------------------------")
+                          
                             if userData.name == "" {
-                                print("))))))))(*(****&*&&&&&&&&&&&")
+                              
                                 
                                 userData.name = (user?.displayName)!
                                 userData.foto = foto
                                 //firebase USER SET
-                                FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
+                                FirebaseUser.init().setUserData(userData: userData)
+                               // FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
                                 
                             }
                             view.performSegue(withIdentifier: "goToUserCab", sender: view)
                         })
-                        
-                        
-                        
-                        
-                        
-                        print("3----------------------")
                         UserDefaults.standard.set( user?.uid, forKey: "userId")
                         UserDefaults.standard.set( user?.email, forKey: "email")
                         
-                        FirebaseEvent.init().getListEvent(completion: { (eventArray) in
+                            FirebaseEvent.init().getListEvent(completion: { (eventArray) in
                             EventList.sharedInstance.eventList.append(eventArray)
                             print(EventList.sharedInstance.eventList.count)
                         })
