@@ -40,7 +40,7 @@ class FirebaseEvent{
                 evData.startTime = value?["startTime"] as? String ?? ""
                 evData.endTime = value?["endTime"] as? String ?? ""
                 evData.approvedUser = value?["approvedUser"] as? String ?? ""
-                evData.cost = value?["cost"] as? String ?? ""
+                evData.cost = value?["cost"] as? Int ?? 0
                 evData.everyone = value?["everyone"] as? String ?? ""
                 evData.contactPhone = value?["contactPhone"] as? String ?? ""
                 evData.address = value?["address"] as? String ?? ""

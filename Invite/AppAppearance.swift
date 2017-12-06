@@ -12,6 +12,7 @@ class AppAppearance {
     
     private init(){}
     
+   
     class public func SetUp(){
         setUpNavigationBarAppearance()
         setUpTabBarAppearance()

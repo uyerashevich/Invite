@@ -75,7 +75,7 @@ class CreateEventViewController: BaseViewController, UITextFieldDelegate {
         
         eventData.startTime = startTimeEventTextField.text!
         eventData.endTime = endTimeEventTextField.text!
-        eventData.cost = costEventTextField.text!
+        eventData.cost = Int(costEventTextField.text!)!
         
         if approvedUserSlide.isOn{eventData.approvedUser = "true"}else{eventData.approvedUser = "false"}
         if privateEventSlide.isOn{ eventData.everyone = "true"}else{ eventData.everyone = "false"}
@@ -103,7 +103,7 @@ class CreateEventViewController: BaseViewController, UITextFieldDelegate {
         addressEventTextField.text = ""
        contactPhoneEventTextField.text = ""
         costEventTextField.text = ""
-        fotoEventImageView.image = #imageLiteral(resourceName: "star_enabled")
+        fotoEventImageView.image = #imageLiteral(resourceName: "pixBlack")
         
     }
     @IBAction func tapImage(_ sender: Any) {

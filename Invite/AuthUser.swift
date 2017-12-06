@@ -19,9 +19,9 @@ class  AuthUser {
         AppDelegate.checkerFG = 1
         let facebookLogin = FBSDKLoginManager()
         
-        facebookLogin.logIn(withReadPermissions: ["email"], from: view) { (facebookResult, facebookError) in
+        facebookLogin.logIn(withReadPermissions: ["public_profile","email"], from: view) { (facebookResult, facebookError) in
             if facebookError != nil {
-                
+         
                 displayAlertMessage(messageToDisplay: "There was an error logging in to Facebook. Error: \(facebookError)", viewController: view)
             } else if (facebookResult?.isCancelled)!
             {
@@ -29,6 +29,13 @@ class  AuthUser {
                 print("Facebook login was cancelled!")
             }
             else {
+                
+                FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, relationship_status, age_range"]).start(completionHandler: { (connection, result, error) -> Void in
+                    if (error == nil){
+                        let fbDetails = result as! NSDictionary
+                        print(fbDetails)
+                    }
+                })
                 
                 let credential = (FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString))
                 

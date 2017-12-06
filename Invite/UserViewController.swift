@@ -26,10 +26,16 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     let imagePick = ImagePickerActionSheet.init()
     var typePicker : String?
     
+    @IBOutlet weak var nextButtonConstraint: NSLayoutConstraint!
+    
+    deinit {
+        removeKeyboardNotifications()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        registerForKeyboardNotifications()
         
-         
         
         
         //        // 1. Регистрируем тап, для скрытия клавиатуры
@@ -45,10 +51,14 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.dataForUi()
+//        NotificationCenter.default.addObserver(self, selector: Selector("keyboardWillShow:"), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: Selector("keyboardWillHide:"), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        //   self.removeObservers()
+        
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
+//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
     }
     
     //    func addObservers() {
@@ -92,8 +102,8 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     //    }
     
     
-  
-  
+    
+    
     
     func dataForUi(){
         sexFavoriteButtonOutlet.setTitle(("\(userProfile.sexFavorite)"), for: .normal)
@@ -190,27 +200,68 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
                 pickerVC.typePicker = self.typePicker
                 pickerVC.callBackToUser = {[unowned self] (pickerResponse) in
                     
-                     let s = (pickerResponse as String)
+                    let s = (pickerResponse as String)
+                    
+                    switch self.typePicker {
+                    case "sexFavorite"?: self.sexFavoriteButtonOutlet.setTitle(("\(s)"), for: .normal)
+                    self.userProfile.sexFavorite = ("\(s)")
+                    case "sex"?: self.sexButtonOutlet.setTitle(("\(s)"), for: .normal)
+                    self.userProfile.sex = ("\(s)")
                         
-                        switch self.typePicker {
-                        case "sexFavorite"?: self.sexFavoriteButtonOutlet.setTitle(("\(s)"), for: .normal)
-                        self.userProfile.sexFavorite = ("\(s)")
-                        case "sex"?: self.sexButtonOutlet.setTitle(("\(s)"), for: .normal)
-                        self.userProfile.sex = ("\(s)")
-                            
-                        case "DateOfB"?:
-                            
-                            let ageYear = convertStringToDate(dateString: s)
-                            let date = NSDate()
-                            let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
-                            // print(timeInterval % 100 )
-                            self.ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(s) )"), for: .normal)
-                            self.userProfile.age = ("\(s)")
-                        default :_ = 1
-                        }
+                    case "DateOfB"?:
+                        
+                        let ageYear = convertStringToDate(dateString: s)
+                        let date = NSDate()
+                        let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
+                        self.ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(s) )"), for: .normal)
+                        self.userProfile.age = ("\(s)")
+                    default :_ = 1
                     }
                 }
             }
         }
     }
+    //MARK: - Keyboard Hide/Show
+    func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(kbWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    func removeKeyboardNotifications() {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    @objc func kbWillShow(_ notification: Notification) {
+       self.view.frame.origin.y = -220 * (420 / (self.view.frame.height * 1))//0.08)) * 0.06
+//       let keyboardHeight = (((notification.userInfo! as NSDictionary).object(forKey: UIKeyboardFrameBeginUserInfoKey) as AnyObject) as AnyObject).cgRectValue.size.height
+//        nextButtonConstraint.constant = keyboardHeight
+//        view.layoutIfNeeded()
+    }
+    
+//    @objc func kbWillHide(notification: NSNotification) {
+//        nextButtonConstraint.constant = 0.0
+//        view.layoutIfNeeded()
+//    }
+////         Получаем словарь - Get Dictionary
+//                let userInfo = notification.userInfo
+//                if userInfo != nil {
+//                    // Вытаскиваем frame который описывает кооридинаты клавиатуры
+//                    // Pull out frame which describes the coordinates of the keyboard
+//                    let frame: CGRect? = (userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+//                    // Создаем отступ по высоте клавиатуры
+//                    // Create an inset at the height of the keyboard
+//                    let contentInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, frame!.height, 0)
+//                    // Применяем отступ - Apply the inset
+//                    scrollViewOutlet.contentInset = contentInset
+//                }
+    
+    
+    @objc func kbWillHide(_ notification: Notification) {
+        self.view.frame.origin.y = 0
+        // Отменяем отступ - Cancel inset
+        //        self.scrollViewOutlet.contentInset = UIEdgeInsets.zero
+
+    }
+}
 

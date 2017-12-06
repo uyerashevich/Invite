@@ -35,7 +35,7 @@ struct  EventData {
     
     var startTime : String
     var endTime : String?
-    var cost : String
+    var cost : Int
     
     var amount : String?
     var everyone : String?
@@ -59,7 +59,7 @@ struct  EventData {
         
         startTime = ""
         endTime = ""
-        cost = ""
+        cost = 0
         
      
         everyone = ""
