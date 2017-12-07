@@ -12,7 +12,8 @@ import GoogleSignIn
 //import FBSDKLoginKit
 
 class UserViewController: BaseViewController, UITextFieldDelegate{ //
-    
+    @IBOutlet weak var nextButtonConstraint: NSLayoutConstraint!
+    @IBOutlet weak var charCountInstagramm: UILabel!
     @IBOutlet weak var scrollViewOutlet: UIScrollView!
     @IBOutlet weak var ageButtonOutlet: UIButton!
     @IBOutlet weak var sexFavoriteButtonOutlet: UIButton!
@@ -26,94 +27,44 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     let imagePick = ImagePickerActionSheet.init()
     var typePicker : String?
     
-    @IBOutlet weak var nextButtonConstraint: NSLayoutConstraint!
-    
+   
+   
     deinit {
         removeKeyboardNotifications()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+          self.dataForUi()
         registerForKeyboardNotifications()
-        
-        
-        
-        //        // 1. Регистрируем тап, для скрытия клавиатуры
-        //        var tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.didTapView))
-        //        view.addGestureRecognizer(tapGesture)
-        
-        //  scrollViewOutlet.contentSize.height = 800
+     
         //для убирания клавы с экрана/////////
         self.instagrammTexField.delegate = self
         self.surnameTexField.delegate = self
         self.nameTextField.delegate = self
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        self.dataForUi()
-//        NotificationCenter.default.addObserver(self, selector: Selector("keyboardWillShow:"), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: Selector("keyboardWillHide:"), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+      
+        
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: self.view.window)
-//        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: self.view.window)
     }
     
-    //    func addObservers() {
-    //        // Нотификация которая появляется при открытии клавиатуры
-    //        // Notification that appears when you open the keyboard
-    //        NotificationCenter.default.addObserver(forName: .UIKeyboardWillShow, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
-    //            self.keyboardWillShow(note)
-    //        })
-    //        // Нотификация которая появляется при закрытии клавиатуры
-    //        // Notification that appears when you close the keyboard
-    //        NotificationCenter.default.addObserver(forName: .UIKeyboardWillHide, object: nil, queue: nil, using: {(_ note: Notification) -> Void in
-    //            self.keyboardWillHide(note)
-    //        })
-    //    }
-    
-    //    func keyboardWillShow(_ notification: Notification) {
-    //        // Получаем словарь - Get Dictionary
-    //        let userInfo = notification.userInfo
-    //        if userInfo != nil {
-    //            // Вытаскиваем frame который описывает кооридинаты клавиатуры
-    //            // Pull out frame which describes the coordinates of the keyboard
-    //            let frame: CGRect? = (userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-    //            // Создаем отступ по высоте клавиатуры
-    //            // Create an inset at the height of the keyboard
-    //            let contentInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, frame!.height, 0)
-    //            // Применяем отступ - Apply the inset
-    //            scrollViewOutlet.contentInset = contentInset
-    //        }
-    //    }
-    //    func keyboardWillHide(_ notification: Notification) {
-    //        // Отменяем отступ - Cancel inset
-    //        self.scrollViewOutlet.contentInset = UIEdgeInsets.zero
-    //    }
-    //
-    //    func removeObservers() {
-    //        // Отписываемся от нотификаций - Unsubscribe from notifications
-    //        NotificationCenter.default.removeObserver(self)
-    //    }
-    //    @objc func didTapView(_ gesture: UITapGestureRecognizer) {
-    //        view.endEditing(true)
-    //    }
-    
-    
-    
-    
-    
     func dataForUi(){
+        let date = NSDate()
         sexFavoriteButtonOutlet.setTitle(("\(userProfile.sexFavorite)"), for: .normal)
         sexButtonOutlet.setTitle(("\(userProfile.sex)"), for: .normal)
-        if userProfile.age != nil {
+        if userProfile.age != nil && userProfile.age != "" {
             let ageYear = convertStringToDate(dateString: userProfile.age)
-            let date = NSDate()
+            
             let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
             ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(userProfile.age) )"), for: .normal)
-        }
+        }else{
+            ageButtonOutlet.setTitle((" • ( \(convertDateToString(date: date)) )"), for: .normal)}
         nameTextField.text = userProfile.name.capitalized
         surnameTexField.text = userProfile.surname.capitalized
         instagrammTexField.text = userProfile.instagramUrl
@@ -121,18 +72,22 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
         aboutMeTextView.text = userProfile.aboutMe
     }
     func validateUserData()->Bool{
-        let xString = instagrammTexField.text?.count
-        guard Int(xString!) < 1 || Int(xString!) > 9 || instagrammTexField.text == nil else{
-            displayAlertMessage(messageToDisplay: "Instagram > 10 chars", viewController: self)
-            return false
-        }
+          let charCount = instagrammTexField.text?.count
+                guard Int(charCount!) < 21 else{
+                    displayAlertMessage(messageToDisplay: "Error Instagram > 20 chars", viewController: self)
+                    return false
+            }
         guard nameTextField.text != nil || surnameTexField.text != nil || ageButtonOutlet.currentTitle != nil || sexButtonOutlet.currentTitle != nil || sexFavoriteButtonOutlet.currentTitle != nil || aboutMeTextView.text != nil else{ displayAlertMessage(messageToDisplay: "Not all fields are filled out", viewController: self)
             return false}
         self.userProfile.instagramUrl = instagrammTexField.text!
         self.userProfile.name = nameTextField.text!
         self.userProfile.surname = surnameTexField.text!
-        self.userProfile.aboutMe = aboutMeTextView.text
+        
         return true
+    }
+    @IBAction func instagrammChanged(_ sender: UITextField) {
+        if let charCount = instagrammTexField.text?.count {
+            charCountInstagramm.text = String(charCount) }
     }
     //для убирания клавы с экрана/////////
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -142,6 +97,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
         textField.resignFirstResponder()
         return true
     }
+    
     
     @IBAction func tapImage(_ sender: Any) {
         imagePick.showCameraLibrary(view: self)
@@ -233,35 +189,11 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     }
     
     @objc func kbWillShow(_ notification: Notification) {
-       self.view.frame.origin.y = -220 * (420 / (self.view.frame.height * 1))//0.08)) * 0.06
-//       let keyboardHeight = (((notification.userInfo! as NSDictionary).object(forKey: UIKeyboardFrameBeginUserInfoKey) as AnyObject) as AnyObject).cgRectValue.size.height
-//        nextButtonConstraint.constant = keyboardHeight
-//        view.layoutIfNeeded()
+        self.view.frame.origin.y = -220 * (620 / (self.view.frame.height * 1))
     }
-    
-//    @objc func kbWillHide(notification: NSNotification) {
-//        nextButtonConstraint.constant = 0.0
-//        view.layoutIfNeeded()
-//    }
-////         Получаем словарь - Get Dictionary
-//                let userInfo = notification.userInfo
-//                if userInfo != nil {
-//                    // Вытаскиваем frame который описывает кооридинаты клавиатуры
-//                    // Pull out frame which describes the coordinates of the keyboard
-//                    let frame: CGRect? = (userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
-//                    // Создаем отступ по высоте клавиатуры
-//                    // Create an inset at the height of the keyboard
-//                    let contentInset: UIEdgeInsets = UIEdgeInsetsMake(0, 0, frame!.height, 0)
-//                    // Применяем отступ - Apply the inset
-//                    scrollViewOutlet.contentInset = contentInset
-//                }
-    
     
     @objc func kbWillHide(_ notification: Notification) {
         self.view.frame.origin.y = 0
-        // Отменяем отступ - Cancel inset
-        //        self.scrollViewOutlet.contentInset = UIEdgeInsets.zero
-
     }
 }
 

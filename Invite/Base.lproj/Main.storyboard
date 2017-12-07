@@ -703,6 +703,9 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="instagrammChanged:" destination="XhC-BH-Pak" eventType="editingChanged" id="vGh-cC-cYd"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Instagram" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zhh-j8-HHV">
                                         <rect key="frame" x="15" y="469" width="65" height="16"/>
@@ -761,8 +764,8 @@
                                             </navigationItem>
                                         </items>
                                     </navigationBar>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3M-dd-8B7">
-                                        <rect key="frame" x="257" y="489.5" width="15" height="15"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T3M-dd-8B7">
+                                        <rect key="frame" x="257" y="489.5" width="0.0" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="vev-Oe-a5f"/>
                                         </constraints>
@@ -863,6 +866,7 @@
                     <connections>
                         <outlet property="aboutMeTextView" destination="FDz-LD-cza" id="b6R-dF-wnl"/>
                         <outlet property="ageButtonOutlet" destination="EPP-e7-Pre" id="eRX-W3-yKP"/>
+                        <outlet property="charCountInstagramm" destination="T3M-dd-8B7" id="1X6-DH-xqj"/>
                         <outlet property="imgUserMaskView" destination="7Tj-T7-yOu" id="jkS-7l-h5g"/>
                         <outlet property="instagrammTexField" destination="9bc-Yz-fvF" id="V7A-ka-UgY"/>
                         <outlet property="nameTextField" destination="DXn-1p-sk1" id="gLo-eN-pwa"/>

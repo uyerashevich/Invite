@@ -11,7 +11,7 @@ import UIKit
 class PIckersViewController: BaseViewController, UIPickerViewDelegate ,UIPickerViewDataSource {
 
     let sexArray = ["Male", "Female", "Other"]
-    let SexFavoriteArray = ["Gay","Lesbi","Bi", "Getero","Other"]
+    let SexFavoriteArray = ["Straight","Gay / Lesbian","Bisexual"]
     var typePicker : String?
     var valuePicker : String?
     @IBOutlet weak var pckerViewOutlet: UIPickerView!

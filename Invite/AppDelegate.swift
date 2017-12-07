@@ -114,24 +114,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
                         EventList.sharedInstance.eventList.append(eventArray)
                         print(EventList.sharedInstance.eventList.count)
                     })
-                
-                
-//                print("\(user?.uid)--in- APPDelegate")
-//                UserDefaults.standard.set( (user?.email)!, forKey: "email")
-//                UserDefaults.standard.set((user?.uid)!, forKey: "userId")
-//                self.userData.name = (user?.displayName)!
-//                self.userData.userId = UserDefaults.standard.string(forKey: "userId")!
-//                self.userData.email = UserDefaults.standard.string(forKey: "email")!
-//                let urlUserPhoto = user?.photoURL
-//                getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
-//                    self.userData.foto = userPhotoUIImg!
-//                })
-//                //firebase USER SET
-//                FirebaseUser.init().setUserData(userId: (user?.uid)!, userEmail: (user?.email)!)
-                // Access the storyboard and fetch an instance of the view controller
-               
-               // UINavigationController.pushViewController(NewVC, animated: true)
-                
+ 
             }else{
                 print("Ошибка входа в Google аккаунт попробуйте попозже")
             }

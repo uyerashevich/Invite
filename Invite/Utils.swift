@@ -67,6 +67,7 @@ func convertDateToString( date : NSDate)->String{
     //Custom date format Sample 1 =  02-28-2016 11:41
     return dateString
 }
+
 func convertStringToDate(dateString: String)->Date{
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "MMM d, yyyy"
