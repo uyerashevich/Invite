@@ -19,7 +19,7 @@ class AuthService{
         Auth.auth().signIn(with: credential, completion: { (user, error) in
             print("user signed into firebase")
             if user?.email != nil && user?.uid != nil {
-                var userData = UserProfile()
+                var userData = UserProfile.sharedInstance
                 
                 userData.foto = #imageLiteral(resourceName: "pixBlack")
                 userData.email = (user?.email)!

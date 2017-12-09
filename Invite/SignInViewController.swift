@@ -17,6 +17,8 @@ class SignInViewController:  BaseViewController , GIDSignInUIDelegate {
     @IBOutlet weak var signInFacebookOutlet: UIButton!
     @IBOutlet weak var signInGoogleOutlet: UIButton!
     
+   
+    
     deinit {
         NotificationCenter.default.removeObserver(self,
                                                   name: NSNotification.Name(rawValue: "ToggleAuthUINotification"),

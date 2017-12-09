@@ -23,6 +23,11 @@
 		7F58483D1FC072A300724136 /* AppAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58483C1FC072A300724136 /* AppAppearance.swift */; };
 		7F58483F1FC07CDF00724136 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F58483E1FC07CDF00724136 /* EventListViewController.swift */; };
 		7F63DCF11FDC130E00A99E2A /* EventsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F63DCF01FDC130E00A99E2A /* EventsManager.swift */; };
+		7F63DD011FDC788000A99E2A /* UsersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F63DD001FDC788000A99E2A /* UsersManager.swift */; };
+		7F63DD041FDC789800A99E2A /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F63DD031FDC789800A99E2A /* AuthService.swift */; };
+		7F63DD061FDC78A100A99E2A /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F63DD051FDC78A100A99E2A /* AuthManager.swift */; };
+		7F63DD081FDC78A800A99E2A /* EventsServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F63DD071FDC78A800A99E2A /* EventsServices.swift */; };
+		7F63DD0A1FDC78AF00A99E2A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F63DD091FDC78AF00A99E2A /* UserService.swift */; };
 		7F727A4F1F9E6EF3004E7D1A /* EventData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F727A4E1F9E6EF3004E7D1A /* EventData.swift */; };
 		7F727A511F9E7231004E7D1A /* FirebaseEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F727A501F9E7231004E7D1A /* FirebaseEvent.swift */; };
 		7F787AC01FCAEAC800AE78A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7F787ABF1FCAEAC800AE78A7 /* GoogleService-Info.plist */; };
@@ -64,6 +69,11 @@
 		7F58483C1FC072A300724136 /* AppAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppAppearance.swift; sourceTree = "<group>"; };
 		7F58483E1FC07CDF00724136 /* EventListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
 		7F63DCF01FDC130E00A99E2A /* EventsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsManager.swift; sourceTree = "<group>"; };
+		7F63DD001FDC788000A99E2A /* UsersManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersManager.swift; sourceTree = "<group>"; };
+		7F63DD031FDC789800A99E2A /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		7F63DD051FDC78A100A99E2A /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		7F63DD071FDC78A800A99E2A /* EventsServices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsServices.swift; sourceTree = "<group>"; };
+		7F63DD091FDC78AF00A99E2A /* UserService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		7F727A4E1F9E6EF3004E7D1A /* EventData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventData.swift; sourceTree = "<group>"; };
 		7F727A501F9E7231004E7D1A /* FirebaseEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseEvent.swift; sourceTree = "<group>"; };
 		7F787ABF1FCAEAC800AE78A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -147,6 +157,8 @@
 		7F0E5A1C1F8FECA20026D358 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7F63DD051FDC78A100A99E2A /* AuthManager.swift */,
+				7F63DD001FDC788000A99E2A /* UsersManager.swift */,
 				7F63DCF01FDC130E00A99E2A /* EventsManager.swift */,
 			);
 			name = Managers;
@@ -189,6 +201,25 @@
 			name = notw;
 			sourceTree = "<group>";
 		};
+		7F63DD021FDC788700A99E2A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7F63DD091FDC78AF00A99E2A /* UserService.swift */,
+				7F63DD071FDC78A800A99E2A /* EventsServices.swift */,
+				7F63DD031FDC789800A99E2A /* AuthService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		7F63DD0B1FDC7CA600A99E2A /* UserCabinet */ = {
+			isa = PBXGroup;
+			children = (
+				7F9E3CE81F8D3952006378F0 /* UserViewController.swift */,
+				7FFEB9C21FC972230098A0F2 /* PIckersViewController.swift */,
+			);
+			name = UserCabinet;
+			sourceTree = "<group>";
+		};
 		7F799EDD1FB82EBF0023977D /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +249,7 @@
 		7F9E3CD01F8D2F5F006378F0 /* Invite */ = {
 			isa = PBXGroup;
 			children = (
+				7F63DD021FDC788700A99E2A /* Services */,
 				7F2313FC1FBB61A40059E883 /* Extension */,
 				7F0485191FAF502C00D9269B /* GMaps */,
 				7F0E5A1C1F8FECA20026D358 /* Managers */,
@@ -239,13 +271,12 @@
 		7F9E3CE71F8D3906006378F0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				7F63DD0B1FDC7CA600A99E2A /* UserCabinet */,
 				7F799EDD1FB82EBF0023977D /* Base */,
 				7F9E3CE31F8D3288006378F0 /* SignInViewController.swift */,
-				7F9E3CE81F8D3952006378F0 /* UserViewController.swift */,
 				7F1274A81FC080870018F434 /* EventList */,
 				7F9E3CEA1F8D39CA006378F0 /* CreateEventViewController.swift */,
 				7FF2A4DD1FA61E7500E53C14 /* FiltersViewController.swift */,
-				7FFEB9C21FC972230098A0F2 /* PIckersViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -435,12 +466,16 @@
 				7F58483F1FC07CDF00724136 /* EventListViewController.swift in Sources */,
 				7FD738741FA2613E00874476 /* TableViewController.swift in Sources */,
 				7F3588CB1FBCAFDB00A38D58 /* RootMapsBaseController.swift in Sources */,
+				7F63DD081FDC78A800A99E2A /* EventsServices.swift in Sources */,
 				7F0E5A221F8FF2DB0026D358 /* SignInFirebaseViewController.swift in Sources */,
 				7F3588C91FBCAFC200A38D58 /* MapBaseViewController.swift in Sources */,
 				7F9E3CE61F8D38F8006378F0 /* SignUpViewController.swift in Sources */,
+				7F63DD061FDC78A100A99E2A /* AuthManager.swift in Sources */,
 				7F727A4F1F9E6EF3004E7D1A /* EventData.swift in Sources */,
 				7F9E3CE41F8D3288006378F0 /* SignInViewController.swift in Sources */,
+				7F63DD011FDC788000A99E2A /* UsersManager.swift in Sources */,
 				7F1274AA1FC09D910018F434 /* EventListCollectionViewCell.swift in Sources */,
+				7F63DD0A1FDC78AF00A99E2A /* UserService.swift in Sources */,
 				7FFEB9C31FC972230098A0F2 /* PIckersViewController.swift in Sources */,
 				7F11986E1F9136BC0086DF66 /* FirebaseUser.swift in Sources */,
 				7F0485181FAF502000D9269B /* SearchController.swift in Sources */,
@@ -453,6 +488,7 @@
 				7F727A511F9E7231004E7D1A /* FirebaseEvent.swift in Sources */,
 				7F58483B1FC02DDE00724136 /* UIViewExtensions.swift in Sources */,
 				7FD1D5A11FB74B74008E5415 /* ImagePickerActionSheet.swift in Sources */,
+				7F63DD041FDC789800A99E2A /* AuthService.swift in Sources */,
 				7F11986B1F911B810086DF66 /* AuthUser.swift in Sources */,
 				7F9E3CEE1F8D447C006378F0 /* Utils.swift in Sources */,
 			);

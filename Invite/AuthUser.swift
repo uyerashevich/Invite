@@ -72,10 +72,10 @@ class  AuthUser {
                         UserDefaults.standard.set( user?.uid, forKey: "userId")
                         UserDefaults.standard.set( user?.email, forKey: "email")
                         
-                            FirebaseEvent.init().getListEvent(completion: { (eventArray) in
-                            EventList.sharedInstance.eventList.append(eventArray)
-                            print(EventList.sharedInstance.eventList.count)
-                        })
+//                            FirebaseEvent.init().getListEvent(completion: { (eventArray) in
+//                            eventList.append(eventArray)
+//                            print(eventList.count)
+//                        })
                     }else{
                         //error: check error and show message
                         displayAlertMessage(messageToDisplay: "Facebook login was canceled ", viewController: view )
@@ -126,10 +126,10 @@ class  AuthUser {
                         UserDefaults.standard.set( user?.uid, forKey: "userId")
                         UserDefaults.standard.set( user?.email, forKey: "email")
     
-                        FirebaseEvent.init().getListEvent(completion: { (eventArray) in
-                            EventList.sharedInstance.eventList.append(eventArray)
-                            print(EventList.sharedInstance.eventList.count)
-                        })
+//                        FirebaseEvent.init().getListEvent(completion: { (eventArray) in
+//                            EventList.sharedInstance.eventList.append(eventArray)
+//                            print(EventList.sharedInstance.eventList.count)
+//                        })
     
                 }else{
                     print("Ошибка входа в Google аккаунт попробуйте попозже")

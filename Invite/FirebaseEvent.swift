@@ -23,6 +23,8 @@ class FirebaseEvent{
         AppDelegate.ref?.child("/Event/ListEvents/\(eventName)\(ownUserId)").updateChildValues(eventDict)
     }
     
+    
+    
     func getListEvent(completion: @escaping (_ result: EventData)->()){
         var  evData = EventData()
         

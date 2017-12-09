@@ -21,7 +21,7 @@ class  UsersManager{
         return nil
     }
     func getUserById(userId : String,completionHandler: @escaping (UserProfile) -> Void) {
-        FirebaseUser.init().getUserDataByID(userId: userId) { (userProfile) in
+        FirebaseUser.init().getUserDataById(userId: userId) { (userProfile) in
             print("UsersManager------------------------------")
             completionHandler(userProfile)
         }

@@ -27,7 +27,11 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     let imagePick = ImagePickerActionSheet.init()
     var typePicker : String?
     
-   
+    var eventList = [EventData]() {
+        didSet{
+            print("\(eventList.count)----list--eventDataArray.count")
+        }
+    }
    
     deinit {
         removeKeyboardNotifications()
@@ -35,6 +39,10 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        EventsServices.sharedInstance.getListEvent(completion: { (listEvents) in
+            self.eventList = listEvents
+            print("-SignVC-eventList ----\(self.eventList.count )---")
+        })
           self.dataForUi()
         registerForKeyboardNotifications()
      
@@ -143,7 +151,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
             UserDefaults.standard.set("", forKey: "userId")
             UserDefaults.standard.set("", forKey: "email")
             
-            EventList.sharedInstance.clearArray()
+           // eventList.clearArray()
 //            self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
 
             dismiss(animated: true, completion: nil)

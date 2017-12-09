@@ -8,19 +8,19 @@
 
 import Foundation
 import GoogleMaps
-class EventList: NSObject{
+//class EventList: NSObject{
     
-    static let sharedInstance = EventList()
-    
-    
- //   private override init(){}
-    
-    var eventList = [EventData]()
-    
-    func clearArray(){
-        eventList.removeAll()
-    }
-}
+//    static let sharedInstance = EventList()
+//    
+//    
+// //   private override init(){}
+//    
+//    var eventList = [EventData]()
+//    
+//    func clearArray(){
+//        eventList.removeAll()
+//    }
+//}
 
 struct  EventData {
     

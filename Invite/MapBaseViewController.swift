@@ -26,7 +26,11 @@ class MapBaseViewController : UIViewController, GMSMapViewDelegate, CLLocationMa
     typealias callBack = (CLLocationCoordinate2D) ->()
     var callBackToCreateEvent : callBack!
     
-    
+    var eventList = [EventData]() {
+        didSet{
+            print("\(eventList.count)----list--eventDataArray.count")
+        }
+    }
     
         @IBOutlet weak var mapView: GMSMapView!
     
@@ -73,10 +77,10 @@ class MapBaseViewController : UIViewController, GMSMapViewDelegate, CLLocationMa
         
         func setArrayMarkers(){
             mapView.clear()
-            for i in EventList.sharedInstance.eventList{
+            for i in eventList{
               if  i.locationLat != nil {
                  let coordinatesEv = CLLocationCoordinate2D(latitude: i.locationLat!, longitude: i.locationLong!)
-                 print("\(EventList.sharedInstance.eventList.count)----list--eventDataArray.count")
+                 print("\(eventList.count)----list--eventDataArray.count")
                 print("lat\(i.locationLat)----long\(i.locationLong)")
                     setMarker(coordinate: coordinatesEv, title: nil, image: nil)}
             }

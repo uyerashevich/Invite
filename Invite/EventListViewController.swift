@@ -11,22 +11,27 @@ import UIKit
 class EventListViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
-   
+  
+    var eventList = [EventData]() {
+        didSet{
+             print("\(eventList.count)----list--eventDataArray.count")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
-       print("\(EventList.sharedInstance.eventList.count)----list--eventDataArray.count")
+      
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return EventList.sharedInstance.eventList.count
+       return  eventList.count
        
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath ) as! EventListCollectionViewCell
-            let event = EventList.sharedInstance.eventList[indexPath.row]
+            let event = eventList[indexPath.row]
             cell.event = event
             return cell
      }
