@@ -20,7 +20,7 @@ import GooglePlaces
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
     
-  
+    
     var window: UIWindow?
     var databaseRef: DatabaseReference!
     static var checkerFG : Int = 0
@@ -37,20 +37,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
         GIDSignIn.sharedInstance().delegate = self
         
         if AppDelegate.checkerFG == 1{
-            
             return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         }else{
             return true
         }
-        
     }
     
     @available(iOS 9.0, *)
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
         switch AppDelegate.checkerFG {
         case 1: return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-            
         case 0 :   return GIDSignIn.sharedInstance().handle(url,
                                                             sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
                                                             annotation: [:])
@@ -58,85 +54,81 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
         }
     }
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        
         if let error = error {
+            print("\(error.localizedDescription)")
+          
+            NotificationCenter.default.post(
+                name: Notification.Name(rawValue: "ToggleAuthUINotification"), object: nil, userInfo: nil)
+      
             print(error.localizedDescription)
             print("Ошибка входа в Google аккаунт попробуйте попозже")
             return
-        }
-        guard let authentication = user.authentication else {  print("Ошибка входа в Google ")
-            return }
-        
-        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
-                                                       accessToken: authentication.accessToken)
-        authGF(credential: credential)
-    }
-    
-    func authGF(credential: AuthCredential){
-        Auth.auth().signIn(with: credential, completion: { (user, error) in
+        }else{
+           
+            //            // Perform any operations on signed in user here.
+//            let userId = user.userID                  // For client-side use only!
+//            let idToken = user.authentication.idToken // Safe to send to the server
+            let fullName = user.profile.name
+            let givenName = user.profile.givenName
+            let familyName = user.profile.familyName
+//            let email = user.profile.email
+//            print("\(userId)--\(fullName)--\(givenName)--\(familyName)--\(email)")
+//
+            guard let authentication = user.authentication else {  print("Ошибка входа в Google ")
+                return }
             
-            print("user signed into firebase")
-            
-            if user?.email != nil && user?.uid != nil {
-  
-                  var userData = UserProfile.sharedInstance
+            let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                           accessToken: authentication.accessToken)
+            Auth.auth().signIn(with: credential, completion: { (userFirebase, error) in
+                
+                print("user signed into firebase")
+                
+                if userFirebase?.email != nil && userFirebase?.uid != nil {
+                    var userData = UserProfile.sharedInstance
                     //firebase  USER
-                    userData.email = (user?.email)!
-                    userData.userId = (user?.uid)!
-                    let urlUserPhoto = user?.photoURL
+                    userData.email = (userFirebase?.email)!
+                    userData.userId = (userFirebase?.uid)!
+                    let urlUserPhoto = userFirebase?.photoURL
                     var foto : UIImage = #imageLiteral(resourceName: "pixBlack")
                     getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
-                        foto = userPhotoUIImg!
-                        
+                        foto = userPhotoUIImg!  
                     })
                     
                     FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
                         userData = userProfile
-                        
                         if userData.name == "" {
-                            
-                            
-                            userData.name = (user?.displayName)!
+                            userData.name = givenName!
+                            userData.surname = familyName!
                             userData.foto = foto
                             FirebaseUser.init().setUserData(userData: userData)
                         }
-                        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                        let NewVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as! SignInViewController
-                        NewVC.userProfile = userData
-                        // Then push that view controller onto the navigation stack
-                        let rootViewController = self.window!.rootViewController as! UINavigationController
-                        rootViewController.pushViewController(NewVC, animated: true)
+                        NotificationCenter.default.post(
+                            name: Notification.Name(rawValue: "ToggleAuthUINotification"),
+                            object: nil, userInfo: ["statusText": "Signed in user:\n\(fullName)"])
                     })
-                    UserDefaults.standard.set( user?.uid, forKey: "userId")
-                    UserDefaults.standard.set( user?.email, forKey: "email")
+                    UserDefaults.standard.set( userFirebase?.uid, forKey: "userId")
+                    UserDefaults.standard.set( userFirebase?.email, forKey: "email")
                     
                     FirebaseEvent.init().getListEvent(completion: { (eventArray) in
                         EventList.sharedInstance.eventList.append(eventArray)
-                        print(EventList.sharedInstance.eventList.count)
                     })
- 
-            }else{
-                print("Ошибка входа в Google аккаунт попробуйте попозже")
-            }
-            
-        })
-        
-    }
-    
-    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
-        //выход из google
-        
-        let firebaseAuth = Auth.auth()
-        do {
-            print("выход из Google")
-            try firebaseAuth.signOut()
-            
-        } catch let signOutError as NSError {
-            
-            
-            print ("Error signing out: %@", signOutError)
+                }else{
+                    print("Ошибка входа в Google аккаунт попробуйте попозже")
+                }
+                
+            })
         }
     }
+    // [START disconnect_handler]
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!,
+              withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        NotificationCenter.default.post(
+            name: Notification.Name(rawValue: "ToggleAuthUINotification"),
+            object: nil, userInfo: ["statusText": "User has disconnected."])
+        print("DISCONNECT  GOOGLE")
+    }
+    // [END disconnect_handler]
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

@@ -23,13 +23,9 @@ class  AuthUser {
             if facebookError != nil {
          
                 displayAlertMessage(messageToDisplay: "There was an error logging in to Facebook. Error: \(facebookError)", viewController: view)
-            } else if (facebookResult?.isCancelled)!
-            {
-                
-                print("Facebook login was cancelled!")
-            }
+            } else if (facebookResult?.isCancelled)!{ print("Facebook login was cancelled!") }
             else {
-                
+                   startActivityIndicator(viewController: view)
                 FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, relationship_status, age_range"]).start(completionHandler: { (connection, result, error) -> Void in
                     if (error == nil){
                         let fbDetails = result as! NSDictionary
@@ -45,7 +41,7 @@ class  AuthUser {
                     // print(error)
                     if user != nil{
                         
-                        startActivityIndicator(viewController: view)
+                     
                         
                         var userData = UserProfile.sharedInstance
                         //firebase  USER
@@ -62,8 +58,7 @@ class  AuthUser {
                             userData = userProfile
                           
                             if userData.name == "" {
-                              
-                                
+                    
                                 userData.name = (user?.displayName)!
                                 userData.foto = foto
                                 //firebase USER SET
@@ -72,6 +67,7 @@ class  AuthUser {
                                 
                             }
                             view.performSegue(withIdentifier: "goToUserCab", sender: view)
+//                            stopActivityIndicator()
                         })
                         UserDefaults.standard.set( user?.uid, forKey: "userId")
                         UserDefaults.standard.set( user?.email, forKey: "email")
@@ -89,7 +85,59 @@ class  AuthUser {
         }
     }
     
+        func authGF(credential: AuthCredential){
+            Auth.auth().signIn(with: credential, completion: { (user, error) in
     
+                print("user signed into firebase")
+    
+                if user?.email != nil && user?.uid != nil {
+    
+                      var userData = UserProfile.sharedInstance
+                        //firebase  USER
+                        userData.email = (user?.email)!
+                        userData.userId = (user?.uid)!
+                        let urlUserPhoto = user?.photoURL
+                        var foto : UIImage = #imageLiteral(resourceName: "pixBlack")
+                        getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
+                            foto = userPhotoUIImg!
+    
+                        })
+    
+                        FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
+                            userData = userProfile
+    
+                            if userData.name == "" {
+    
+    
+                                userData.name = (user?.displayName)!
+                                userData.foto = foto
+                                FirebaseUser.init().setUserData(userData: userData)
+                            }
+                           // goToUserCab
+//                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//    //                        let NewVC = storyboard.instantiateViewController(withIdentifier: "SignInVC") as! SignInViewController
+//                              let NewVC = storyboard.instantiateViewController(withIdentifier: "UserViewController") as! UserViewController
+//                            NewVC.userProfile = userData
+//    
+//                            // Then push that view controller onto the navigation stack
+//                            let rootViewController = self.window!.rootViewController as! UINavigationController
+//                            rootViewController.pushViewController(NewVC, animated: true)
+                        })
+                        UserDefaults.standard.set( user?.uid, forKey: "userId")
+                        UserDefaults.standard.set( user?.email, forKey: "email")
+    
+                        FirebaseEvent.init().getListEvent(completion: { (eventArray) in
+                            EventList.sharedInstance.eventList.append(eventArray)
+                            print(EventList.sharedInstance.eventList.count)
+                        })
+    
+                }else{
+                    print("Ошибка входа в Google аккаунт попробуйте попозже")
+                }
+    
+            })
+    
+        }
     
     func signInUser(userEmail : String, userPassword : String, view: UIViewController){
         
