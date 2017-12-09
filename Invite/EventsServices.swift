@@ -1,5 +1,5 @@
 //
-//  EventsManager.swift
+//  EventsServices.swift
 //  Invite
 //
 //  Created by User1 on 09.12.2017.
@@ -8,7 +8,12 @@
 
 import Foundation
 
-class EventsManager {
+class EventsServices {
+    
+    static let sharedInstance = EventsServices()
+    private init(){}
+
+    
     
     
 }

@@ -107,11 +107,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
                             object: nil, userInfo: ["statusText": "Signed in user:\n\(fullName)"])
                     })
                     UserDefaults.standard.set( userFirebase?.uid, forKey: "userId")
-                    UserDefaults.standard.set( userFirebase?.email, forKey: "email")
-                    
-                    FirebaseEvent.init().getListEvent(completion: { (eventArray) in
-                        EventList.sharedInstance.eventList.append(eventArray)
-                    })
                 }else{
                     print("Ошибка входа в Google аккаунт попробуйте попозже")
                 }
