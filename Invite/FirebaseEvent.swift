@@ -22,10 +22,8 @@ class FirebaseEvent{
         //запись в firebase по eventId
         AppDelegate.ref?.child("/Event/ListEvents/\(eventName)\(ownUserId)").updateChildValues(eventDict)
     }
-    
-    
-    
-    func getListEvent(completion: @escaping (_ result: EventData)->()){
+  
+   func getListEvent(completionHandler: @escaping (EventData) -> Void){
         var  evData = EventData()
         
         let obs = AppDelegate.ref?.child("Event/ListEvents/").observe(.childAdded, with: { (snapshot) in
@@ -52,12 +50,9 @@ class FirebaseEvent{
                 
                 if let foto = value?["eventImage"]{ evData.eventImage = self.decodeImg(stringImage: foto as! String)}
             }
-            //    print(evData.locationLong)
-            completion(evData)
+              //  print(evData.eventName)
+                completionHandler(evData)
         })
-        { (error) in
-            print(error.localizedDescription)
-        }
         AppDelegate.ref?.removeObserver(withHandle: obs!)
     }
     

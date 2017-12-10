@@ -27,12 +27,15 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     let imagePick = ImagePickerActionSheet.init()
     var typePicker : String?
     
-    var eventList = [EventData]() {
+    var eventListVC = EventListViewController()//!
+    
+    var eventList : [EventData] = [] {
         didSet{
+            eventListVC.eventList = self.eventList
             print("1111-----\(eventList.count)----list--eventData userVC")
         }
     }
-   
+
     deinit {
         removeKeyboardNotifications()
     }
@@ -40,13 +43,10 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FirebaseEvent.init().getListEvent { (listEvents) in
-           print("\(listEvents.eventName)-----=count ev========")
-        }
-//        EventsServices.sharedInstance.getListEvent(completion: { (listEvents) in
-//            self.eventList = listEvents
-//            print("222222-SignVC-eventList ----\(self.eventList.count )---")
-//        })
+        EventsServices.sharedInstance.getListEvent ( completionHandler: { (evList) in
+            self.eventList = evList
+        })
+     
           self.dataForUi()
         registerForKeyboardNotifications()
      
@@ -153,9 +153,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
             try firebaseAuth.signOut()
             userProfile.clear()
             UserDefaults.standard.set("", forKey: "userId")
-//            UserDefaults.standard.set("", forKey: "email")
-            
-           // eventList.clearArray()
+          
 //            self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
 
             dismiss(animated: true, completion: nil)
@@ -166,6 +164,11 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showEventList"{
+             if let eventListVC = segue.destination as? EventListViewController {
+                self.eventListVC = eventListVC
+            }
+        }
         if segue.identifier == "showPickersVC" {
             if let pickerVC = segue.destination as? PIckersViewController {
                 pickerVC.typePicker = self.typePicker

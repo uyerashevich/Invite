@@ -14,20 +14,29 @@ class EventListViewController : BaseViewController,UITableViewDelegate , UITable
   
     @IBOutlet weak var tableView: UITableView!
     
-    var eventList = [EventData]() {
+//    var userVC : UserViewController?
+    
+    var eventList : [EventData] = [] {
         didSet{
-            tableView.reloadData()
-             print("33333----\(eventList.count)----list--eventDataArray.count")
-            print(eventList[0].eventName)
+            print("33333----\(self.eventList.count)----list--eventDataArray.count")
         }
     }
-
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-      
     }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+       
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+   
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -36,8 +45,8 @@ class EventListViewController : BaseViewController,UITableViewDelegate , UITable
         return eventList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as!ListEventsTableViewCell
-                    let event = eventList[indexPath.row]
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ListEventsTableViewCell
+        let event = eventList[indexPath.row]
                     cell.event = event
                     return cell
     }

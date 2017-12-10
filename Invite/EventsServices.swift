@@ -11,19 +11,19 @@ import Foundation
 class EventsServices {
     
     static let sharedInstance = EventsServices()
-    private init(){}
+    init(){}
 
-    private var listEvent = [EventData]()
+    private var listEvent : [EventData] = []
     
-    func getListEvent(completion: @escaping (_ result: [EventData])->()){
+    func getListEvent(completionHandler: @escaping ([EventData]) -> Void) {
+        
         if listEvent.count < 1  {
-           
-            FirebaseEvent.init().getListEvent(completion: { (eventData) in
-            self.listEvent.append(eventData)
-                
-        })}
-         print("OOOO---LLLLL\(listEvent.count)")
-        completion(listEvent)
+            FirebaseEvent.init().getListEvent(completionHandler: { (eventData) in
+                 self.listEvent.append(eventData)
+            //    print("OOOO---service -\(eventData.eventName)")
+                completionHandler(self.listEvent)
+            })
+        }
     }
     
     func getListEventCost(cost : Int, completion: @escaping (_ result: [EventData]?)->()){
