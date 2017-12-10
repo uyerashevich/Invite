@@ -8,37 +8,50 @@
 
 import UIKit
 
-class EventListViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class EventListViewController : BaseViewController,UITableViewDelegate , UITableViewDataSource {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+ 
   
+    @IBOutlet weak var tableView: UITableView!
+    
     var eventList = [EventData]() {
         didSet{
-             print("\(eventList.count)----list--eventDataArray.count")
+            tableView.reloadData()
+             print("33333----\(eventList.count)----list--eventDataArray.count")
+            print(eventList[0].eventName)
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        tableView.delegate = self
+        tableView.dataSource = self
       
     }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       return  eventList.count
-       
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath ) as! EventListCollectionViewCell
-            let event = eventList[indexPath.row]
-            cell.event = event
-            return cell
-     }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print("444----\(eventList.count)----list--eventDataArray.count")
+        return eventList.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell") as!ListEventsTableViewCell
+                    let event = eventList[indexPath.row]
+                    cell.event = event
+                    return cell
+    }
+    //определяет какую ячейку выбрали и производит дальнейшие действия - заполняет промежуточный диагноз и переходит на следующий экран подумать может сделать шторку на этом????
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        if filtered.count > 0 {
+//            nameOfPD = filtered[indexPath.row]
+//        }else{
+//            nameOfPD = array[indexPath.row]
+//        }
+//        //переход с кнопкой
+//        performSegue(withIdentifier: "viewFullDDin", sender: "")
+    }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        <#code#>
-//    }
-    
-  
+
+
 }

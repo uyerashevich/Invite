@@ -17,10 +17,12 @@ class EventsServices {
     
     func getListEvent(completion: @escaping (_ result: [EventData])->()){
         if listEvent.count < 1  {
-            print("OOOO---LLLLL")
+           
             FirebaseEvent.init().getListEvent(completion: { (eventData) in
             self.listEvent.append(eventData)
+                
         })}
+         print("OOOO---LLLLL\(listEvent.count)")
         completion(listEvent)
     }
     

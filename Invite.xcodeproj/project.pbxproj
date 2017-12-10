@@ -15,7 +15,6 @@
 		7F0E5A221F8FF2DB0026D358 /* SignInFirebaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0E5A211F8FF2DB0026D358 /* SignInFirebaseViewController.swift */; };
 		7F11986B1F911B810086DF66 /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F11986A1F911B810086DF66 /* AuthUser.swift */; };
 		7F11986E1F9136BC0086DF66 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F11986D1F9136BC0086DF66 /* FirebaseUser.swift */; };
-		7F1274AA1FC09D910018F434 /* EventListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1274A91FC09D910018F434 /* EventListCollectionViewCell.swift */; };
 		7F3588C71FBCAFB100A38D58 /* GMapsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588C61FBCAFB100A38D58 /* GMapsUtils.swift */; };
 		7F3588C91FBCAFC200A38D58 /* MapBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588C81FBCAFC200A38D58 /* MapBaseViewController.swift */; };
 		7F3588CB1FBCAFDB00A38D58 /* RootMapsBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588CA1FBCAFDB00A38D58 /* RootMapsBaseController.swift */; };
@@ -43,6 +42,7 @@
 		7F9E3CEE1F8D447C006378F0 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9E3CED1F8D447C006378F0 /* Utils.swift */; };
 		7F9E3CEF1F8D44EC006378F0 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9E3CF01F8D44EC006378F0 /* FBSDKLoginKit.framework */; };
 		7F9E3CF21F8D5148006378F0 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F9E3CF31F8D5148006378F0 /* FBSDKCoreKit.framework */; };
+		7FBB7FC41FDD8BA8001F0E1E /* ListEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBB7FC31FDD8BA8001F0E1E /* ListEventsTableViewCell.swift */; };
 		7FD1D5A11FB74B74008E5415 /* ImagePickerActionSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1D5A01FB74B73008E5415 /* ImagePickerActionSheet.swift */; };
 		7FD1D5A31FB74B7C008E5415 /* UIImageResize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD1D5A21FB74B7C008E5415 /* UIImageResize.swift */; };
 		7FD738741FA2613E00874476 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD738731FA2613E00874476 /* TableViewController.swift */; };
@@ -61,7 +61,6 @@
 		7F0E5A211F8FF2DB0026D358 /* SignInFirebaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFirebaseViewController.swift; sourceTree = "<group>"; };
 		7F11986A1F911B810086DF66 /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		7F11986D1F9136BC0086DF66 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
-		7F1274A91FC09D910018F434 /* EventListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListCollectionViewCell.swift; sourceTree = "<group>"; };
 		7F3588C61FBCAFB100A38D58 /* GMapsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMapsUtils.swift; sourceTree = "<group>"; };
 		7F3588C81FBCAFC200A38D58 /* MapBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBaseViewController.swift; sourceTree = "<group>"; };
 		7F3588CA1FBCAFDB00A38D58 /* RootMapsBaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootMapsBaseController.swift; sourceTree = "<group>"; };
@@ -91,6 +90,7 @@
 		7F9E3CED1F8D447C006378F0 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		7F9E3CF01F8D44EC006378F0 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F9E3CF31F8D5148006378F0 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FBB7FC31FDD8BA8001F0E1E /* ListEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListEventsTableViewCell.swift; sourceTree = "<group>"; };
 		7FD1D5A01FB74B73008E5415 /* ImagePickerActionSheet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerActionSheet.swift; sourceTree = "<group>"; };
 		7FD1D5A21FB74B7C008E5415 /* UIImageResize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageResize.swift; sourceTree = "<group>"; };
 		7FD738731FA2613E00874476 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				7F58483E1FC07CDF00724136 /* EventListViewController.swift */,
-				7F1274A91FC09D910018F434 /* EventListCollectionViewCell.swift */,
+				7FBB7FC31FDD8BA8001F0E1E /* ListEventsTableViewCell.swift */,
 			);
 			name = EventList;
 			sourceTree = "<group>";
@@ -474,7 +474,6 @@
 				7F727A4F1F9E6EF3004E7D1A /* EventData.swift in Sources */,
 				7F9E3CE41F8D3288006378F0 /* SignInViewController.swift in Sources */,
 				7F63DD011FDC788000A99E2A /* UsersManager.swift in Sources */,
-				7F1274AA1FC09D910018F434 /* EventListCollectionViewCell.swift in Sources */,
 				7F63DD0A1FDC78AF00A99E2A /* UserService.swift in Sources */,
 				7FFEB9C31FC972230098A0F2 /* PIckersViewController.swift in Sources */,
 				7F11986E1F9136BC0086DF66 /* FirebaseUser.swift in Sources */,
@@ -488,6 +487,7 @@
 				7F727A511F9E7231004E7D1A /* FirebaseEvent.swift in Sources */,
 				7F58483B1FC02DDE00724136 /* UIViewExtensions.swift in Sources */,
 				7FD1D5A11FB74B74008E5415 /* ImagePickerActionSheet.swift in Sources */,
+				7FBB7FC41FDD8BA8001F0E1E /* ListEventsTableViewCell.swift in Sources */,
 				7F63DD041FDC789800A99E2A /* AuthService.swift in Sources */,
 				7F11986B1F911B810086DF66 /* AuthUser.swift in Sources */,
 				7F9E3CEE1F8D447C006378F0 /* Utils.swift in Sources */,

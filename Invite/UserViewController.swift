@@ -29,7 +29,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     
     var eventList = [EventData]() {
         didSet{
-            print("\(eventList.count)----list--eventDataArray.count")
+            print("1111-----\(eventList.count)----list--eventData userVC")
         }
     }
    
@@ -39,10 +39,14 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        EventsServices.sharedInstance.getListEvent(completion: { (listEvents) in
-            self.eventList = listEvents
-            print("-SignVC-eventList ----\(self.eventList.count )---")
-        })
+        
+        FirebaseEvent.init().getListEvent { (listEvents) in
+           print("\(listEvents.eventName)-----=count ev========")
+        }
+//        EventsServices.sharedInstance.getListEvent(completion: { (listEvents) in
+//            self.eventList = listEvents
+//            print("222222-SignVC-eventList ----\(self.eventList.count )---")
+//        })
           self.dataForUi()
         registerForKeyboardNotifications()
      
@@ -149,7 +153,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
             try firebaseAuth.signOut()
             userProfile.clear()
             UserDefaults.standard.set("", forKey: "userId")
-            UserDefaults.standard.set("", forKey: "email")
+//            UserDefaults.standard.set("", forKey: "email")
             
            // eventList.clearArray()
 //            self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)

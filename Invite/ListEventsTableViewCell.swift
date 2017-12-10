@@ -1,14 +1,15 @@
 //
-//  EventListCollectionViewCell.swift
+//  ListEventsTableViewCell.swift
 //  Invite
 //
-//  Created by User1 on 18.11.17.
+//  Created by User1 on 10.12.2017.
 //  Copyright © 2017 User1. All rights reserved.
 //
 
 import UIKit
 
-class EventListCollectionViewCell: UICollectionViewCell {
+class ListEventsTableViewCell: UITableViewCell {
+
     @IBOutlet weak var costEventLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -24,11 +25,11 @@ class EventListCollectionViewCell: UICollectionViewCell {
     }
     func updateUI() {
         
-             distanceLabel.text = "\(10) mi"
+        distanceLabel.text = "\(10) mi"
         
         nameEventLabel.text = event.eventName
         placeEventLabel.text = event.address
-       
+        
         var greenColor = UIColor(red: 147.0/255.0, green: 211.0/255.0, blue: 33.0/255.0, alpha: 1.0) //38C3F7
         var blueColor = UIColor(red: 56.0/255.0, green: 195.0/255.0, blue: 247.0/255.0, alpha: 1.0) //38C3F7
         
@@ -41,5 +42,16 @@ class EventListCollectionViewCell: UICollectionViewCell {
         }
         fotoEventImgView.image = event.eventImage
         
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+    }
+    
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        
+        // Configure the view for the selected state
     }
 }

@@ -47,7 +47,6 @@ class SignInViewController:  BaseViewController , GIDSignInUIDelegate {
             if UserDefaults.standard.string(forKey: "userId") != nil && UserDefaults.standard.string(forKey: "userId") != ""{
                 let xz = UserDefaults.standard.string(forKey: "userId")
                 FirebaseUser.init().getUserDataById(userId: xz!, completionHandler: { (resp) in
-                    print("\(resp.email)-----0000----")
                     self.userProfile = resp
                     self.performSegue(withIdentifier: "goToUserCab", sender: self)
                 })
