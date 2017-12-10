@@ -27,7 +27,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     let imagePick = ImagePickerActionSheet.init()
     var typePicker : String?
     
-    var eventListVC = EventListViewController()//!
+    var eventListVC = EventListViewController() // EventListViewController.init(nibName: "EventListViewController", bundle: nil)//!
     
     var eventList : [EventData] = [] {
         didSet{
@@ -43,9 +43,9 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        EventsServices.sharedInstance.getListEvent ( completionHandler: { (evList) in
-            self.eventList = evList
-        })
+//        EventsServices.sharedInstance.getListEvent ( completionHandler: { (evList) in
+//            self.eventList = evList
+//        })
      
           self.dataForUi()
         registerForKeyboardNotifications()
@@ -125,7 +125,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     @IBAction func saveButton(_ sender: UIButton) {
         if validateUserData(){
             FirebaseUser.init().setUserData(userData: self.userProfile)
-            performSegue(withIdentifier: "showEventList", sender: "")
+            performSegue(withIdentifier: "showEventList", sender: self)
         }
     }
     
@@ -165,10 +165,11 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showEventList"{
-             if let eventListVC = segue.destination as? EventListViewController {
+            if let eventListVC = segue.destination as? EventListViewController {
                 self.eventListVC = eventListVC
             }
         }
+
         if segue.identifier == "showPickersVC" {
             if let pickerVC = segue.destination as? PIckersViewController {
                 pickerVC.typePicker = self.typePicker

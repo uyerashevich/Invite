@@ -13,12 +13,11 @@ class EventListViewController : BaseViewController,UITableViewDelegate , UITable
  
   
     @IBOutlet weak var tableView: UITableView!
-    
-//    var userVC : UserViewController?
-    
+
     var eventList : [EventData] = [] {
         didSet{
             print("33333----\(self.eventList.count)----list--eventDataArray.count")
+            if tableView != nil{ tableView.reloadData()}
         }
     }
  
@@ -34,7 +33,10 @@ class EventListViewController : BaseViewController,UITableViewDelegate , UITable
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-   
+                EventsServices.sharedInstance.getListEvent ( completionHandler: { (evList) in
+                    self.eventList = evList
+                })
+
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -50,17 +52,31 @@ class EventListViewController : BaseViewController,UITableViewDelegate , UITable
                     cell.event = event
                     return cell
     }
-    //определяет какую ячейку выбрали и производит дальнейшие действия - заполняет промежуточный диагноз и переходит на следующий экран подумать может сделать шторку на этом????
+    //определяет какую ячейку выбрали и производит дальнейшие действия
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        if filtered.count > 0 {
-//            nameOfPD = filtered[indexPath.row]
-//        }else{
-//            nameOfPD = array[indexPath.row]
-//        }
-//        //переход с кнопкой
-//        performSegue(withIdentifier: "viewFullDDin", sender: "")
+
     }
+   func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
+//        let more = UITableViewRowAction(style: .normal, title: "More") { action, index in
+//            print("more button tapped")
+//        }
+//        more.backgroundColor = .lightGray
+//
+        let favorite = UITableViewRowAction(style: .normal, title: "Favorite") { action, index in
+            print("favorite button tapped")
+            
+        }
+        favorite.backgroundColor = .orange
+        
+//        let share = UITableViewRowAction(style: .normal, title: "Share") { action, index in
+//            print("share button tapped")
+//        }
+//        share.backgroundColor = .blue
     
-
-
+        //return [share, favorite, more]
+        return [favorite]
+    }
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
 }
