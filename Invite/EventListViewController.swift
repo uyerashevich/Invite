@@ -56,27 +56,38 @@ class EventListViewController : BaseViewController,UITableViewDelegate , UITable
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
     }
-   func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-//        let more = UITableViewRowAction(style: .normal, title: "More") { action, index in
-//            print("more button tapped")
-//        }
-//        more.backgroundColor = .lightGray
+//   func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
 //
-        let favorite = UITableViewRowAction(style: .normal, title: "Favorite") { action, index in
-            print("favorite button tapped")
-            
-        }
-        favorite.backgroundColor = .orange
-        
-//        let share = UITableViewRowAction(style: .normal, title: "Share") { action, index in
-//            print("share button tapped")
+//
+//        let favorite = UITableViewRowAction(style: .normal, title: "Favorite") { action, index in
+//            print("favorite button tapped")
 //        }
-//        share.backgroundColor = .blue
-    
-        //return [share, favorite, more]
-        return [favorite]
-    }
+//        //favorite.provideImageData(<#T##data: UnsafeMutableRawPointer##UnsafeMutableRawPointer#>, bytesPerRow: <#T##Int#>, origin: <#T##Int#>, <#T##y: Int##Int#>, size: <#T##Int#>, <#T##height: Int##Int#>, userInfo: <#T##Any?#>)
+//        favorite.backgroundColor = .black
+//
+////        let share = UITableViewRowAction(style: .normal, title: "Share") { action, index in
+////            print("share button tapped")
+////        }
+////        share.backgroundColor = .blue
+//
+//        //return [share, favorite, more]
+//        return [favorite]
+//    }
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let favoriteAction = UIContextualAction(style: .normal, title:  "", handler: { (ac:UIContextualAction, view:UIView, success:(Bool) -> Void) in
+            // Call edit action
+
+            // Reset state
+            success(true)
+        })
+        favoriteAction.image = #imageLiteral(resourceName: "star_enabled")//UIImage(named: "ic_delete")
+        favoriteAction.backgroundColor = .black
+        return UISwipeActionsConfiguration(actions: [favoriteAction])
+    }
 }
+//public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+//public func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration?
+

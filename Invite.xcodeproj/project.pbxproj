@@ -167,6 +167,7 @@
 		7F11986C1F91355A0086DF66 /* not work vC */ = {
 			isa = PBXGroup;
 			children = (
+				7F11986A1F911B810086DF66 /* AuthUser.swift */,
 				7FD738731FA2613E00874476 /* TableViewController.swift */,
 				7F0E5A211F8FF2DB0026D358 /* SignInFirebaseViewController.swift */,
 				7F9E3CE51F8D38F8006378F0 /* SignUpViewController.swift */,
@@ -286,7 +287,6 @@
 			children = (
 				7F58483C1FC072A300724136 /* AppAppearance.swift */,
 				7FD1D5A01FB74B73008E5415 /* ImagePickerActionSheet.swift */,
-				7F11986A1F911B810086DF66 /* AuthUser.swift */,
 				7F9E3CED1F8D447C006378F0 /* Utils.swift */,
 			);
 			name = Utils;

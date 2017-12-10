@@ -45,6 +45,7 @@ class SignInViewController:  BaseViewController , GIDSignInUIDelegate {
             // Signed in
             //вход по умолчанию
             if UserDefaults.standard.string(forKey: "userId") != nil && UserDefaults.standard.string(forKey: "userId") != ""{
+                startActivityIndicator(viewController: self)
                 let xz = UserDefaults.standard.string(forKey: "userId")
                 FirebaseUser.init().getUserDataById(userId: xz!, completionHandler: { (resp) in
                     self.userProfile = resp
@@ -72,12 +73,15 @@ class SignInViewController:  BaseViewController , GIDSignInUIDelegate {
     
     
     @IBAction func signInGoogleButton(_ sender: Any) {
+        startActivityIndicator(viewController: self)
         let signIn = GIDSignIn.sharedInstance()
         signIn?.signOut()
         signIn?.signIn()
     }
     
     @IBAction func facebookButton(_ sender: AnyObject) {
-        AuthUser.init().facebookSignIn(view: self)
+        startActivityIndicator(viewController: self)
+        AuthManager.sharedInstance.facebookSignIn(view: self)
+      //  AuthUser.init().facebookSignIn(view: self)
     }
 }

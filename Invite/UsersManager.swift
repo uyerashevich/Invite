@@ -8,8 +8,6 @@
 
 import Foundation
 
-import Foundation
-
 class  UsersManager{
     
     static let sharedInstanse = UsersManager()

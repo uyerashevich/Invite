@@ -42,7 +42,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        stopActivityIndicator()
 //        EventsServices.sharedInstance.getListEvent ( completionHandler: { (evList) in
 //            self.eventList = evList
 //        })

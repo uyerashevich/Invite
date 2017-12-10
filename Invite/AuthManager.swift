@@ -16,7 +16,7 @@ class AuthManager{
     private init(){}
     
     func authUser(credential: AuthCredential, completion: @escaping (_ userData: UserProfile?, Error?)->()){
-        
+       
         AuthService.sharedInstance.authUserInFirebase(credential: credential) { (userDataResponse, error) in
             UserDefaults.standard.set( userDataResponse?.userId, forKey: "userId")
             completion(userDataResponse, nil)

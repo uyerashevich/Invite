@@ -56,61 +56,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
             print("\(error.localizedDescription)")
-          
+            
             NotificationCenter.default.post(
                 name: Notification.Name(rawValue: "ToggleAuthUINotification"), object: nil, userInfo: nil)
-      
+            
             print(error.localizedDescription)
             print("Ошибка входа в Google аккаунт попробуйте попозже")
             return
         }else{
-           
+            
             //            // Perform any operations on signed in user here.
-//            let userId = user.userID                  // For client-side use only!
-//            let idToken = user.authentication.idToken // Safe to send to the server
+            //            let userId = user.userID                  // For client-side use only!
+            //            let idToken = user.authentication.idToken // Safe to send to the server
             let fullName = user.profile.name
             let givenName = user.profile.givenName
             let familyName = user.profile.familyName
-//            let email = user.profile.email
-//            print("\(userId)--\(fullName)--\(givenName)--\(familyName)--\(email)")
-//
+            //            let email = user.profile.email
+            //            print("\(userId)--\(fullName)--\(givenName)--\(familyName)--\(email)")
+            //
             guard let authentication = user.authentication else {  print("Ошибка входа в Google ")
                 return }
             
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                            accessToken: authentication.accessToken)
-            Auth.auth().signIn(with: credential, completion: { (userFirebase, error) in
-                
-                print("user signed into firebase")
-                
-                if userFirebase?.email != nil && userFirebase?.uid != nil {
-                    var userData = UserProfile.sharedInstance
-                    //firebase  USER
-                    userData.email = (userFirebase?.email)!
-                    userData.userId = (userFirebase?.uid)!
-                    let urlUserPhoto = userFirebase?.photoURL
-                    var foto : UIImage = #imageLiteral(resourceName: "pixBlack")
-                    getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
-                        foto = userPhotoUIImg!  
-                    })
-                    
-                    FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
-                        userData = userProfile
-                        if userData.name == "" {
-                            userData.name = givenName!
-                            userData.surname = familyName!
-                            userData.foto = foto
-                            FirebaseUser.init().setUserData(userData: userData)
-                        }
-                        NotificationCenter.default.post(
-                            name: Notification.Name(rawValue: "ToggleAuthUINotification"),
-                            object: nil, userInfo: ["statusText": "Signed in user:\n\(fullName)"])
-                    })
-                    UserDefaults.standard.set( userFirebase?.uid, forKey: "userId")
-                }else{
-                    print("Ошибка входа в Google аккаунт попробуйте попозже")
-                }
-                
+            
+            AuthManager.sharedInstance.authUser(credential: credential, completion: { (userProfile, error) in
+                let userCabVC = BaseViewController()
+                userCabVC.userProfile = userProfile!
+                print(userCabVC.userProfile.name)
+                NotificationCenter.default.post(
+                    name: Notification.Name(rawValue: "ToggleAuthUINotification"),
+                    object: nil, userInfo: ["statusText": "Signed in user:\n\(fullName)"])
             })
         }
     }
