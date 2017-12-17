@@ -24,10 +24,18 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     @IBOutlet weak var instagrammTexField: UITextField!
     @IBOutlet weak var surnameTexField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
+    
+    @IBOutlet weak var starName: UILabel!
+    @IBOutlet weak var starLastName: UILabel!
+    @IBOutlet weak var starAge: UILabel!
+    @IBOutlet weak var starAboutMe: UILabel!
+    @IBOutlet weak var starOrientation: UILabel!
+    @IBOutlet weak var starGender: UILabel!
+   
     let imagePick = ImagePickerActionSheet.init()
     var typePicker : String?
     
-    var eventListVC = EventListViewController() // EventListViewController.init(nibName: "EventListViewController", bundle: nil)//!
+    var eventListVC = EventListViewController()
     
     var eventList : [EventData] = [] {
         didSet{
@@ -35,7 +43,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
             print("1111-----\(eventList.count)----list--eventData userVC")
         }
     }
-
+    
     deinit {
         removeKeyboardNotifications()
     }
@@ -43,70 +51,128 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     override func viewDidLoad() {
         super.viewDidLoad()
         stopActivityIndicator()
-//        EventsServices.sharedInstance.getListEvent ( completionHandler: { (evList) in
-//            self.eventList = evList
-//        })
-     
-          self.dataForUi()
         registerForKeyboardNotifications()
-     
+        
         //для убирания клавы с экрана/////////
         self.instagrammTexField.delegate = self
         self.surnameTexField.delegate = self
         self.nameTextField.delegate = self
+        self.dataForUi()
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-      
         
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
         
     }
+//    func showHideStars()->Bool{
+//        var starValid = 0
+//        //1
+//        if userProfile.name.count > 1 && nameTextField.text != "" {
+//            starName.isHidden = true
+//            starValid += 1
+//        }else{starName.isHidden = false}
+//
+//        //2
+//        if userProfile.surname.count > 1 && surnameTexField.text != "" {
+//            starValid += 1
+//            starLastName.isHidden = true
+//        }else{starLastName.isHidden = true}
+//
+//        //3
+//        //age?????
+//        starValid += 1
+//
+//        //4
+//        if userProfile.sex.count > 1 && sexButtonOutlet.titleLabel?.text != "Leave Empty" {
+//            starValid += 1
+//            self.starGender.isHidden = true
+//        }else{starGender.isHidden = false}
+//        //5
+//        if userProfile.sexFavorite.count > 1 && sexFavoriteButtonOutlet.titleLabel?.text != "" {
+//            starValid += 1
+//            self.starOrientation.isHidden = true
+//        }else{starOrientation.isHidden = false}
+//        //6
+//        if userProfile.aboutMe.count > 5 && aboutMeTextView.text != "" {
+//            starValid += 1
+//            starLastName.isHidden = true
+//        }else{starLastName.isHidden = false}
+//
+//        if starValid == 6 {return true} else{return false}
+//    }
+    
     
     func dataForUi(){
-   stopActivityIndicator()
-
+        stopActivityIndicator()
+    
         let date = NSDate()
+        //Orientation
         sexFavoriteButtonOutlet.setTitle(("\(userProfile.sexFavorite)"), for: .normal)
+        //Gender
         sexButtonOutlet.setTitle(("\(userProfile.sex)"), for: .normal)
+        //age
         if userProfile.age != nil && userProfile.age != "" {
+            //   self.starAge.isHidden = true
             let ageYear = convertStringToDate(dateString: userProfile.age)
-            
             let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
+            //  if Int(timeInterval) < 16 { self.starAge.isHidden = false }
             ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(userProfile.age) )"), for: .normal)
         }else{
-            ageButtonOutlet.setTitle((" • ( \(convertDateToString(date: date)) )"), for: .normal)}
+            // self.starAge.isHidden = false
+            ageButtonOutlet.setTitle((" • ( \(convertDateToString(date: date)) )"), for: .normal)
+        }
+        //name
         nameTextField.text = userProfile.name.capitalized
+        //last name
         surnameTexField.text = userProfile.surname.capitalized
+   
         instagrammTexField.text = userProfile.instagramUrl
         photoUserImgView.image = userProfile.foto
         aboutMeTextView.text = userProfile.aboutMe
+        
+        
     }
+    
+    
+    
     func validateUserData()->Bool{
-          let charCount = instagrammTexField.text?.count
-                guard Int(charCount!) < 21 else{
-                    displayAlertMessage(messageToDisplay: "Error Instagram > 20 chars", viewController: self)
-                    return false
-            }
-        guard nameTextField.text != nil || surnameTexField.text != nil || ageButtonOutlet.currentTitle != nil || sexButtonOutlet.currentTitle != nil || sexFavoriteButtonOutlet.currentTitle != nil || aboutMeTextView.text != nil else{ displayAlertMessage(messageToDisplay: "Not all fields are filled out", viewController: self)
+        //valid stars
+       // guard showHideStars()else{ return false}
+        
+        //valid istagramm
+        let charCount = instagrammTexField.text?.count
+        guard Int(charCount!) < 21 else{
+            displayAlertMessage(messageToDisplay: "Error Instagram > 20 chars", viewController: self)
+            return false
+        }
+        //valid name surname age sex aboutme sexfavorite
+        guard (nameTextField.text != nil && (nameTextField.text?.count)! < 30 ) || (surnameTexField.text != nil && (surnameTexField.text?.count)! < 30 ) || ageButtonOutlet.currentTitle != nil || sexButtonOutlet.currentTitle != nil || sexFavoriteButtonOutlet.currentTitle != nil  else{ displayAlertMessage(messageToDisplay: "Not all fields are filled out and max number of characters in each field is not more than 30 ", viewController: self)
             return false}
+        guard aboutMeTextView.text != nil && aboutMeTextView.text.count < 150 else {
+            displayAlertMessage(messageToDisplay: "Not all fields are filled out and max number of characters in About Me field is not more than 150 ", viewController: self)
+            return false
+        }
         self.userProfile.instagramUrl = instagrammTexField.text!
         self.userProfile.name = nameTextField.text!
         self.userProfile.surname = surnameTexField.text!
         
         return true
     }
-    @IBAction func instagrammChanged(_ sender: UITextField) {
-        if let charCount = instagrammTexField.text?.count {
-            charCountInstagramm.text = String(charCount) }
-    }
-    //для убирания клавы с экрана/////////
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    
+     //для убирания клавы с экрана/////////
+    @IBAction func tapOnView(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
+    
+    @IBAction func instagrammChanged(_ sender: UITextField) {
+        if let charCount = instagrammTexField.text?.count {
+            charCountInstagramm.text = String(20 - charCount) }
+    }
+   
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -144,18 +210,21 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     }
     
     @IBAction func backButton(_ sender: UIButton) {
-
-     
-     //   stopActivityIndicator()
+        
+        
+        stopActivityIndicator()
         let firebaseAuth = Auth.auth()
+        GIDSignIn.sharedInstance().disconnect()
+        GIDSignIn.sharedInstance().signOut()
         do {
             print("выход из Google")
             try firebaseAuth.signOut()
+            
             userProfile.clear()
             UserDefaults.standard.set("", forKey: "userId")
-          
-//            self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
-
+            
+            //            self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+            
             dismiss(animated: true, completion: nil)
             navigationController?.popViewController(animated: true)
         } catch let signOutError as NSError {
@@ -169,7 +238,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
                 self.eventListVC = eventListVC
             }
         }
-
+        
         if segue.identifier == "showPickersVC" {
             if let pickerVC = segue.destination as? PIckersViewController {
                 pickerVC.typePicker = self.typePicker
