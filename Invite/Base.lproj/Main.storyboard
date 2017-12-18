@@ -509,7 +509,7 @@
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="name"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="suW-yf-gVG">
                                         <rect key="frame" x="15" y="222" width="70" height="16"/>
@@ -552,7 +552,7 @@
                                             <outletCollection property="gestureRecognizers" destination="Nom-tL-NDB" appends="YES" id="9Sn-Wh-wOu"/>
                                         </connections>
                                     </view>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jVW-zc-8Ay">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text=" " borderStyle="roundedRect" placeholder="surname" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jVW-zc-8Ay">
                                         <rect key="frame" x="15" y="286" width="250" height="23"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -561,7 +561,7 @@
                                         </constraints>
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words" textContentType="given-name"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4fB-4t-9No">
                                         <rect key="frame" x="15" y="268" width="69" height="16"/>
@@ -892,6 +892,7 @@
                         <outlet property="imgUserMaskView" destination="7Tj-T7-yOu" id="jkS-7l-h5g"/>
                         <outlet property="instagrammTexField" destination="9bc-Yz-fvF" id="V7A-ka-UgY"/>
                         <outlet property="nameTextField" destination="DXn-1p-sk1" id="gLo-eN-pwa"/>
+                        <outlet property="nextButton" destination="ChN-9X-dm0" id="eSI-ZZ-19k"/>
                         <outlet property="nextButtonConstraint" destination="GTS-xB-Xew" id="WKR-6n-JHu"/>
                         <outlet property="photoUserImgView" destination="6fI-9y-urU" id="ucJ-oe-xMB"/>
                         <outlet property="scrollViewOutlet" destination="9c7-E3-xB7" id="RqC-MG-QV2"/>
@@ -1433,11 +1434,11 @@
             <objects>
                 <viewController id="56K-C2-SDY" customClass="MapBaseViewController" customModule="Invite" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T4d-tG-bag">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="204" height="318"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oQq-dR-3FR">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                <rect key="frame" x="0.0" y="0.0" width="204" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="hDY-NK-nuJ"/>
                                 </constraints>
@@ -1452,7 +1453,7 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zV0-OM-8BN" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="48" width="375" height="570"/>
+                                <rect key="frame" x="0.0" y="48" width="204" height="221"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                         </subviews>
@@ -1487,6 +1488,6 @@
         <image name="star_enabled" width="10" height="10"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SH9-3Q-rBZ"/>
+        <segue reference="oF2-ab-0t2"/>
     </inferredMetricsTieBreakers>
 </document>
