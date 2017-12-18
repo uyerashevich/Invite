@@ -11,7 +11,7 @@ import Firebase
 import GoogleSignIn
 //import FBSDKLoginKit
 
-class UserViewController: BaseViewController, UITextFieldDelegate{ //
+class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDelegate{ //
     @IBOutlet weak var nextButtonConstraint: NSLayoutConstraint!
     @IBOutlet weak var charCountInstagramm: UILabel!
     @IBOutlet weak var scrollViewOutlet: UIScrollView!
@@ -52,16 +52,10 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
     var nameBool = false
     var surnameBool = false
     var aboutMeBool = false
-    
-//    var xTextField : String = ""{
-//        didSet{
-//            if aboutMeTextView.text.count > 3 && aboutMeTextView.text.count < 150 {aboutMeBool = true}else{aboutMeBool = false}
-//            if instaBool && nameBool && surnameBool && aboutMeBool{
-//                 print("HIDE NEXT")
-//            }
-//
-//        }
-//    }
+    var ageBool = false
+    var orientationBool = false
+    var genderBool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -72,6 +66,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
         self.instagrammTexField.delegate = self
         self.surnameTexField.delegate = self
         self.nameTextField.delegate = self
+        self.aboutMeTextView.delegate = self
         self.dataForUi()
         
     }
@@ -82,56 +77,62 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
         let date = NSDate()
         //Orientation
         sexFavoriteButtonOutlet.setTitle(("\(userProfile.sexFavorite)"), for: .normal)
-        //Gender
         sexButtonOutlet.setTitle(("\(userProfile.sex)"), for: .normal)
+        
         //age
         if userProfile.age != nil && userProfile.age != "" {
             let ageYear = convertStringToDate(dateString: userProfile.age)
             let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
-            //  if Int(timeInterval) < 16 { self.starAge.isHidden = false }
             ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(userProfile.age) )"), for: .normal)
+              validString(text: "\(Int(timeInterval))", sender: "DateOfB")
         }else{
-            // self.starAge.isHidden = false
+            ageBool = false
             ageButtonOutlet.setTitle((" • ( \(convertDateToString(date: date)) )"), for: .normal)
         }
-        //name
         nameTextField.text = userProfile.name.capitalized
-        
-//        if (userProfile.name.count) > 2 && (userProfile.name.count) < 30{nameBool = true}else{nameBool = false}
-        
-        //last name
         surnameTexField.text = userProfile.surname.capitalized
-//         if (userProfile.surname.count) > 2 && (userProfile.surname.count) < 30{surnameBool = true}else{surnameBool = false}
-        //instagram
         instagrammTexField.text = userProfile.instagramUrl
-//        if (userProfile.instagramUrl.count) < 20{instaBool  = true}else{instaBool  = false}
-        
         photoUserImgView.image = userProfile.foto
-        
-        //about me
         aboutMeTextView.text = userProfile.aboutMe
-//         if userProfile.aboutMe.count > 3 && userProfile.aboutMe.count < 150 {aboutMeBool = true}else{aboutMeBool = false}
+        
+        validString(text: userProfile.aboutMe, sender: "aboutMe")
+      
+        validString(text: userProfile.sex, sender: "sex")
+        validString(text: userProfile.sexFavorite, sender: "sexFavorite")
         validString(text: userProfile.name, sender: "Name")
         validString(text: userProfile.surname, sender: "surname")
         validString(text: userProfile.instagramUrl, sender: "instagramm")
-       // validString(text: userProfile.aboutMe, sender: "aboutMe")
+
     }
     func validString(text : String, sender : String){
-    print("VALIDATION")
+  
         switch sender {
-        case "instagramm" :  if (text.count) < 20{instaBool  = true}else{instaBool  = false}
-        case "Name" : if (text.count) > 2 && (text.count) < 30{nameBool = true}else{nameBool = false}
-        case "surname": if (text.count) > 2 && (text.count) < 30{surnameBool = true}else{surnameBool = false}
+        case "DateOfB" :  if let dateB = Int(text) {
+                                if dateB > 14 {ageBool  = true}else{ageBool  = false}
+                            }
+        case "sex" :  if text != "Leave Empty" && text != "" {genderBool  = true}else{genderBool  = false}
+        case "sexFavorite" :  if (text.count) > 1 {orientationBool  = true}else{orientationBool  = false}
+        case "instagramm" :  if (text.count) < 20 {instaBool  = true}else{instaBool  = false}
+        case "Name" : if (text.count) > 2 && (text.count) < 30 {nameBool = true}else{nameBool = false}
+        case "surname": if (text.count) > 2 && (text.count) < 30 {surnameBool = true}else{surnameBool = false}
+        case "aboutMe": if (text.count) > 5 && (text.count) < 150{aboutMeBool = true}else{aboutMeBool = false}
         default:  _ = 1
         }
-        if aboutMeTextView.text.count > 2 && aboutMeTextView.text.count < 150{aboutMeBool = true}else{aboutMeBool = false}
-        print("\(instaBool)--\(nameBool)--\(surnameBool)--\(aboutMeBool)--")
-        if instaBool && nameBool && surnameBool && aboutMeBool{
+        
+        print("\(instaBool)--\(nameBool)--\(surnameBool)--\(aboutMeBool)--\(orientationBool)--\(genderBool)--\(ageBool)")
+        
+        
+        
+        
+        if instaBool && nameBool && surnameBool && aboutMeBool && orientationBool && genderBool && ageBool{
             nextButton.layer.opacity = 1
             nextButton.isEnabled = true
         }else {
             nextButton.layer.opacity = 0.5
             nextButton.isEnabled = false}
+    }
+    func textViewDidEndEditing(_ textView: UITextView) {
+        validString(text: textView.text!, sender: "aboutMe" )
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         validString(text: textField.text!, sender: textField.placeholder!)
@@ -227,16 +228,20 @@ class UserViewController: BaseViewController, UITextFieldDelegate{ //
                     switch self.typePicker {
                     case "sexFavorite"?: self.sexFavoriteButtonOutlet.setTitle(("\(s)"), for: .normal)
                     self.userProfile.sexFavorite = ("\(s)")
+                    self.validString(text: "\(s)", sender: "sexFavorite")
+                        
                     case "sex"?: self.sexButtonOutlet.setTitle(("\(s)"), for: .normal)
                     self.userProfile.sex = ("\(s)")
+                    self.validString(text: "\(s)", sender: "sex")
                         
                     case "DateOfB"?:
-                        
                         let ageYear = convertStringToDate(dateString: s)
                         let date = NSDate()
                         let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
                         self.ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(s) )"), for: .normal)
                         self.userProfile.age = ("\(s)")
+                        self.validString(text: "\(Int(timeInterval))", sender: "DateOfB")
+                        
                     default :_ = 1
                     }
                 }
