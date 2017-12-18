@@ -25,12 +25,12 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
     @IBOutlet weak var surnameTexField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     
-    @IBOutlet weak var starName: UILabel!
-    @IBOutlet weak var starLastName: UILabel!
-    @IBOutlet weak var starAge: UILabel!
-    @IBOutlet weak var starAboutMe: UILabel!
-    @IBOutlet weak var starOrientation: UILabel!
-    @IBOutlet weak var starGender: UILabel!
+//    @IBOutlet weak var starName: UILabel!
+//    @IBOutlet weak var starLastName: UILabel!
+//    @IBOutlet weak var starAge: UILabel!
+//    @IBOutlet weak var starAboutMe: UILabel!
+//    @IBOutlet weak var starOrientation: UILabel!
+//    @IBOutlet weak var starGender: UILabel!
     
     @IBOutlet weak var nextButton: UIButton!
     let imagePick = ImagePickerActionSheet.init()
@@ -44,11 +44,10 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         //    print("1111-----\(eventList.count)----list--eventData userVC")
         }
     }
-    
     deinit {
         removeKeyboardNotifications()
     }
-    var instaBool = false
+   // var instaBool = false
     var nameBool = false
     var surnameBool = false
     var aboutMeBool = false
@@ -100,27 +99,27 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         validString(text: userProfile.sexFavorite, sender: "sexFavorite")
         validString(text: userProfile.name, sender: "Name")
         validString(text: userProfile.surname, sender: "Surname")
-        validString(text: userProfile.instagramUrl, sender: "Instagramm")
 
     }
     func validString(text : String, sender : String){
-  
         switch sender {
         case "DateOfB" :  if let dateB = Int(text) {
                                 if dateB > 14 {ageBool  = true}else{ageBool  = false}
                             }
         case "sex" :  if text != "Leave Empty" && text != "" {genderBool  = true}else{genderBool  = false}
         case "sexFavorite" :  if (text.count) > 1 {orientationBool  = true}else{orientationBool  = false}
-        case "Instagramm" :  if (text.count) < 20 {instaBool  = true}else{instaBool  = false}
         case "Name" : if (text.count) > 2 && (text.count) < 30 {nameBool = true}else{nameBool = false}
         case "Surname": if (text.count) > 2 && (text.count) < 30 {surnameBool = true}else{surnameBool = false}
-        case "aboutMe": if (text.count) > 5 && (text.count) < 150{aboutMeBool = true}else{aboutMeBool = false}
+        case "aboutMe": if (text.count) < 151{aboutMeBool = true}else{
+            displayAlertMessage(messageToDisplay: "Max number of characters in About Me field is not more than 150. \n Your text \(text.count)", viewController: self)
+            aboutMeBool = false
+            }
         default:  _ = 1
         }
         
-        print("\(instaBool)--\(nameBool)--\(surnameBool)--\(aboutMeBool)--\(orientationBool)--\(genderBool)--\(ageBool)--\(fotoBool)")
+        print("--\(nameBool)--\(surnameBool)--\(aboutMeBool)--\(orientationBool)--\(genderBool)--\(ageBool)--\(fotoBool)")
 
-        if instaBool && nameBool && surnameBool && aboutMeBool && orientationBool && genderBool && ageBool && fotoBool {
+        if  nameBool && surnameBool && aboutMeBool && orientationBool && genderBool && ageBool && fotoBool {
             nextButton.layer.opacity = 1
             nextButton.isEnabled = true
         }else {
@@ -128,7 +127,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
             nextButton.isEnabled = false}
     }
     func textViewDidEndEditing(_ textView: UITextView) {
-        validString(text: textView.text!, sender: "aboutMe" )
+        validString(text: aboutMeTextView.text, sender: "aboutMe")
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         validString(text: textField.text!, sender: textField.placeholder!)
@@ -142,7 +141,9 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
     
     @IBAction func instagrammChanged(_ sender: UITextField) {
         if let charCount = instagrammTexField.text?.count {
-            charCountInstagramm.text = String(20 - charCount) }
+            charCountInstagramm.text = String(20 - charCount)
+            if (20 - charCount) < 1 { instagrammTexField.text?.removeLast() }
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

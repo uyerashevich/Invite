@@ -819,12 +819,6 @@
                                             <action selector="saveButton:" destination="XhC-BH-Pak" eventType="touchUpInside" id="hlG-6l-ewA"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✶" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1es-cQ-2uH">
-                                        <rect key="frame" x="77" y="512.5" width="10" height="14"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                        <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -839,12 +833,10 @@
                                     <constraint firstAttribute="trailing" secondItem="FDz-LD-cza" secondAttribute="trailing" constant="15" id="6bE-Dq-0ZD"/>
                                     <constraint firstItem="LtZ-pd-sqS" firstAttribute="top" secondItem="EPP-e7-Pre" secondAttribute="bottom" constant="2" id="7jC-IL-if0"/>
                                     <constraint firstItem="9bc-Yz-fvF" firstAttribute="centerY" secondItem="za2-J9-Syb" secondAttribute="centerY" id="8jt-g8-TZA"/>
-                                    <constraint firstItem="FDz-LD-cza" firstAttribute="top" secondItem="1es-cQ-2uH" secondAttribute="bottom" constant="8" id="92D-Qw-pVP"/>
                                     <constraint firstItem="j47-SC-Pxb" firstAttribute="top" secondItem="toS-vR-5vx" secondAttribute="bottom" constant="2" id="97N-DF-RW3"/>
                                     <constraint firstItem="4fB-4t-9No" firstAttribute="top" secondItem="DXn-1p-sk1" secondAttribute="bottom" constant="5" id="9oQ-zv-ohe"/>
                                     <constraint firstItem="jVW-zc-8Ay" firstAttribute="leading" secondItem="9c7-E3-xB7" secondAttribute="leading" constant="15" id="BEm-T4-ysj"/>
                                     <constraint firstItem="qws-l3-2Y7" firstAttribute="leading" secondItem="9c7-E3-xB7" secondAttribute="leading" constant="15" id="F0r-l3-9K1"/>
-                                    <constraint firstItem="1es-cQ-2uH" firstAttribute="leading" secondItem="9c7-E3-xB7" secondAttribute="leading" constant="77" id="FdF-Zu-KGJ"/>
                                     <constraint firstItem="ED9-9j-fMG" firstAttribute="leading" secondItem="9c7-E3-xB7" secondAttribute="leading" constant="15" id="GFO-of-gVA"/>
                                     <constraint firstItem="BpF-w5-UdI" firstAttribute="leading" secondItem="9c7-E3-xB7" secondAttribute="leading" constant="85" id="GFr-mb-zA9"/>
                                     <constraint firstItem="ED9-9j-fMG" firstAttribute="top" secondItem="9bc-Yz-fvF" secondAttribute="bottom" constant="8" id="GNI-Xp-Xbu"/>
@@ -913,12 +905,6 @@
                         <outlet property="scrollViewOutlet" destination="9c7-E3-xB7" id="RqC-MG-QV2"/>
                         <outlet property="sexButtonOutlet" destination="VQ6-Mh-jb5" id="yMI-ed-tYf"/>
                         <outlet property="sexFavoriteButtonOutlet" destination="j47-SC-Pxb" id="uKT-iQ-UdK"/>
-                        <outlet property="starAboutMe" destination="1es-cQ-2uH" id="i04-mY-QFX"/>
-                        <outlet property="starAge" destination="mw4-qK-d2Q" id="Xsj-bL-vsm"/>
-                        <outlet property="starGender" destination="LLD-pQ-UZO" id="3kg-KB-HpZ"/>
-                        <outlet property="starLastName" destination="MFo-ln-sYm" id="2IA-0s-eci"/>
-                        <outlet property="starName" destination="KiD-u7-MsI" id="f0R-KV-Ngk"/>
-                        <outlet property="starOrientation" destination="BpF-w5-UdI" id="acO-SP-IWi"/>
                         <outlet property="surnameTexField" destination="jVW-zc-8Ay" id="zA4-Ia-BAQ"/>
                         <segue destination="KCc-05-RFK" kind="modal" identifier="showEventList" id="hRu-uu-9KH"/>
                         <segue destination="WFE-zO-L8n" kind="presentation" identifier="showPickersVC" id="7zW-Zg-bjo"/>
