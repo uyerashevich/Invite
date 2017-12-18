@@ -55,7 +55,8 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
     var ageBool = false
     var orientationBool = false
     var genderBool = false
-
+    var fotoBool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,12 +74,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
    
     func dataForUi(){
         stopActivityIndicator()
-        
         let date = NSDate()
-        //Orientation
-        sexFavoriteButtonOutlet.setTitle(("\(userProfile.sexFavorite)"), for: .normal)
-        sexButtonOutlet.setTitle(("\(userProfile.sex)"), for: .normal)
-        
         //age
         if userProfile.age != nil && userProfile.age != "" {
             let ageYear = convertStringToDate(dateString: userProfile.age)
@@ -89,19 +85,22 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
             ageBool = false
             ageButtonOutlet.setTitle((" • ( \(convertDateToString(date: date)) )"), for: .normal)
         }
+        
+        sexFavoriteButtonOutlet.setTitle(("\(userProfile.sexFavorite)"), for: .normal)
+        sexButtonOutlet.setTitle(("\(userProfile.sex)"), for: .normal)
         nameTextField.text = userProfile.name.capitalized
         surnameTexField.text = userProfile.surname.capitalized
         instagrammTexField.text = userProfile.instagramUrl
         photoUserImgView.image = userProfile.foto
         aboutMeTextView.text = userProfile.aboutMe
         
+        if userProfile.foto != #imageLiteral(resourceName: "pixBlack"){fotoBool = true}else{fotoBool = false}
         validString(text: userProfile.aboutMe, sender: "aboutMe")
-      
         validString(text: userProfile.sex, sender: "sex")
         validString(text: userProfile.sexFavorite, sender: "sexFavorite")
         validString(text: userProfile.name, sender: "Name")
-        validString(text: userProfile.surname, sender: "surname")
-        validString(text: userProfile.instagramUrl, sender: "instagramm")
+        validString(text: userProfile.surname, sender: "Surname")
+        validString(text: userProfile.instagramUrl, sender: "Instagramm")
 
     }
     func validString(text : String, sender : String){
@@ -112,19 +111,16 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
                             }
         case "sex" :  if text != "Leave Empty" && text != "" {genderBool  = true}else{genderBool  = false}
         case "sexFavorite" :  if (text.count) > 1 {orientationBool  = true}else{orientationBool  = false}
-        case "instagramm" :  if (text.count) < 20 {instaBool  = true}else{instaBool  = false}
+        case "Instagramm" :  if (text.count) < 20 {instaBool  = true}else{instaBool  = false}
         case "Name" : if (text.count) > 2 && (text.count) < 30 {nameBool = true}else{nameBool = false}
-        case "surname": if (text.count) > 2 && (text.count) < 30 {surnameBool = true}else{surnameBool = false}
+        case "Surname": if (text.count) > 2 && (text.count) < 30 {surnameBool = true}else{surnameBool = false}
         case "aboutMe": if (text.count) > 5 && (text.count) < 150{aboutMeBool = true}else{aboutMeBool = false}
         default:  _ = 1
         }
         
-        print("\(instaBool)--\(nameBool)--\(surnameBool)--\(aboutMeBool)--\(orientationBool)--\(genderBool)--\(ageBool)")
-        
-        
-        
-        
-        if instaBool && nameBool && surnameBool && aboutMeBool && orientationBool && genderBool && ageBool{
+        print("\(instaBool)--\(nameBool)--\(surnameBool)--\(aboutMeBool)--\(orientationBool)--\(genderBool)--\(ageBool)--\(fotoBool)")
+
+        if instaBool && nameBool && surnameBool && aboutMeBool && orientationBool && genderBool && ageBool && fotoBool {
             nextButton.layer.opacity = 1
             nextButton.isEnabled = true
         }else {
@@ -161,6 +157,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
             let resizeImage = image.fixSize()
             self?.photoUserImgView.image = resizeImage
             self?.userProfile.foto = resizeImage
+            if self?.userProfile.foto != #imageLiteral(resourceName: "pixBlack"){self?.fotoBool = true}else{self?.fotoBool = false}
         }
     }
     
