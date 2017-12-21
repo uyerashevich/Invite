@@ -8,26 +8,20 @@
 
 import Foundation
 
-class  UsersManager{
+class UserManager{
     
-    static let sharedInstanse = UsersManager()
+    static let sharedInstance = UserManager()
     private init(){}
     
-    
-    func getAllUsers()->[UserProfile]?{
-        
-        return nil
-    }
-    func getUserById(userId : String,completionHandler: @escaping (UserProfile) -> Void) {
-        FirebaseUser.init().getUserDataById(userId: userId) { (userProfile) in
-            print("UsersManager------------------------------")
-            completionHandler(userProfile)
-        }
+    func setUserData(userData : UserProfile){
+        UserService.sharedInstance.setUserData(userData: userData)
     }
     
-    func getUserByName()->UserProfile?{
-        
-        return nil
+    func getUserDataById(userData : UserProfile, completionHandler: @escaping (UserProfile?,Error?) -> Void){
+        let userId = userData.userId
+        UserService.sharedInstance.getUserDataById(userId: userId, completionHandler: { (userProfile, error) in
+            guard userProfile != nil else{return completionHandler(nil, error)}
+            return completionHandler(userProfile, nil)
+        })
     }
-    
 }

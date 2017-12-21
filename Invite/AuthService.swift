@@ -19,21 +19,18 @@ class AuthService{
         Auth.auth().signIn(with: credential, completion: { (user, error) in
             print("user signed into firebase")
             if user?.email != nil && user?.uid != nil {
-                var userData = UserProfile.sharedInstance
-                
-                userData.foto = #imageLiteral(resourceName: "pixBlack")
+                var userData = UserProfile.init()
+
                 userData.email = (user?.email)!
                 userData.userId = (user?.uid)!
                 userData.name = (user?.displayName)!
                 
                 let urlUserPhoto = user?.photoURL
-                getImageFromWeb((urlUserPhoto?.absoluteString)!, closure: { (userPhotoUIImg) in
-                    userData.foto = userPhotoUIImg!
-                    
-                    FirebaseUser.init().getUserData(userData: userData, completionHandler: { (userProfile) in
-                        userData = userProfile
-                        completion(userData, nil)
-                    })
+                userData.fotoUrl?.append(urlUserPhoto!)
+                
+                FirebaseUser.sharedInstance.getUserDataById(userId: userData.userId, completionHandler: { (userProfile, error) in
+                    userData = userProfile!
+                    return completion(userData, nil)
                 })
             }else{
                 // completion(nil, error)

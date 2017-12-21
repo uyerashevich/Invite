@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import GoogleSignIn
-//import FBSDKLoginKit
 
 class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDelegate{ //
     @IBOutlet weak var nextButtonConstraint: NSLayoutConstraint!
@@ -24,14 +23,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
     @IBOutlet weak var instagrammTexField: UITextField!
     @IBOutlet weak var surnameTexField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
-    
-//    @IBOutlet weak var starName: UILabel!
-//    @IBOutlet weak var starLastName: UILabel!
-//    @IBOutlet weak var starAge: UILabel!
-//    @IBOutlet weak var starAboutMe: UILabel!
-//    @IBOutlet weak var starOrientation: UILabel!
-//    @IBOutlet weak var starGender: UILabel!
-    
+
     @IBOutlet weak var nextButton: UIButton!
     let imagePick = ImagePickerActionSheet.init()
     var typePicker : String?
@@ -47,7 +39,6 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
     deinit {
         removeKeyboardNotifications()
     }
-   // var instaBool = false
     var nameBool = false
     var surnameBool = false
     var aboutMeBool = false
@@ -56,8 +47,39 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
     var genderBool = false
     var fotoBool = false
     
+   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //URL+ PHOTO
+         PostService.create(for: #imageLiteral(resourceName: "logo.jpg"))
+//        let storage = Storage.storage()
+        // Create a storage reference from our storage service
+//        let storageRef = storage.reference()
+//        let tempImageRef = storageRef.child("tmpDir/tmp.jpg")
+//
+//
+//        let image = UIImage(named: "logo.jpg")
+//        let metadata = StorageMetadata()
+//        metadata.contentType = "image/jpeg"
+//
+//        tempImageRef.putData(UIImageJPEGRepresentation(image!, 0.8)!, metadata: metadata, completion: { (data, error) in
+//            if error == nil{
+////                for i in metadata.downloadURLs!{
+////                print(i)
+////                }
+//                print("upload---\(metadata.downloadURL()) OK")
+//            }else{ print(error)}
+//        })
+        
+        
+       
+//        tempImageRef.getData(maxSize: 1*1000*1000) { (data, error) in
+//            if error == nil{
+//                self.photoUserImgView.image = UIImage(data: data!)
+//                            }else{ print(error)}
+//        }
+        
         
         stopActivityIndicator()
         registerForKeyboardNotifications()
@@ -75,10 +97,10 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         stopActivityIndicator()
         let date = NSDate()
         //age
-        if userProfile.age != nil && userProfile.age != "" {
-            let ageYear = convertStringToDate(dateString: userProfile.age)
+        if userProfile.dateBirth != nil && userProfile.dateBirth  != "" {
+            let ageYear = convertStringToDate(dateString: userProfile.dateBirth)
             let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
-            ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(userProfile.age) )"), for: .normal)
+            ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(userProfile.dateBirth) )"), for: .normal)
               validString(text: "\(Int(timeInterval))", sender: "DateOfB")
         }else{
             ageBool = false
@@ -90,10 +112,12 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         nameTextField.text = userProfile.name.capitalized
         surnameTexField.text = userProfile.surname.capitalized
         instagrammTexField.text = userProfile.instagramUrl
-        photoUserImgView.image = userProfile.foto
-        aboutMeTextView.text = userProfile.aboutMe
         
-        if userProfile.foto != #imageLiteral(resourceName: "pixBlack"){fotoBool = true}else{fotoBool = false}
+        //upload foto from URL
+       // photoUserImgView.image = userProfile.foto
+        aboutMeTextView.text = userProfile.aboutMe
+        //upload foto from URL
+       // if userProfile.foto != #imageLiteral(resourceName: "pixBlack"){fotoBool = true}else{fotoBool = false}
         validString(text: userProfile.aboutMe, sender: "aboutMe")
         validString(text: userProfile.sex, sender: "sex")
         validString(text: userProfile.sexFavorite, sender: "sexFavorite")
@@ -131,7 +155,6 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         validString(text: textField.text!, sender: textField.placeholder!)
-//                displayAlertMessage(messageToDisplay: "Max number of characters in Instagram field is not more than 20 and other field is not more than 30", viewController: self)
     }
     
     //для убирания клавы с экрана/////////
@@ -157,8 +180,10 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         imagePick.onDataUpdate = { [weak self] (image: UIImage) in
             let resizeImage = image.fixSize()
             self?.photoUserImgView.image = resizeImage
-            self?.userProfile.foto = resizeImage
-            if self?.userProfile.foto != #imageLiteral(resourceName: "pixBlack"){self?.fotoBool = true}else{self?.fotoBool = false}
+            
+            //upload foto from URL
+           // self?.userProfile.foto = resizeImage
+         //   if self?.userProfile.foto != #imageLiteral(resourceName: "pixBlack"){self?.fotoBool = true}else{self?.fotoBool = false}
         }
     }
     
@@ -167,7 +192,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         self.userProfile.name = nameTextField.text!
         self.userProfile.surname = surnameTexField.text!
         self.userProfile.aboutMe = aboutMeTextView.text!
-            FirebaseUser.init().setUserData(userData: self.userProfile)
+        UserManager.sharedInstance.setUserData(userData: self.userProfile)
             performSegue(withIdentifier: "showEventList", sender: self)
       
     }
@@ -199,9 +224,6 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
             
             userProfile.clear()
             UserDefaults.standard.set("", forKey: "userId")
-            
-            //            self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
-            
             dismiss(animated: true, completion: nil)
             navigationController?.popViewController(animated: true)
         } catch let signOutError as NSError {
@@ -237,7 +259,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
                         let date = NSDate()
                         let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
                         self.ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(s) )"), for: .normal)
-                        self.userProfile.age = ("\(s)")
+                        self.userProfile.dateBirth = ("\(s)")
                         self.validString(text: "\(Int(timeInterval))", sender: "DateOfB")
                         
                     default :_ = 1

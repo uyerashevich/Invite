@@ -57,8 +57,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
         if let error = error {
             print("\(error.localizedDescription)")
             
-            NotificationCenter.default.post(
-                name: Notification.Name(rawValue: "ToggleAuthUINotification"), object: nil, userInfo: nil)
+            //            NotificationCenter.default.post(
+            //                name: Notification.Name(rawValue: "ToggleAuthUINotification"), object: nil, userInfo: nil)
             
             print(error.localizedDescription)
             print("Ошибка входа в Google аккаунт попробуйте попозже")
@@ -68,9 +68,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
             //            // Perform any operations on signed in user here.
             //            let userId = user.userID                  // For client-side use only!
             //            let idToken = user.authentication.idToken // Safe to send to the server
-            let fullName = user.profile.name
-            let givenName = user.profile.givenName
-            let familyName = user.profile.familyName
+            //user.profile.givenName
+            // user.profile.familyName
             //            let email = user.profile.email
             //            print("\(userId)--\(fullName)--\(givenName)--\(familyName)--\(email)")
             //
@@ -79,14 +78,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate , GIDSignInDelegate{
             
             let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                            accessToken: authentication.accessToken)
-            
-            AuthManager.sharedInstance.authUser(credential: credential, completion: { (userProfile, error) in
-                let userCabVC = BaseViewController()
-                userCabVC.userProfile = userProfile!
-                print(userCabVC.userProfile.name)
+            AuthService.sharedInstance.authUserInFirebase(credential: credential, completion: { (userProfile, error) in
+                //   print("APPDEL---- \(userProfile?.name)")
+                let dictionaryUserProfile  = userProfile?.convertToDictionary()
+                //  print("appdelegate-----\(dictionaryUserProfile?.count)--\(user.profile.givenName)---\(user.profile.familyName)")
                 NotificationCenter.default.post(
                     name: Notification.Name(rawValue: "ToggleAuthUINotification"),
-                    object: nil, userInfo: ["statusText": "Signed in user:\n\(fullName)"])
+                    object: nil, userInfo: dictionaryUserProfile )
             })
         }
     }

@@ -11,49 +11,86 @@ import UIKit
 
 class UserProfile{
     
-    static let sharedInstance = UserProfile()
+    //  static let sharedInstance = UserProfile()
     
+    //    let urlString = "file:///Users/Documents/Book/Note.txt"
+    //    let pathURL = URL(string: urlString)!
+    //    print("the url = " + pathURL.path)
+    
+    var socialName : String
     var userId: String
     var email : String
-    var aboutMe : String
-    var name : String
-    var sex : String
+    var name : String//имя
+    var surname : String//фамилия
+    
+    var sex : String//пол
+    var aboutMe : String//
+    var dateBirth : String
+    var phone : String
+    
+    var favoriteEvents : [String]? //выбр пати
+    var fotoUrl : [URL]?
+    
     var sexFavorite : String
-    var surname : String
-    var age : String
     var instagramUrl : String
-    var foto : UIImage
-   
     
-    
-private    init (){
+    init (){
+        socialName = ""
         userId = ""
         email = ""
-    aboutMe = ""
         name = ""
-        sex = ""
-        sexFavorite = ""
         surname = ""
-        age = ""
+        
+        sex = ""
+        aboutMe = ""
+        dateBirth = ""
+        phone = ""
+        
+        sexFavorite = ""
         instagramUrl = ""
-        foto = #imageLiteral(resourceName: "pixBlack")
     }
     
     func clear(){
+        socialName = ""
         userId = ""
         email = ""
-        aboutMe = ""
         name = ""
-        sex = ""
-        sexFavorite = ""
         surname = ""
-        age = ""
-        instagramUrl = ""
-        foto = #imageLiteral(resourceName: "pixBlack")
         
+        sex = ""
+        aboutMe = ""
+        dateBirth = ""
+        phone = ""
+        
+        sexFavorite = ""
+        instagramUrl = ""
+        favoriteEvents = nil
+        fotoUrl = nil
     }
     func convertToDictionary()-> [String: Any] {
-        return["userId": self.userId,"email": self.email, "aboutMe": self.aboutMe, "name": self.name,"sex": self.sex, "sexFavorite": self.sexFavorite, "surname": self.surname, "age": self.age, "instagramUrl": self.instagramUrl]
-
+        var array :[String] = []
+        if favoriteEvents != nil{  for i in favoriteEvents!{
+            array.append(i)
+            }
+        }
+        var arrayUrl :[String] = []
+        if fotoUrl != nil{  for i in fotoUrl!{
+            arrayUrl.append(String(describing: i))
+            }
+        }
+        return["socialName" : self.socialName,
+               "userId": self.userId,
+               "email": self.email,
+               "name": self.name,
+               "surname": self.surname,
+               
+               "sex": self.sex,
+               "aboutMe": self.aboutMe,
+               "dateBirth": self.dateBirth,
+               "phone": self.phone,
+               "favoriteEvents": array,
+               "sexFavorite": self.sexFavorite,
+               "instagramUrl": self.instagramUrl,
+               "fotoUrl" : arrayUrl ]
     }
 }

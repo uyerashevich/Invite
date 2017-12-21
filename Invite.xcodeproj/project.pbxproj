@@ -15,6 +15,8 @@
 		7F0E5A221F8FF2DB0026D358 /* SignInFirebaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0E5A211F8FF2DB0026D358 /* SignInFirebaseViewController.swift */; };
 		7F11986B1F911B810086DF66 /* AuthUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F11986A1F911B810086DF66 /* AuthUser.swift */; };
 		7F11986E1F9136BC0086DF66 /* FirebaseUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F11986D1F9136BC0086DF66 /* FirebaseUser.swift */; };
+		7F17B00E1FEBD85400AD21C2 /* FirebaseImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F17B00D1FEBD85400AD21C2 /* FirebaseImage.swift */; };
+		7F17B0121FEC528600AD21C2 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 7F17B0111FEC528600AD21C2 /* logo.jpg */; };
 		7F3588C71FBCAFB100A38D58 /* GMapsUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588C61FBCAFB100A38D58 /* GMapsUtils.swift */; };
 		7F3588C91FBCAFC200A38D58 /* MapBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588C81FBCAFC200A38D58 /* MapBaseViewController.swift */; };
 		7F3588CB1FBCAFDB00A38D58 /* RootMapsBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3588CA1FBCAFDB00A38D58 /* RootMapsBaseController.swift */; };
@@ -61,6 +63,8 @@
 		7F0E5A211F8FF2DB0026D358 /* SignInFirebaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFirebaseViewController.swift; sourceTree = "<group>"; };
 		7F11986A1F911B810086DF66 /* AuthUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthUser.swift; sourceTree = "<group>"; };
 		7F11986D1F9136BC0086DF66 /* FirebaseUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUser.swift; sourceTree = "<group>"; };
+		7F17B00D1FEBD85400AD21C2 /* FirebaseImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseImage.swift; sourceTree = "<group>"; };
+		7F17B0111FEC528600AD21C2 /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
 		7F3588C61FBCAFB100A38D58 /* GMapsUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMapsUtils.swift; sourceTree = "<group>"; };
 		7F3588C81FBCAFC200A38D58 /* MapBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapBaseViewController.swift; sourceTree = "<group>"; };
 		7F3588CA1FBCAFDB00A38D58 /* RootMapsBaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootMapsBaseController.swift; sourceTree = "<group>"; };
@@ -141,6 +145,7 @@
 			children = (
 				7F11986D1F9136BC0086DF66 /* FirebaseUser.swift */,
 				7F727A501F9E7231004E7D1A /* FirebaseEvent.swift */,
+				7F17B00D1FEBD85400AD21C2 /* FirebaseImage.swift */,
 			);
 			name = DataBase;
 			sourceTree = "<group>";
@@ -261,6 +266,7 @@
 				7F9E3CD81F8D2F5F006378F0 /* Assets.xcassets */,
 				7F9E3CDA1F8D2F5F006378F0 /* LaunchScreen.storyboard */,
 				7F9E3CD11F8D2F5F006378F0 /* AppDelegate.swift */,
+				7F17B0111FEC528600AD21C2 /* logo.jpg */,
 				7F787ABF1FCAEAC800AE78A7 /* GoogleService-Info.plist */,
 				7F9E3CD51F8D2F5F006378F0 /* Main.storyboard */,
 				7F9E3CDD1F8D2F5F006378F0 /* Info.plist */,
@@ -371,6 +377,7 @@
 				7F9E3CDC1F8D2F5F006378F0 /* LaunchScreen.storyboard in Resources */,
 				7F787AC01FCAEAC800AE78A7 /* GoogleService-Info.plist in Resources */,
 				7F9E3CD91F8D2F5F006378F0 /* Assets.xcassets in Resources */,
+				7F17B0121FEC528600AD21C2 /* logo.jpg in Resources */,
 				7F9E3CD71F8D2F5F006378F0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -468,6 +475,7 @@
 				7F3588CB1FBCAFDB00A38D58 /* RootMapsBaseController.swift in Sources */,
 				7F63DD081FDC78A800A99E2A /* EventsServices.swift in Sources */,
 				7F0E5A221F8FF2DB0026D358 /* SignInFirebaseViewController.swift in Sources */,
+				7F17B00E1FEBD85400AD21C2 /* FirebaseImage.swift in Sources */,
 				7F3588C91FBCAFC200A38D58 /* MapBaseViewController.swift in Sources */,
 				7F9E3CE61F8D38F8006378F0 /* SignUpViewController.swift in Sources */,
 				7F63DD061FDC78A100A99E2A /* AuthManager.swift in Sources */,
