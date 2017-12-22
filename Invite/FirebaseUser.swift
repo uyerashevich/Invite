@@ -34,8 +34,8 @@ class FirebaseUser {
     
     
     ////альтернативный способ получ данных+++++!!!!! рабочий 100%
-    //    func getUserDataById(userId : String, completionHandler: @escaping (UserModel) -> Void){
-    //        var userProfile = UserModel.sharedInstance
+    //    func getUserDataById(userId : String, completionHandler: @escaping (UserProfile) -> Void){
+    //        var userProfile = UserProfile
     //        let obs = ref?.child("Users").observe(.value, with: { (snapshot) in
     //
     //            for us in snapshot.children.allObjects as![DataSnapshot]{
@@ -54,7 +54,7 @@ class FirebaseUser {
     //                    userProfile.dateBirth = usObj?["dateBirth"] as? String ?? ""
     //                    userProfile.phone = usObj?["phone"] as? String ?? ""
     //
-    //                  //  userProfile.favoritePartyes = usObj?["favoritePartyes"] ?? ""
+    //                  //  userProfile.favoriteEvent = usObj?["favoriteEvent"] ?? ""
     //                    userProfile.locationLat = usObj?["locationLat"] as? Double ?? 0
     //                    userProfile.locationLong = usObj?["locationLong"] as? Double ?? 0
     //
@@ -94,7 +94,7 @@ class FirebaseUser {
 //            case "locationLat" : do {userProfile.locationLat = (snapshot.value as? Double ?? 0)}
 //            case "locationLong" : do {userProfile.locationLong = (snapshot.value as? Double ?? 0)}
                 
-                //case "favoritePartyes" : do {userProfile.favoritePartyes = (snapshot.value as? [String])}
+                //case "favoriteEvent" : do {userProfile.favoriteEvent = (snapshot.value as? [String])}
                 
                 //            case "foto" : if let foto = snapshot.value as? [String] {
                 //                for i in foto{
