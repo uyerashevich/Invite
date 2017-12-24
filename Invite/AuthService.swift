@@ -19,17 +19,20 @@ class AuthService{
         Auth.auth().signIn(with: credential, completion: { (user, error) in
             print("user signed into firebase")
             if user?.email != nil && user?.uid != nil {
-                var userData = UserProfile.init()
-
+                var userData = UserProfile.sharedInstance
+                
                 userData.email = (user?.email)!
                 userData.userId = (user?.uid)!
                 userData.name = (user?.displayName)!
+                userData.socialName = (user?.displayName)!
                 
-                let urlUserPhoto = user?.photoURL
-                userData.fotoUrl?.append(urlUserPhoto!)
+
+                if let foto2 = user?.photoURL?.absoluteString{ 
+                    userData.fotoUrl.append(foto2) }
                 
-                FirebaseUser.sharedInstance.getUserDataById(userId: userData.userId, completionHandler: { (userProfile, error) in
-                    userData = userProfile!
+                FirebaseUser.init().getUserDataById(userId: userData.userId, completionHandler: { (userProfile) in
+                    userData = userProfile
+                    print("sftryt")
                     return completion(userData, nil)
                 })
             }else{
@@ -40,3 +43,6 @@ class AuthService{
     }
 }
 
+
+                
+    

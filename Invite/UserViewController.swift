@@ -23,17 +23,26 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
     @IBOutlet weak var instagrammTexField: UITextField!
     @IBOutlet weak var surnameTexField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
-
+    
+    @IBOutlet weak var image1: UIImageView!
+    @IBOutlet weak var image2: UIImageView!
+    @IBOutlet weak var image3: UIImageView!
+    @IBOutlet weak var image4: UIImageView!
     @IBOutlet weak var nextButton: UIButton!
     let imagePick = ImagePickerActionSheet.init()
     var typePicker : String?
     
     var eventListVC = EventListViewController()
     
+    var userFotosArray : [UIImage] = [] {
+        didSet{
+            dataForUi()
+        }
+    }
     var eventList : [EventData] = [] {
         didSet{
             eventListVC.eventList = self.eventList
-        //    print("1111-----\(eventList.count)----list--eventData userVC")
+            //    print("1111-----\(eventList.count)----list--eventData userVC")
         }
     }
     deinit {
@@ -45,40 +54,13 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
     var ageBool = false
     var orientationBool = false
     var genderBool = false
-    var fotoBool = false
+    // var fotoBool = false
     
-   
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //URL+ PHOTO
-         PostService.create(for: #imageLiteral(resourceName: "logo.jpg"))
-//        let storage = Storage.storage()
-        // Create a storage reference from our storage service
-//        let storageRef = storage.reference()
-//        let tempImageRef = storageRef.child("tmpDir/tmp.jpg")
-//
-//
-//        let image = UIImage(named: "logo.jpg")
-//        let metadata = StorageMetadata()
-//        metadata.contentType = "image/jpeg"
-//
-//        tempImageRef.putData(UIImageJPEGRepresentation(image!, 0.8)!, metadata: metadata, completion: { (data, error) in
-//            if error == nil{
-////                for i in metadata.downloadURLs!{
-////                print(i)
-////                }
-//                print("upload---\(metadata.downloadURL()) OK")
-//            }else{ print(error)}
-//        })
         
-        
-       
-//        tempImageRef.getData(maxSize: 1*1000*1000) { (data, error) in
-//            if error == nil{
-//                self.photoUserImgView.image = UIImage(data: data!)
-//                            }else{ print(error)}
-//        }
         
         
         stopActivityIndicator()
@@ -91,17 +73,57 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         self.aboutMeTextView.delegate = self
         self.dataForUi()
         
+        print("\(userProfile.fotoUrl.count)------")
+        if userProfile.fotoUrl.count == 1 {
+            getImageFromWeb(URL.init(string: userProfile.fotoUrl[0])!, closure: { (image) in
+                if let xImage = image{
+                    self.userFotosArray.append(xImage)
+                }
+            })
+        }
+//            else{
+            //загр из firebase storage
+                        for i in 0 ..< 5{
+                            PostService.downloadsImageFirebase(userId: userProfile.userId, nameImage: "\(i)", completion: { (image) in
+                                if let xImage = image{
+                                    print("DOWNLOAD IMAGES________")
+                                    self.userFotosArray.append(xImage)
+                                }
+                            })
+                            
+//            }
+        }
+        
+//        if userProfile.fotoUrl.count < 1  && (userProfile.socialFotoUrl != ""  ) {
+//            print("GET SOC IMage")
+//            getImageFromWeb(URL.init(string: userProfile.socialFotoUrl)!, closure: { (image) in
+//                if let xImage = image{
+//                    self.userFotosArray.append(xImage)
+//                    PostService.create(for: image!, userId: self.userProfile.userId, nameImage: "0", completion: { (urlImage) in
+//                        self.userProfile.fotoUrl.append(urlImage!)
+//                    })
+//                }
+//            })
+//        }
+//            else{
+//            //загр из firebase storage
+//            for i in 0 ..< userProfile.fotoUrl.count{
+//                //PostService.downloadsImageFirebase(userId: userProfile.userId, nameImage: "\(i)", completion: { (image) in
+//                PostService.downloadsImageFirebase(userId: userProfile.userId, nameImage: "\(i)", completion: { (image) in
+//                    self.userFotosArray.append(image!)
+//                })
+//            }
+//        }
     }
-   
     func dataForUi(){
         stopActivityIndicator()
         let date = NSDate()
         //age
-        if userProfile.dateBirth != nil && userProfile.dateBirth  != "" {
-            let ageYear = convertStringToDate(dateString: userProfile.dateBirth)
+        if userProfile.age != nil && userProfile.age != "" {
+            let ageYear = convertStringToDate(dateString: userProfile.age)
             let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
-            ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(userProfile.dateBirth) )"), for: .normal)
-              validString(text: "\(Int(timeInterval))", sender: "DateOfB")
+            ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(userProfile.age) )"), for: .normal)
+            validString(text: "\(Int(timeInterval))", sender: "DateOfB")
         }else{
             ageBool = false
             ageButtonOutlet.setTitle((" • ( \(convertDateToString(date: date)) )"), for: .normal)
@@ -113,23 +135,29 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         surnameTexField.text = userProfile.surname.capitalized
         instagrammTexField.text = userProfile.instagramUrl
         
-        //upload foto from URL
-       // photoUserImgView.image = userProfile.foto
+        for i in 0 ..< userFotosArray.count{//5
+            if i == 0 {photoUserImgView.image = userFotosArray[i]}//[userFotosArray.count - i - 1]}//4
+            if i == 1 {image1.image = userFotosArray[i]}//[userFotosArray.count - i - 1]}//3
+            if i == 2 {image2.image = userFotosArray[i]}
+            if i == 3 {image3.image = userFotosArray[i]}//[userFotosArray.count - i - 1]}//1
+            if i == 4 {image4.image = userFotosArray[i]}
+        }
+        
         aboutMeTextView.text = userProfile.aboutMe
-        //upload foto from URL
-       // if userProfile.foto != #imageLiteral(resourceName: "pixBlack"){fotoBool = true}else{fotoBool = false}
+        
+        // if userProfile.foto != #imageLiteral(resourceName: "pixBlack"){fotoBool = true}else{fotoBool = false}
         validString(text: userProfile.aboutMe, sender: "aboutMe")
         validString(text: userProfile.sex, sender: "sex")
         validString(text: userProfile.sexFavorite, sender: "sexFavorite")
         validString(text: userProfile.name, sender: "Name")
         validString(text: userProfile.surname, sender: "Surname")
-
+        
     }
     func validString(text : String, sender : String){
         switch sender {
         case "DateOfB" :  if let dateB = Int(text) {
-                                if dateB > 14 {ageBool  = true}else{ageBool  = false}
-                            }
+            if dateB > 14 {ageBool  = true}else{ageBool  = false}
+            }
         case "sex" :  if text != "Leave Empty" && text != "" {genderBool  = true}else{genderBool  = false}
         case "sexFavorite" :  if (text.count) > 1 {orientationBool  = true}else{orientationBool  = false}
         case "Name" : if (text.count) > 2 && (text.count) < 30 {nameBool = true}else{nameBool = false}
@@ -141,9 +169,9 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         default:  _ = 1
         }
         
-        print("--\(nameBool)--\(surnameBool)--\(aboutMeBool)--\(orientationBool)--\(genderBool)--\(ageBool)--\(fotoBool)")
-
-        if  nameBool && surnameBool && aboutMeBool && orientationBool && genderBool && ageBool && fotoBool {
+        //   print("--\(nameBool)--\(surnameBool)--\(aboutMeBool)--\(orientationBool)--\(genderBool)--\(ageBool)--\(fotoBool)")
+        
+        if  nameBool && surnameBool && aboutMeBool && orientationBool && genderBool && ageBool {
             nextButton.layer.opacity = 1
             nextButton.isEnabled = true
         }else {
@@ -155,6 +183,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         validString(text: textField.text!, sender: textField.placeholder!)
+        //                displayAlertMessage(messageToDisplay: "Max number of characters in Instagram field is not more than 20 and other field is not more than 30", viewController: self)
     }
     
     //для убирания клавы с экрана/////////
@@ -181,20 +210,29 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
             let resizeImage = image.fixSize()
             self?.photoUserImgView.image = resizeImage
             
-            //upload foto from URL
-           // self?.userProfile.foto = resizeImage
-         //   if self?.userProfile.foto != #imageLiteral(resourceName: "pixBlack"){self?.fotoBool = true}else{self?.fotoBool = false}
+            if (self?.userFotosArray.count)! < 5{
+                        self?.userFotosArray.insert(resizeImage, at: 0)
+            }else{
+                 self?.userFotosArray.insert(resizeImage, at: 0)
+                    self?.userFotosArray.removeLast()
+            }
         }
     }
-    
+
     @IBAction func saveButton(_ sender: UIButton) {
         self.userProfile.instagramUrl = instagrammTexField.text!
         self.userProfile.name = nameTextField.text!
         self.userProfile.surname = surnameTexField.text!
         self.userProfile.aboutMe = aboutMeTextView.text!
-        UserManager.sharedInstance.setUserData(userData: self.userProfile)
-            performSegue(withIdentifier: "showEventList", sender: self)
-      
+        
+        for i in 0 ..< userFotosArray.count{
+            PostService.create(for: userFotosArray[i], userId: userProfile.userId, nameImage: "\(i)" , completion: { (urlImage) in
+                if self.userProfile.fotoUrl.count < 5 {self.userProfile.fotoUrl.append("\(i)")}
+                FirebaseUser.init().setUserData(userData: self.userProfile)
+            })
+        }
+        performSegue(withIdentifier: "showEventList", sender: self)
+        
     }
     
     @IBAction func sexFavoriteButton(_ sender: Any) {
@@ -224,6 +262,9 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
             
             userProfile.clear()
             UserDefaults.standard.set("", forKey: "userId")
+            
+            //            self.view.window!.rootViewController?.dismiss(animated: false, completion: nil)
+            
             dismiss(animated: true, completion: nil)
             navigationController?.popViewController(animated: true)
         } catch let signOutError as NSError {
@@ -259,7 +300,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
                         let date = NSDate()
                         let timeInterval = date.timeIntervalSince(ageYear) / 60 / 60 / 24 / 365
                         self.ageButtonOutlet.setTitle(("\(Int(timeInterval)) • ( \(s) )"), for: .normal)
-                        self.userProfile.dateBirth = ("\(s)")
+                        self.userProfile.age = ("\(s)")
                         self.validString(text: "\(Int(timeInterval))", sender: "DateOfB")
                         
                     default :_ = 1

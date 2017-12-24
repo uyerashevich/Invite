@@ -12,16 +12,17 @@ class UserService{
     
     static let sharedInstance = UserService()
     private init(){}
- 
-    func setUserData(userData : UserProfile){
-        FirebaseUser.sharedInstance.updateUserData(userData: userData)
+
+    func getAllUsers()->[UserProfile]?{
+        
+        return nil
     }
-    
-    func getUserDataById(userId : String, completionHandler: @escaping (UserProfile?,Error?) -> Void){
-        FirebaseUser.sharedInstance.getUserDataById(userId: userId, completionHandler: { (user,error)  in
-            guard user != nil else{return completionHandler(nil, "Wrong user - data" as! Error)}
-            return completionHandler(user, nil)
-        })
+    func getUserById()->UserProfile?{
+        
+        return nil
+    }
+    func getUserByName()->UserProfile?{
+        
+        return nil
     }
 }
-

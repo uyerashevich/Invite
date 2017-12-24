@@ -64,7 +64,7 @@ class CreateEventViewController: BaseViewController, UITextFieldDelegate {
     @IBAction func saveEventButton(_ sender: Any) {
         
         eventData.eventName = nameEventTextField.text!
-        let userId = userProfile.userId
+        let userId = UserProfile.sharedInstance.userId
         eventData.ownerUserId = userId
         eventData.address = addressEventTextField.text!
         

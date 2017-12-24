@@ -10,7 +10,7 @@ import UIKit
 
 class BaseViewController : UIViewController {
     
-    var userProfile = UserProfile.init()
+    var userProfile = UserProfile.sharedInstance
   
     
     

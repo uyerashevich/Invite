@@ -46,12 +46,10 @@ class SignInViewController:  BaseViewController , GIDSignInUIDelegate {
             //вход по умолчанию
             if UserDefaults.standard.string(forKey: "userId") != nil && UserDefaults.standard.string(forKey: "userId") != ""{
                 startActivityIndicator(viewController: self)
-                userProfile.userId = UserDefaults.standard.string(forKey: "userId")!
-                UserManager.sharedInstance.getUserDataById(userData: userProfile , completionHandler: { (resp,error)  in
-                    if error == nil {
-                    self.userProfile = resp!
+                let xz = UserDefaults.standard.string(forKey: "userId")
+                FirebaseUser.init().getUserDataById(userId: xz!, completionHandler: { (resp) in
+                    self.userProfile = resp
                     self.performSegue(withIdentifier: "goToUserCab", sender: self)
-                    }
                 })
             }
         } else {
