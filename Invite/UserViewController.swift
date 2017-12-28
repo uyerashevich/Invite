@@ -134,6 +134,7 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         nameTextField.text = userProfile.name.capitalized
         surnameTexField.text = userProfile.surname.capitalized
         instagrammTexField.text = userProfile.instagramUrl
+       
         
         for i in 0 ..< userFotosArray.count{//5
             if i == 0 {photoUserImgView.image = userFotosArray[i]}//[userFotosArray.count - i - 1]}//4
@@ -198,11 +199,13 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
+//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//        textField.resignFirstResponder()
+//        return true
+//    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.view.endEditing(true)
+//    }
     
     @IBAction func tapImage(_ sender: Any) {
         imagePick.showCameraLibrary(view: self)
@@ -235,7 +238,14 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
         
     }
     
+    func caretRect(for position: UITextPosition) -> CGRect {
+        return CGRect.zero
+    }
+    func selectionRects(for range: UITextRange) -> [Any] {
+        return []
+    }
     @IBAction func sexFavoriteButton(_ sender: Any) {
+      
         typePicker = "sexFavorite"
         performSegue(withIdentifier: "showPickersVC", sender: nil)
     }
@@ -273,13 +283,14 @@ class UserViewController: BaseViewController, UITextFieldDelegate, UITextViewDel
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showEventList"{
+        if segue.identifier == "showEventList"{       
             if let eventListVC = segue.destination as? EventListViewController {
                 self.eventListVC = eventListVC
             }
         }
         
         if segue.identifier == "showPickersVC" {
+            self.view.endEditing(true)
             if let pickerVC = segue.destination as? PIckersViewController {
                 pickerVC.typePicker = self.typePicker
                 pickerVC.callBackToUser = {[unowned self] (pickerResponse) in
